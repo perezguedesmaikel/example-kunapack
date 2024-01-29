@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="p-[50px]">
     <div class="columns">
       <div role="main" aria-label="Consulta para saber si usted es el beneficiario del Aporte Familiar Permanente" class="column">
         <header class="mb-6">
@@ -37,7 +37,7 @@
             <span>Los campos marcados con * son obligatorios</span>
           </div>
 
-          <div class="cont-btn">
+          <div class="flex justify-end cont-btn">
             <DsButton color="primary" title="Continuar al paso siguiente">
               Consultar
             </DsButton>
