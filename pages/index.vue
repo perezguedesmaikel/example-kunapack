@@ -8,6 +8,12 @@
           Consulta de Aporte Familiar
         </NuxtLink>
       </li>
+
+      <li>
+        <NuxtLink to="/solicitud-hora-tramite-residencia-pensionado">
+          Solicitud de Hora Para Trámite en Residencia del Pensionado
+        </NuxtLink>
+      </li>
     </ul>
   </div>
 </template>
