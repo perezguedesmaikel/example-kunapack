@@ -73,7 +73,7 @@ input, select, textarea {
 }
 
 input[required], select[required], textarea[required] {
-    /*@apply hover:border-danger-900 border-dashed border-2 border-danger-500*/
+    @apply hover:border-danger-900 border-dashed border-2 border-danger-500
 }
 
 input[readonly], select[readonly], textarea[readonly],
