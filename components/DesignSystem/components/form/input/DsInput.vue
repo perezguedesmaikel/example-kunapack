@@ -4,10 +4,14 @@ import {
   predefinedClasses,
 } from "~/components/DesignSystem/common/propsStyle";
 
+import type {
+  ISize,
+  ITextType,
+} from "~/components/DesignSystem/interfaces/elements";
+
 import { filterClass } from "~/components/DesignSystem/utils/filterClass";
 import generateUniqueId from "~/components/DesignSystem/utils/generateUniqueId";
 import useFocus from "~/components/DesignSystem/composables/useFocus";
-import type { ISize, ITextType } from "~/components/DesignSystem/interfaces/elements";
 
 const props = defineProps({
   modelValue: {
