@@ -50,7 +50,7 @@
         <!-- <h2>Formulario</h2> -->
       </header>
 
-      <div class="form-sector">
+      <div class="form-sector p-4 rounded-lg bg-neutral-100">
         <header>
           <DsTypography variant="h2">Felipe Herrera Sotomayor</DsTypography>
           <DsTypography variant="h3" class="rut">3.456.789-0</DsTypography>
@@ -1178,6 +1178,7 @@ import DsRadio from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem
 import DsSelect from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/form/select/DsSelect.vue';
 import DsStepper from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/form/stepper/DsStepper.vue';
 import DsFile from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/form/file/DsFile.vue';
+import DsLink from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/navigation/link/DsLink.vue';
 import { useVuelidate } from '@vuelidate/core'
 import { required, helpers } from '@vuelidate/validators'
 
@@ -1219,6 +1220,7 @@ const model = reactive({
     region: null,
     community: null,
     email: null,
+    pensionerRelation: null,
   },
 });
 
