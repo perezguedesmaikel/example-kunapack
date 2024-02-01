@@ -2,7 +2,7 @@
   <div role=" main" class="container"
        aria-label="Consulta para saber si usted es el beneficiario del Aporte Familiar Permanente">
     <header class="mb-6">
-      <DsTypography class="is-upper-text-title">
+      <DsTypography>
         Servicio de información entregado por
 
         <DsLink href="https://www.chileatiende.gob.cl/instituciones/AL005"
