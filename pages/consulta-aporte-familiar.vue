@@ -4,13 +4,13 @@
       <main class="col-span-2"
         aria-label="Consulta para saber si usted es el beneficiario del Aporte Familiar Permanente">
         <header class="mb-6">
-          <DsTypography class="is-upper-text-title">
-              Servicio de información entregado por
-              <DsLink href="https://www.chileatiende.gob.cl/instituciones/AL005"
-                      title="Página web del Instituto de Previsión Social IPS"
-                      class="link">
-                Instituto de Previsión Social
-              </DsLink>
+          <DsTypography>
+            Servicio de información entregado por
+            <DsLink href="https://www.chileatiende.gob.cl/instituciones/AL005"
+              title="Página web del Instituto de Previsión Social IPS"
+              class="link">
+              Instituto de Previsión Social
+            </DsLink>
           </DsTypography>
 
           <DsTypography variant="h1">
@@ -65,19 +65,22 @@
             Comunícate con nosotros
           </DsTypography>
 
-          <nav class="my-4 flex items-center">
+          <nav class="my-4 flex justify-cente">
             <DsLink target="_blank" title="Ir a Twitter"
-                    class="flex items-center mb-5 text-lg text-primary">
-              <DsIcon name="twitter" prefix="lab" size="xlarge" />
+                    class="flex items-center mb-5 text-lg text-primary"
+                    aria-label="Twitter">
+              <DsIcon name="twitter" prefix="lab" size="xlarge"/>
             </DsLink>
 
             <DsLink target="_blank" title="Ir a Facebook"
-                    class="flex items-center mb-5 text-lg text-primary">
+                    class="flex items-center mb-5 text-lg text-primary"
+                    aria-label="Facebook">
               <DsIcon name="facebook" prefix="lab" size="xlarge" />
             </DsLink>
 
             <DsLink target="_blank" title="Ir a Instagram"
-                    class="flex items-center mb-5 text-lg text-primary">
+                    class="flex items-center mb-5 text-lg text-primary"
+                    aria-label="Instagram">
               <DsIcon name="instagram" prefix="lab" size="xlarge" />
             </DsLink>
           </nav>
