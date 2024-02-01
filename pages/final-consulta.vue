@@ -1,5 +1,5 @@
 <template>
-  <div role="main"
+  <DsButtonContainer role="main"
        aria-label="Consulta para saber si usted es el beneficiario del Aporte Familiar Permanente"
        class="column">
     <header class="mb-6">
@@ -27,8 +27,8 @@
         </div>
       </DsAlert>
 
-      <div class="cont-btn">
-        <DsButton color="secondary" :rounded="false"
+      <DsButtonContainer>
+        <DsButton color="secondary"
           title="Consultar otro RUN"
           aria-labelledby="form_global"
           class="button is-default">
@@ -41,14 +41,14 @@
           class="button btn-ref is-default">
           Continuar
         </DsButton>
-      </div>
+      </DsButtonContainer>
     </section>
-  </div>
+  </DsButtonContainer>
 </template>
 
 <script setup>
-import DsButton from '~/components/DesignSystem/components/basic/button/DsButton.vue';
-import DsTypography from '~/components/DesignSystem/components/basic/typography/DsTypography.vue';
-import DsLink from '~/components/DesignSystem/components/navigation/link/DsLink.vue';
-import DsAlert from '../components/DesignSystem/components/basic/alert/DsAlert.vue';
+import DsButton from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/basic/button/DsButton.vue';
+import DsTypography from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/basic/typography/DsTypography.vue';
+import DsLink from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/navigation/link/DsLink.vue';
+import DsAlert from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/basic/alert/DsAlert.vue';
 </script>
