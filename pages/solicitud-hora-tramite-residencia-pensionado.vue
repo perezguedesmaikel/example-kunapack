@@ -1,5 +1,7 @@
 <template>
-  <div role="main" aria-label="Solicitud de hora para trámite en residencia del pensionado" class="column">
+  <div role="main"
+    aria-label="Solicitud de hora para trámite en residencia del pensionado"
+    class="container column ml-3">
     <header class="mb-6">
       <DsTypography class="is-upper-text-title">
         Servicio de información entregado por
@@ -10,44 +12,1373 @@
         </DsLink>
       </DsTypography>
 
-      <h1>Solicitud de hora para trámite en residencia del pensionado</h1> <div class="form-progress items-3"><div role="img" alt="Estás en el paso 1" class="form-progress-indicator p-active"><span><strong>1</strong></span></div> <div class="form-progress-bar"></div> <div role="img" alt="" class="form-progress-indicator"><span><strong>2</strong></span></div> <div class="form-progress-bar"></div> <div role="img" alt="" class="form-progress-indicator"><span><strong>3</strong></span></div></div></header> <section id="form_global" role="form"><header class="mb-5"><h2>Formulario</h2></header> <div class="form-sector"><header><h2>Felipe Herrera Sotomayor</h2> <h3 class="rut">3.456.789-0</h3></header> <div class="cont-gr">
-      Fecha de nacimiento<br> <strong>19 de marzo 1934, 86 años</strong></div> <div class="cont-gr">
-      Dirección<br> <strong>Avenida los Leones, #234, Providencia, Santiago, Región Metropolitana.</strong></div> <div class="cont-gr">
-      Contacto<br> <strong>+56 9 9876 4567</strong><br> <strong>felipeh@gmail.com</strong></div> <section class="modal-form"><button title="Ventana modal que permite editar los datos de contacto del usuario ingresado" class="button btn-sm is-default">Editar datos de contacto</button> <div scroll="keep" role="dialog" aria-modal="true" aria-labelledby="titleModalDatos" class="modal"><div class="modal-background"></div> <div class="modal-card"><header class="modal-card-head"><div class="container"><div class="columns is-mobile"><div class="column"><h3 id="titleModalDatos" class="modal-card-title">Editar datos de contacto</h3></div> <div class="column has-text-right is-hidden"><button aria-label="close" class="button btn-sm button-bordered color-info"><span class="text">
-                  Cerrar
-              </span> <span class="icon"><i aria-hidden="true" class="las la-times"></i></span></button></div></div></div></header> <section class="modal-card-body"><form id="modal_editar_datos_contacto" action="#" aria-label="Modal para editar datos de contacto" class="form-cha"><div class="field"><label for="direccion_modal_contacto" class="label">Ingrese la dirección<span aria-hidden="true">*</span></label> <input id="direccion_modal_contacto" type="text" required  class="input"></div> <div class="field"><label for="numero_modal_contacto" class="label">Ingrese la numeración<span aria-hidden="true">*</span></label> <input id="numero_modal_contacto" type="number" maxlength="9" max="999999999" min="900000001" required  class="input"></div> <div class="field"><label for="poblacion_villa_modal_contacto" class="label">Ingrese la población o villa<span aria-hidden="true">*</span></label> <input id="poblacion_villa_modal_contacto" type="text" required  class="input"></div> <div class="field"><label for="region_modal_contacto" class="label">Región<span aria-hidden="true">*</span></label> <div class="select"><select id="region_modal_contacto" required ><option value="">Seleccione la región</option> <option value="1">1 Tarapaca</option> <option value="2">2 Antofagasta</option> <option value="3">3 Atacama</option> <option value="4">4 Coquimbo</option> <option value="5">5 Valparaiso</option> <option value="6">6 O'Higgins</option> <option value="7">7 Maule</option> <option value="8">8 Bio - Bio</option> <option value="9">9 Araucania</option> <option value="10">10 Los Lagos</option> <option value="11">11 Aisen</option> <option value="12">12 Magallanes Y Antartica</option> <option value="13">13 Metropolitana</option> <option value="14">14 Los Rios</option> <option value="15">15 Arica y Parinacota</option></select></div></div> <div class="field"><label for="ciudad_localidad_modal_contacto" class="label">Ingrese la ciudad o localidad<span aria-hidden="true">*</span></label> <input id="ciudad_localidad_modal_contacto" type="text" required  class="input"></div> <div class="field"><label for="comuna_modal_contacto" class="label">Comuna<span aria-hidden="true">*</span></label> <div class="select"><select id="comuna_modal_contacto" required ><option value="">Seleccione la comuna</option> <option value="1">Uno</option> <option value="2">Dos</option> <option value="3">Tres</option></select></div></div> <div class="field"><label for="telefono_modal_contacto" class="label">Ingrese el teléfono<span aria-hidden="true">*</span></label> <input id="telefono_modal_contacto" type="number" maxlength="9" max="999999999" min="900000001" aria-describedby="ejemplo_telefono" required  class="input"> <span id="ejemplo_telefono" class="input-info">Ejemplos: Móvil: [ 9 ] 123 4567 / Fijo: [52] 123 4567</span></div> <div class="field"><label for="email_modal_contacto" class="label">Ingrese correo electrónico<span aria-hidden="true">*</span></label> <input id="email_modal_contacto" type="email" aria-describedby="msg_dialog" required  class="input"></div> <div class="mb-5"><div id="msg_dialog" class="msg-dialog">
-          Este correo electrónico será el medio oficial de contacto de ChileAtiende con usted.
-      </div></div> <div aria-label="Los campos requeridos son obligatorios" class="cont-req"><span aria-hidden="true">Los campos marcados con * son obligatorios.</span></div></form></section> <footer class="modal-card-foot"><button title="Guardar los cambios realizados" aria-labelledby="modal_editar_datos_contacto" class="button is-primary">Guardar</button> <button title="Cancelar los cambios realizados" class="button is-default">Cancelar</button></footer></div></div></section></div> <article class="mb-5"><p class="mb-4">Es muy importante que el agendamiento de visitas se puede solicitar únicamente bajo <strong>condiciones excepcionales</strong> que son las siguientes:</p> <div class="columns is-mobile"><div class="column is-one-fifth-mobile is-2-tablet is-1-desktop"><span class="tag is-warning is-rounded"><span>1</span></span></div> <div class="column">
-          Pensionados en hospitales o cárceles
-      </div></div> <div class="columns is-mobile"><div class="column is-one-fifth-mobile is-2-tablet is-1-desktop"><span class="tag is-warning is-rounded"><span>2</span></span></div> <div class="column">
-          Pensionados con discapacidad mental
-      </div></div> <div class="columns is-mobile"><div class="column is-one-fifth-mobile is-2-tablet is-1-desktop"><span class="tag is-warning is-rounded"><span>3</span></span></div> <div class="column">
-          Pensionados con enfermedades graves
-      </div></div> <div class="columns is-mobile"><div class="column is-one-fifth-mobile is-2-tablet is-1-desktop"><span class="tag is-warning is-rounded"><span>4</span></span></div> <div class="column">
-          Pensionados en hospitales psiquiatricos
-      </div></div> <div class="columns is-mobile"><div class="column is-one-fifth-mobile is-2-tablet is-1-desktop"><span class="tag is-warning is-rounded"><span>5</span></span></div> <div class="column">
-          Pensionados en casas de reposo
-      </div></div> <div class="columns is-mobile"><div class="column is-one-fifth-mobile is-2-tablet is-1-desktop"><span class="tag is-warning is-rounded"><span>6</span></span></div> <div class="column">
-          Orfandad del ex SSS
-      </div></div></article> <div role="alert" aria-label="Cuadro de información importante" class="msg msg-info">
-  En el momento de la visita debe tener fisicamente la cédula de identidad del apoderado y la cédula de identidad del pensionado vigentes
-</div> <div class="form-sector"><header><h3>Información del solicitante</h3></header> <div class="field"><label id="label_quien_solicita_visita" class="label">¿Quién solicita la visita?*</label> <div class="control"><div aria-labelledby="label_quien_solicita_visita" class="field"><label id="radio_example_option1" class="radio"><input type="radio" name="radio_example" value="uno">
-                  Opción uno
-              </label></div> <div aria-labelledby="label_quien_solicita_visita" class="field"><label id="radio_example_option2" class="radio"><input type="radio" name="radio_example" value="dos">
-                  Opción dos
-              </label></div> <div aria-labelledby="label_quien_solicita_visita" class="field"><label id="radio_example_option3" class="radio"><input type="radio" name="radio_example" value="tres">
-                  Opción tres
-              </label></div></div></div> <div class="field"><label for="motivo_fundado" class="label">Ingrese el motivo fundado por el cual se está solicitando esta visita*</label> <div class="select is-fullwidth"><select id="motivo_fundado" required ><option value="">Motivo fundado</option> <option value="1">Pensionados en hospitales o cárceles</option> <option value="2">Pensionados con discapacidad mental</option> <option value="3">Pensionado con enfermedades graves</option> <option value="4">Pensionados en hospitales psiquiatricos</option> <option value="5">Pensionados en casa de reposo</option> <option value="6">Orfandad del ex SSS</option></select></div></div> <div class="field"><label id="label_adjuntar_documento" for="adjuntar_documento" class="label">Adjunte documento*</label> <label class="upload control file-label"><input id="adjuntar_documento" aria-labelledby="label_adjuntar_documento" type="file" name="documento" required  class="file-input"> <span class="file-name"></span> <span role="button" class="button btn-sm is-default"><span class="file-label">Examinar</span></span></label></div> <span class="input-info">PDF, JPG o PNG</span> <div class="field"><label id="fecha_nacimiento" aria-label="fecha de nacimiento" class="label">Fecha de nacimiento*</label> <div class="columns is-mobile"><div class="column"><div class="select is-fullwidth"><select aria-labelledby="fecha_nacimiento" required ><option value="">Día</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> <option value="5">5</option> <option value="6">6</option> <option value="7">7</option> <option value="8">8</option> <option value="9">9</option> <option value="10">10</option> <option value="11">11</option> <option value="12">12</option> <option value="13">13</option> <option value="14">14</option> <option value="15">15</option> <option value="16">16</option> <option value="17">17</option> <option value="18">18</option> <option value="19">19</option> <option value="20">20</option> <option value="21">21</option> <option value="22">22</option> <option value="23">23</option> <option value="24">24</option> <option value="25">25</option> <option value="26">26</option> <option value="27">27</option> <option value="28">28</option> <option value="29">29</option> <option value="30">30</option> <option value="31">31</option></select></div></div> <div class="column"><div class="select is-fullwidth"><select aria-labelledby="fecha_nacimiento" required ><option value="">Mes</option> <option value="Enero">Enero</option> <option value="Febrero">Febrero</option> <option value="Marzo">Marzo</option> <option value="Abril">Abril</option> <option value="Mayo">Mayo</option> <option value="Junio">Junio</option> <option value="Julio">Julio</option> <option value="Agosto">Agosto</option> <option value="Septiembre">Septiembre</option> <option value="Octubre">Octubre</option> <option value="Noviembre">Noviembre</option> <option value="Diciembre">Diciembre</option></select></div></div> <div class="column"><div class="select is-fullwidth"><select aria-labelledby="fecha_nacimiento" required ><option value="">Año</option> <option value="2020">2020</option> <option value="2019">2019</option> <option value="2018">2018</option> <option value="2017">2017</option> <option value="2016">2016</option> <option value="2015">2015</option> <option value="2014">2014</option> <option value="2013">2013</option> <option value="2012">2012</option> <option value="2010">2010</option> <option value="2009">2009</option> <option value="2008">2008</option> <option value="2007">2007</option> <option value="2006">2006</option> <option value="2005">2005</option> <option value="2004">2004</option> <option value="2003">2003</option> <option value="2002">2002</option> <option value="2001">2001</option> <option value="2000">2000</option> <option value="1999">1999</option> <option value="1998">1998</option> <option value="1997">1997</option> <option value="1996">1996</option> <option value="1995">1995</option> <option value="1994">1994</option> <option value="1993">1993</option> <option value="1992">1992</option> <option value="1991">1991</option> <option value="1990">1990</option> <option value="1989">1989</option> <option value="1988">1988</option> <option value="1987">1987</option> <option value="1986">1986</option> <option value="1985">1985</option> <option value="1984">1984</option> <option value="1983">1983</option> <option value="1982">1982</option> <option value="1981">1981</option> <option value="1980">1980</option> <option value="1979">1979</option> <option value="1978">1978</option> <option value="1977">1977</option> <option value="1976">1976</option> <option value="1975">1975</option> <option value="1974">1974</option> <option value="1973">1973</option> <option value="1972">1972</option> <option value="1971">1971</option> <option value="1970">1970</option> <option value="1969">1969</option> <option value="1968">1968</option> <option value="1967">1967</option> <option value="1966">1966</option> <option value="1965">1965</option> <option value="1964">1964</option> <option value="1963">1963</option> <option value="1962">1962</option> <option value="1961">1961</option> <option value="1960">1960</option> <option value="1959">1959</option> <option value="1958">1958</option> <option value="1957">1957</option> <option value="1956">1956</option> <option value="1955">1955</option> <option value="1954">1954</option> <option value="1953">1953</option> <option value="1952">1952</option> <option value="1951">1951</option> <option value="1950">1950</option> <option value="1949">1949</option> <option value="1948">1948</option> <option value="1947">1947</option> <option value="1946">1946</option> <option value="1945">1945</option> <option value="1944">1944</option> <option value="1943">1943</option> <option value="1942">1942</option> <option value="1941">1941</option> <option value="1940">1940</option> <option value="1939">1939</option> <option value="1938">1938</option> <option value="1937">1937</option> <option value="1936">1936</option> <option value="1935">1935</option> <option value="1934">1934</option> <option value="1933">1933</option> <option value="1932">1932</option> <option value="1931">1931</option> <option value="1930">1930</option></select></div></div></div></div> <div class="field"><label for="telefono_pensionado" class="label">Teléfono del pensionado*</label> <input id="telefono_pensionado" type="number" placeholder="Ingresa el teléfono del pensionado" maxlength="9" max="999999999" min="900000001" required  class="input"></div> <span class="input-info">Ejemplos: Móvil: [ 9 ] 123 4567 / Fijo: [52] 123 4567</span> <div class="field"><label for="email_pensionado" class="label">Correo electrónico del pensionado*</label> <input id="email_pensionado" type="email" placeholder="Ingresa el correo electrónico del pensionado" required  class="input"></div> <div class="field"><label for="estado_salud_pensionado" class="label">Estado de salud del pensionado*</label> <div class="select is-fullwidth"><select id="estado_salud_pensionado" required ><option value="">Selecciona el estado de salud del pensionado</option> <option value="uno">Postrado en cama</option> <option value="dos">Movilidad normal o asistida</option></select></div></div> <div class="field"><label for="residencia_pensionado" class="label">Residencia del pensionado*</label> <div class="select is-fullwidth"><select id="residencia_pensionado" required ><option value="">Seleccione residencia del pensionado</option> <option value="uno">Domicilio particular</option> <option value="dos">Hospitalizado</option> <option value="tres">Hogar de ancianos u otra residencia</option></select></div></div> <div class="field"><label for="region_pensionado" class="label">Región*</label> <div class="select is-fullwidth"><select id="region_pensionado" required ><option value="">Selecciona la región del pensionado</option> <option value="1">1 Tarapaca</option> <option value="2">2 Antofagasta</option> <option value="3">3 Atacama</option> <option value="4">4 Coquimbo</option> <option value="5">5 Valparaiso</option> <option value="6">6 O'Higgins</option> <option value="7">7 Maule</option> <option value="8">8 Bio - Bio</option> <option value="9">9 Araucania</option> <option value="10">10 Los Lagos</option> <option value="11">11 Aisen</option> <option value="12">12 Magallanes Y Antartica</option> <option value="13">13 Metropolitana</option> <option value="14">14 Los Rios</option> <option value="15">15 Arica y Parinacota</option></select></div></div> <div class="field"><label for="comuna_pensionado" class="label">Comuna*</label> <div class="select is-fullwidth"><select id="comuna_pensionado" required ><option value="">Selecciona la comuna del pensionado</option> <option value="1">Uno</option> <option value="2">Dos</option> <option value="3">Tres</option></select></div></div> <div class="field"><label for="direccion_pensionado" class="label">Dirección del pensionado*</label> <input id="direccion_pensionado" type="text" placeholder="Ingresa la dirección del pensionado" required  class="input"></div> <div class="field"><label for="numero_pensionado" class="label">Número*</label> <input id="numero_pensionado" type="number" placeholder="Ingrese número de la dirección del pensionado" maxlength="6" max="999999" min="1" required  class="input"></div></div> <div class="form-sector"><header><h3>Información del apoderado</h3></header> <div class="field"><label for="nombre_apoderado" class="label">Nombre del posible apoderado (en caso de realizar esta solicitud por parte de un tercero)*</label> <input id="nombre_apoderado" type="text" placeholder="Ingrese nombre de apoderado" required  class="input"></div> <div class="field"><label for="run_apoderado" class="label">Indique el RUN del posible apoderado*</label> <input id="run_apoderado" type="text" placeholder="Ingrese RUN del apoderado" required  class="input"></div> <div class="field"><label for="region_apoderado" class="label">Región*</label> <div class="select is-fullwidth"><select id="region_apoderado" required ><option value="">Selecciona la región del apoderado</option> <option value="1">1 Tarapaca</option> <option value="2">2 Antofagasta</option> <option value="3">3 Atacama</option> <option value="4">4 Coquimbo</option> <option value="5">5 Valparaiso</option> <option value="6">6 O'Higgins</option> <option value="7">7 Maule</option> <option value="8">8 Bio - Bio</option> <option value="9">9 Araucania</option> <option value="10">10 Los Lagos</option> <option value="11">11 Aisen</option> <option value="12">12 Magallanes Y Antartica</option> <option value="13">13 Metropolitana</option> <option value="14">14 Los Rios</option> <option value="15">15 Arica y Parinacota</option></select></div></div> <div class="field"><label for="comuna_apoderado" class="label">Comuna*</label> <div class="select is-fullwidth"><select id="comuna_apoderado" required ><option value="">Selecciona la comuna del apoderado</option> <option value="1">Uno</option> <option value="2">Dos</option> <option value="3">Tres</option></select></div></div> <div class="field"><label for="direccion_apoderado" class="label">Dirección del apoderado*</label> <input id="direccion_apoderado" type="text" placeholder="Ingresa la dirección del apoderado" required  class="input"></div> <div class="field"><label for="numero_apoderado" class="label">Número*</label> <input id="numero_apoderado" type="number" placeholder="Ingrese número de la dirección del apoderado" maxlength="6" max="999999" min="1" required  class="input"></div> <div class="field"><label for="email_apoderado" class="label">Correo electrónico del apoderado que recibirá notificaciones*</label> <input id="email_apoderado" type="email" placeholder="Ingrese correo del apoderado" required  class="input"></div> <div class="field"><label for="parentesco_apoderado" class="label">Indique el parentesco o relación con el pensionado*</label> <input id="parentesco_apoderado" type="text" placeholder="Ingrese parentesco" required  class="input"></div></div> <div class="cont-req"><span>Los campos marcados con * son obligatorios</span></div> <div class="cont-btn"><button title="Continuar al paso siguiente" aria-labelledby="form_global" class="button is-primary">Continuar</button></div></section>
+      <DsTypography variant="h1">
+        Solicitud de hora para trámite en residencia del pensionado
+      </DsTypography>
+
+      <DsStepper :stepCount="3" class="form-progress items-3" />
+
+      <!-- <div class="form-progress items-3">
+        <div role="img" alt="Estás en el paso 1" class="form-progress-indicator p-active">
+          <span>
+            <strong>1</strong>
+          </span>
+        </div>
+
+        <div class="form-progress-bar"></div>
+
+        <div role="img" alt="" class="form-progress-indicator">
+          <span>
+            <strong>2</strong>
+          </span>
+        </div>
+
+        <div class="form-progress-bar"></div>
+
+        <div role="img" alt="" class="form-progress-indicator">
+          <span>
+            <strong>3</strong>
+          </span>
+        </div>
+      </div> -->
+    </header>
+
+    <section id="form_global" role="form">
+      <header class="mb-5">
+        <DsTypography variant="h2">Formulario</DsTypography>
+
+        <!-- <h2>Formulario</h2> -->
+      </header>
+
+      <div class="form-sector">
+        <header>
+          <DsTypography variant="h2">Felipe Herrera Sotomayor</DsTypography>
+          <DsTypography variant="h3" class="rut">3.456.789-0</DsTypography>
+
+          <!-- <h2>Felipe Herrera Sotomayor</h2>
+          <h3 class="rut">3.456.789-0</h3> -->
+        </header>
+
+        <div class="cont-gr">
+          Fecha de nacimiento<br>
+          <strong>19 de marzo 1934, 86 años</strong>
+        </div>
+
+        <div class="cont-gr">
+          Dirección<br>
+          <strong>Avenida los Leones, #234, Providencia, Santiago, Región Metropolitana.</strong>
+        </div>
+
+        <div class="cont-gr">
+          Contacto<br>
+          <strong>+56 9 9876 4567</strong><br>
+          <strong>felipeh@gmail.com</strong>
+        </div>
+
+        <section class="modal-form">
+          <DsButton
+            title="Ventana modal que permite editar los datos de contacto del usuario ingresado"
+            class="button btn-sm is-default"
+            @click="onShowContactDialog">
+            Editar datos de contacto
+          </DsButton>
+
+          <!-- <button
+            title="Ventana modal que permite editar los datos de contacto del usuario ingresado"
+            class="button btn-sm is-default">
+            Editar datos de contacto
+          </button> -->
+
+          <DsModal v-model="showContactDialog" modalTitle="Editar datos de contacto">
+            <template #default>
+              <form id="modal_editar_datos_contacto" action="#"
+                  aria-label="Modal para editar datos de contacto" class="form-cha">
+
+                <div class="field">
+                  <DsInput
+                    v-model="model.contact.address"
+                    label="Ingrese la dirección"
+                    required
+                  />
+
+                  <!-- <label for="direccion_modal_contacto" class="label">
+                    Ingrese la dirección
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <input id="direccion_modal_contacto" type="text" required class="input"> -->
+                </div>
+
+                <div class="field">
+                  <DsInput
+                    v-model="model.contact.addressNumber"
+                    type="number"
+                    label="Ingrese la numeración"
+                    :minValue="900000001"
+                    :maxValue="999999999"
+                    required
+                  />
+
+                  <!-- <label for="numero_modal_contacto" class="label">
+                    Ingrese la numeración
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <input id="numero_modal_contacto" type="number"
+                    maxlength="9" max="999999999" min="900000001" required class="input" /> -->
+                </div>
+
+                <div class="field">
+                  <DsInput
+                    v-model="model.contact.village"
+                    label="Ingrese la población o villa"
+                    required
+                  />
+
+                  <!-- <label for="poblacion_villa_modal_contacto" class="label">
+                    Ingrese la población o villa
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <input id="poblacion_villa_modal_contacto" type="text" required
+                          class="input" /> -->
+                </div>
+
+                <div class="field">
+                  <DsSelect
+                    v-model="model.contact.region"
+                    :option="regionOptions"
+                    label="Región"
+                    textDisabledValue="Seleccione la región"
+                    class="select is-fullwidth"
+                    required
+                  />
+
+                  <!-- <label for="region_modal_contacto" class="label">
+                    Región
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <div class="select">
+                    <select id="region_modal_contacto" required ><option value="">
+                      Seleccione la región</option>
+                      <option value="1">1 Tarapaca</option>
+                      <option value="2">2 Antofagasta</option>
+                      <option value="3">3 Atacama</option>
+                      <option value="4">4 Coquimbo</option>
+                      <option value="5">5 Valparaiso</option>
+                      <option value="6">6 O'Higgins</option>
+                      <option value="7">7 Maule</option>
+                      <option value="8">8 Bio - Bio</option>
+                      <option value="9">9 Araucania</option>
+                      <option value="10">10 Los Lagos</option>
+                      <option value="11">11 Aisen</option>
+                      <option value="12">12 Magallanes Y Antartica</option>
+                      <option value="13">13 Metropolitana</option>
+                      <option value="14">14 Los Rios</option>
+                      <option value="15">15 Arica y Parinacota</option>
+                    </select>
+                  </div> -->
+                </div>
+
+                <div class="field">
+                  <DsInput
+                    v-model="model.contact.city"
+                    label="Ingrese la ciudad o localidad"
+                    required
+                  />
+
+                  <!-- <label for="ciudad_localidad_modal_contacto" class="label">
+                    Ingrese la ciudad o localidad
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <input id="ciudad_localidad_modal_contacto"
+                    type="text" required class="input" /> -->
+                </div>
+
+                <div class="field">
+                  <DsSelect
+                    v-model="model.contact.community"
+                    :option="communityOptions"
+                    label="Comuna"
+                    placeholder="Seleccione la comuna"
+                    class="select is-fullwidth"
+                    required
+                  />
+
+                  <!-- <label for="comuna_modal_contacto" class="label">
+                    Comuna
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <div class="select">
+                    <select id="comuna_modal_contacto" required>
+                      <option value="">Seleccione la comuna</option>
+                      <option value="1">Uno</option>
+                      <option value="2">Dos</option>
+                      <option value="3">Tres</option>
+                    </select>
+                  </div> -->
+                </div>
+
+                <div class="field">
+                  <DsInput
+                    v-model="model.contact.phone"
+                    type="phone"
+                    label="Ingrese el teléfono"
+                    class="input"
+                    aria-describedby="ejemplo_telefono"
+                    required
+                  />
+
+                  <!-- <label for="telefono_modal_contacto" class="label">
+                    Ingrese el teléfono
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <input id="telefono_modal_contacto" type="number"
+                    maxlength="9" max="999999999" min="900000001"
+                    aria-describedby="ejemplo_telefono" required class="input" /> -->
+
+                  <span id="ejemplo_telefono" class="input-info">
+                    Ejemplos: Móvil: [ 9 ] 123 4567 / Fijo: [52] 123 4567
+                  </span>
+                </div>
+
+                <div class="field">
+                  <DsInput
+                    v-model="model.contact.email"
+                    type="email"
+                    label="Ingrese correo electrónico"
+                    class="input"
+                    aria-describedby="msg_dialog"
+                    required
+                  />
+
+                  <!-- <label for="email_modal_contacto" class="label">
+                    Ingrese correo electrónico
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <input id="email_modal_contacto" type="email"
+                    aria-describedby="msg_dialog" required class="input" /> -->
+                </div>
+
+                <div class="mb-5">
+                  <div id="msg_dialog" class="msg-dialog">
+                    Este correo electrónico será el medio oficial de contacto
+                    de ChileAtiende con usted.
+                  </div>
+                </div>
+
+                <div aria-label="Los campos requeridos son obligatorios" class="cont-req">
+                  <span aria-hidden="true">
+                    Los campos marcados con * son obligatorios.
+                  </span>
+                </div>
+              </form>
+            </template>
+
+            <template #footer>
+              <DsButton
+                color="secondary"
+                title="Cancelar los cambios realizados"
+                class="button is-default"
+                @click="onHideContactDialog">
+                Cancelar
+              </DsButton>
+
+              <!-- <button title="Cancelar los cambios realizados"
+                class="button is-default">
+                Cancelar
+              </button> -->
+
+              <DsButton
+                title="Guardar los cambios realizados"
+                class="button is-primary"
+                aria-labelledby="modal_editar_datos_contacto"
+                @click="onSaveContactData">
+                Guardar
+              </DsButton>
+
+              <!-- <button title="Guardar los cambios realizados"
+                aria-labelledby="modal_editar_datos_contacto"
+                class="button is-primary">
+                Guardar
+              </button> -->
+            </template>
+          </DsModal>
+
+          <!-- <div scroll="keep" role="dialog"
+            aria-modal="true" aria-labelledby="titleModalDatos" class="modal">
+            <div class="modal-background"></div>
+
+            <div class="modal-card">
+              <header class="modal-card-head">
+                <div class="container">
+                  <div class="columns is-mobile">
+                    <div class="column">
+                      <h3 id="titleModalDatos" class="modal-card-title">
+                        Editar datos de contacto
+                      </h3>
+                    </div>
+
+                    <div class="column has-text-right is-hidden">
+                      <button aria-label="close"
+                        class="button btn-sm button-bordered color-info">
+                        <span class="text">
+                          Cerrar
+                        </span>
+
+                        <span class="icon">
+                          <i aria-hidden="true" class="las la-times"></i>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </header>
+
+              <section class="modal-card-body">
+                <form id="modal_editar_datos_contacto" action="#"
+                  aria-label="Modal para editar datos de contacto" class="form-cha">
+
+                  <div class="field">
+                    <label for="direccion_modal_contacto" class="label">
+                      Ingrese la dirección
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <input id="direccion_modal_contacto" type="text" required class="input">
+                  </div>
+
+                  <div class="field">
+                    <label for="numero_modal_contacto" class="label">
+                      Ingrese la numeración
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <input id="numero_modal_contacto" type="number"
+                      maxlength="9" max="999999999" min="900000001" required class="input" />
+                  </div>
+
+                  <div class="field">
+                    <label for="poblacion_villa_modal_contacto" class="label">
+                      Ingrese la población o villa
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <input id="poblacion_villa_modal_contacto" type="text" required
+                           class="input" />
+                  </div>
+
+                  <div class="field">
+                    <label for="region_modal_contacto" class="label">
+                      Región
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <div class="select">
+                      <select id="region_modal_contacto" required ><option value="">
+                        Seleccione la región</option>
+                        <option value="1">1 Tarapaca</option>
+                        <option value="2">2 Antofagasta</option>
+                        <option value="3">3 Atacama</option>
+                        <option value="4">4 Coquimbo</option>
+                        <option value="5">5 Valparaiso</option>
+                        <option value="6">6 O'Higgins</option>
+                        <option value="7">7 Maule</option>
+                        <option value="8">8 Bio - Bio</option>
+                        <option value="9">9 Araucania</option>
+                        <option value="10">10 Los Lagos</option>
+                        <option value="11">11 Aisen</option>
+                        <option value="12">12 Magallanes Y Antartica</option>
+                        <option value="13">13 Metropolitana</option>
+                        <option value="14">14 Los Rios</option>
+                        <option value="15">15 Arica y Parinacota</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label for="ciudad_localidad_modal_contacto" class="label">
+                      Ingrese la ciudad o localidad
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <input id="ciudad_localidad_modal_contacto"
+                      type="text" required class="input" />
+                  </div>
+
+                  <div class="field">
+                    <label for="comuna_modal_contacto" class="label">
+                      Comuna
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <div class="select">
+                      <select id="comuna_modal_contacto" required>
+                        <option value="">Seleccione la comuna</option>
+                        <option value="1">Uno</option>
+                        <option value="2">Dos</option>
+                        <option value="3">Tres</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label for="telefono_modal_contacto" class="label">
+                      Ingrese el teléfono
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <input id="telefono_modal_contacto" type="number"
+                      maxlength="9" max="999999999" min="900000001"
+                      aria-describedby="ejemplo_telefono" required class="input" />
+
+                    <span id="ejemplo_telefono" class="input-info">
+                      Ejemplos: Móvil: [ 9 ] 123 4567 / Fijo: [52] 123 4567
+                    </span>
+                  </div>
+
+                  <div class="field">
+                    <label for="email_modal_contacto" class="label">
+                      Ingrese correo electrónico
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <input id="email_modal_contacto" type="email"
+                      aria-describedby="msg_dialog" required class="input" />
+                  </div>
+
+                  <div class="mb-5">
+                    <div id="msg_dialog" class="msg-dialog">
+                      Este correo electrónico será el medio oficial de contacto
+                      de ChileAtiende con usted.
+                    </div>
+                  </div>
+
+                  <div aria-label="Los campos requeridos son obligatorios" class="cont-req">
+                    <span aria-hidden="true">
+                      Los campos marcados con * son obligatorios.
+                    </span>
+                  </div>
+                </form>
+              </section>
+
+              <footer class="modal-card-foot">
+                <button title="Cancelar los cambios realizados"
+                  class="button is-default">
+                  Cancelar
+                </button>
+
+                <button title="Guardar los cambios realizados"
+                  aria-labelledby="modal_editar_datos_contacto"
+                  class="button is-primary">
+                  Guardar
+                </button>
+              </footer>
+            </div>
+          </div> -->
+        </section>
+      </div>
+
+      <article class="mb-5">
+        <DsTypography variant="p" class="mb-4">
+          Es muy importante que el agendamiento de visitas se puede solicitar únicamente bajo
+          <strong>condiciones excepcionales</strong> que son las siguientes:
+        </DsTypography>
+
+        <!-- <p class="mb-4">
+          Es muy importante que el agendamiento de visitas se puede solicitar únicamente bajo
+          <strong>condiciones excepcionales</strong> que son las siguientes:
+        </p> -->
+
+        <div class="columns is-mobile">
+          <div class="column is-one-fifth-mobile is-2-tablet is-1-desktop">
+            <span class="tag is-warning is-rounded">
+              <span>1</span>
+            </span>
+          </div>
+
+          <div class="column">
+            Pensionados en hospitales o cárceles
+          </div>
+        </div>
+
+        <div class="columns is-mobile">
+          <div class="column is-one-fifth-mobile is-2-tablet is-1-desktop">
+            <span class="tag is-warning is-rounded">
+              <span>2</span>
+            </span>
+          </div>
+
+          <div class="column">
+            Pensionados con discapacidad mental
+          </div>
+        </div>
+
+        <div class="columns is-mobile">
+          <div class="column is-one-fifth-mobile is-2-tablet is-1-desktop">
+            <span class="tag is-warning is-rounded">
+              <span>3</span>
+            </span>
+          </div>
+
+          <div class="column">
+            Pensionados con enfermedades graves
+          </div>
+        </div>
+
+        <div class="columns is-mobile">
+          <div class="column is-one-fifth-mobile is-2-tablet is-1-desktop">
+            <span class="tag is-warning is-rounded">
+              <span>4</span>
+            </span>
+          </div>
+
+          <div class="column">
+            Pensionados en hospitales psiquiatricos
+          </div>
+        </div>
+
+        <div class="columns is-mobile">
+          <div class="column is-one-fifth-mobile is-2-tablet is-1-desktop">
+            <span class="tag is-warning is-rounded">
+              <span>5</span>
+            </span>
+          </div>
+
+          <div class="column">
+            Pensionados en casas de reposo
+          </div>
+        </div>
+
+        <div class="columns is-mobile">
+          <div class="column is-one-fifth-mobile is-2-tablet is-1-desktop">
+            <span class="tag is-warning is-rounded">
+              <span>6</span>
+            </span>
+          </div>
+
+          <div class="column">
+            Orfandad del ex SSS
+          </div>
+        </div>
+      </article>
+
+      <DsAlert type="info" aria-label="Cuadro de información importante" class="msg msg-info">
+        En el momento de la visita debe tener fisicamente la cédula de identidad del apoderado
+        y la cédula de identidad del pensionado vigentes
+      </DsAlert>
+
+      <!-- <div role="alert" aria-label="Cuadro de información importante" class="msg msg-info">
+        En el momento de la visita debe tener fisicamente la cédula de identidad del apoderado
+        y la cédula de identidad del pensionado vigentes
+      </div>  -->
+
+      <div class="form-sector">
+        <header>
+          <DsTypography variant="h3">
+            Información del solicitante
+          </DsTypography>
+          <!-- <h3>Información del solicitante</h3> -->
+        </header>
+
+        <div class="field">
+          <label id="label_quien_solicita_visita" class="label">
+            ¿Quién solicita la visita? *
+          </label>
+
+          <div class="control">
+            <DsRadio
+              v-model="model.visitSolicitor"
+              value="uno"
+              label="Opción uno"
+              aria-labelledby="label_quien_solicita_visita"
+              class="field" />
+
+            <!-- <div aria-labelledby="label_quien_solicita_visita" class="field">
+              <label id="radio_example_option1" class="radio">
+                <input type="radio" name="radio_example" value="uno" />
+
+                Opción uno
+              </label>
+            </div> -->
+
+            <DsRadio
+              v-model="model.visitSolicitor"
+              value="dos"
+              label="Opción dos"
+              aria-labelledby="label_quien_solicita_visita"
+              class="field" />
+
+            <!-- <div aria-labelledby="label_quien_solicita_visita" class="field">
+              <label id="radio_example_option2" class="radio">
+                <input type="radio" name="radio_example" value="dos" />
+
+                Opción dos
+              </label>
+            </div> -->
+
+            <DsRadio
+              v-model="model.visitSolicitor"
+              value="tres"
+              label="Opción tres"
+              aria-labelledby="label_quien_solicita_visita"
+              class="field" />
+
+            <!-- <div aria-labelledby="label_quien_solicita_visita" class="field">
+              <label id="radio_example_option3" class="radio">
+                <input type="radio" name="radio_example" value="tres">
+
+                Opción tres
+              </label>
+            </div> -->
+          </div>
+        </div>
+
+        <div class="field">
+          <DsSelect
+            v-model="model.motivation"
+            :option="motivationOptions"
+            label="Ingrese el motivo fundado por el cual se está solicitando esta visita"
+            class="select is-fullwidth"
+            placeholder="Motivo fundado"
+            required />
+
+          <!-- <label for="motivo_fundado" class="label">
+            Ingrese el motivo fundado por el cual se está solicitando esta visita *
+          </label> -->
+
+          <!-- <div class="select is-fullwidth">
+            <select id="motivo_fundado" required>
+              <option value="">Motivo fundado</option>
+              <option value="1">Pensionados en hospitales o cárceles</option>
+              <option value="2">Pensionados con discapacidad mental</option>
+              <option value="3">Pensionado con enfermedades graves</option>
+              <option value="4">Pensionados en hospitales psiquiatricos</option>
+              <option value="5">Pensionados en casa de reposo</option>
+              <option value="6">Orfandad del ex SSS</option>
+            </select>
+          </div> -->
+        </div>
+
+        <div class="field">
+          <DsFile
+            label="Adjunte documento"
+            class="upload control file-label" required
+            helpText="PDF, JPG o PNG"
+            @selectedFiles="onFileSelected" />
+        </div>
+
+        <span class="input-info"></span>
+
+        <div class="field">
+          <DsDatePicker
+            v-model="model.birthDate"
+            labelText="Fecha de nacimiento"
+            class="columns is-mobile"
+            :initialYear="1930"
+            required />
+
+          <!-- <label id="fecha_nacimiento" aria-label="fecha de nacimiento" class="label">
+            Fecha de nacimiento *
+          </label>
+
+          <div class="columns is-mobile">
+            <div class="column">
+              <div class="select is-fullwidth">
+                <select aria-labelledby="fecha_nacimiento" required>
+                  <option value="">Día</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option> <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option> <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option> <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option> <option value="14">14</option>
+                  <option value="15">15</option> <option value="16">16</option>
+                  <option value="17">17</option> <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option> <option value="22">22</option>
+                  <option value="23">23</option> <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option> <option value="27">27</option>
+                  <option value="28">28</option> <option value="29">29</option>
+                  <option value="30">30</option> <option value="31">31</option>
+                </select>
               </div>
+            </div>
+
+            <div class="column">
+              <div class="select is-fullwidth">
+                <select aria-labelledby="fecha_nacimiento" required>
+                  <option value="">Mes</option>
+                  <option value="Enero">Enero</option> <option value="Febrero">Febrero</option>
+                  <option value="Marzo">Marzo</option> <option value="Abril">Abril</option>
+                  <option value="Mayo">Mayo</option> <option value="Junio">Junio</option>
+                  <option value="Julio">Julio</option> <option value="Agosto">Agosto</option>
+                  <option value="Septiembre">Septiembre</option>
+                  <option value="Octubre">Octubre</option>
+                  <option value="Noviembre">Noviembre</option>
+                  <option value="Diciembre">Diciembre</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="column">
+              <div class="select is-fullwidth">
+                <select aria-labelledby="fecha_nacimiento" required>
+                  <option value="">Año</option>
+                  <option value="2020">2020</option> <option value="2019">2019</option>
+                  <option value="2018">2018</option> <option value="2017">2017</option>
+                  <option value="2016">2016</option> <option value="2015">2015</option>
+                  <option value="2014">2014</option> <option value="2013">2013</option>
+                  <option value="2012">2012</option> <option value="2010">2010</option>
+                  <option value="2009">2009</option>
+                  <option value="2008">2008</option> <option value="2007">2007</option>
+                  <option value="2006">2006</option> <option value="2005">2005</option>
+                  <option value="2004">2004</option> <option value="2003">2003</option>
+                  <option value="2002">2002</option> <option value="2001">2001</option>
+                  <option value="2000">2000</option> <option value="1999">1999</option>
+                  <option value="1998">1998</option> <option value="1997">1997</option>
+                  <option value="1996">1996</option> <option value="1995">1995</option>
+                  <option value="1994">1994</option> <option value="1993">1993</option>
+                  <option value="1992">1992</option> <option value="1991">1991</option>
+                  <option value="1990">1990</option> <option value="1989">1989</option>
+                  <option value="1988">1988</option> <option value="1987">1987</option>
+                  <option value="1986">1986</option> <option value="1985">1985</option>
+                  <option value="1984">1984</option> <option value="1983">1983</option>
+                  <option value="1982">1982</option> <option value="1981">1981</option>
+                  <option value="1980">1980</option> <option value="1979">1979</option>
+                  <option value="1978">1978</option> <option value="1977">1977</option>
+                  <option value="1976">1976</option> <option value="1975">1975</option>
+                  <option value="1974">1974</option> <option value="1973">1973</option>
+                  <option value="1972">1972</option> <option value="1971">1971</option>
+                  <option value="1970">1970</option> <option value="1969">1969</option>
+                  <option value="1968">1968</option> <option value="1967">1967</option>
+                  <option value="1966">1966</option> <option value="1965">1965</option>
+                  <option value="1964">1964</option> <option value="1963">1963</option>
+                  <option value="1962">1962</option>
+                  <option value="1961">1961</option> <option value="1960">1960</option>
+                  <option value="1959">1959</option> <option value="1958">1958</option>
+                  <option value="1957">1957</option> <option value="1956">1956</option>
+                  <option value="1955">1955</option> <option value="1954">1954</option>
+                  <option value="1953">1953</option> <option value="1952">1952</option>
+                  <option value="1951">1951</option> <option value="1950">1950</option>
+                  <option value="1949">1949</option> <option value="1948">1948</option>
+                  <option value="1947">1947</option> <option value="1946">1946</option>
+                  <option value="1945">1945</option> <option value="1944">1944</option>
+                  <option value="1943">1943</option> <option value="1942">1942</option>
+                  <option value="1941">1941</option> <option value="1940">1940</option>
+                  <option value="1939">1939</option> <option value="1938">1938</option>
+                  <option value="1937">1937</option> <option value="1936">1936</option>
+                  <option value="1935">1935</option> <option value="1934">1934</option>
+                  <option value="1933">1933</option> <option value="1932">1932</option>
+                  <option value="1931">1931</option> <option value="1930">1930</option>
+                </select>
+              </div>
+            </div>
+          </div> -->
+        </div>
+
+        <div class="field">
+          <DsInput
+            v-model="model.phone"
+            type="phone"
+            label="Teléfono del pensionado"
+            placeholder="Ingresa el teléfono del pensionado"
+            required />
+
+          <!-- <label for="telefono_pensionado" class="label">
+            Teléfono del pensionado*
+          </label>
+
+          <input id="telefono_pensionado" type="number"
+            placeholder="Ingresa el teléfono del pensionado"
+            maxlength="9" max="999999999" min="900000001" required class="input" /> -->
+        </div>
+
+        <span class="input-info">
+          Ejemplos: Móvil: [ 9 ] 123 4567 / Fijo: [52] 123 4567
+        </span>
+
+        <div class="field">
+          <DsInput
+            v-model="model.email"
+            type="email"
+            label="Correo electrónico del pensionado"
+            placeholder="Ingresa el correo electrónico del pensionado"
+            required />
+
+          <!-- <label for="email_pensionado" class="label">
+            Correo electrónico del pensionado *
+          </label>
+
+          <input id="email_pensionado" type="email"
+            placeholder="Ingresa el correo electrónico del pensionado" required class="input" /> -->
+        </div>
+
+        <div class="field">
+          <DsSelect
+            v-model="model.healthStatus"
+            :option="healthStatusOptions"
+            label="Estado de salud del pensionado"
+            placeholder="Selecciona el estado de salud del pensionado"
+            class="select is-fullwidth"
+            required />
+
+          <!-- <label for="estado_salud_pensionado" class="label">
+            Estado de salud del pensionado*
+          </label>
+
+          <div class="select is-fullwidth">
+            <select id="estado_salud_pensionado" required>
+              <option value="">Selecciona el estado de salud del pensionado</option>
+              <option value="uno">Postrado en cama</option>
+              <option value="dos">Movilidad normal o asistida</option>
+            </select>
+          </div> -->
+        </div>
+
+        <div class="field">
+          <DsSelect
+            v-model="model.residence"
+            :option="residenceOptions"
+            label="Residencia del pensionado"
+            placeholder="Seleccione residencia del pensionado"
+            class="select is-fullwidth"
+            required />
+
+          <!-- <label for="residencia_pensionado" class="label">
+            Residencia del pensionado *
+          </label>
+
+          <div class="select is-fullwidth">
+            <select id="residencia_pensionado" required>
+              <option value="">Seleccione residencia del pensionado</option>
+              <option value="uno">Domicilio particular</option>
+              <option value="dos">Hospitalizado</option>
+              <option value="tres">Hogar de ancianos u otra residencia</option>
+            </select>
+          </div> -->
+        </div>
+
+        <div class="field">
+          <DsSelect
+            v-model="model.region"
+            :option="regionOptions"
+            label="Región"
+            textDisabledValue="Selecciona la región del pensionado"
+            class="select is-fullwidth"
+            required
+          />
+
+          <!-- <label for="region_pensionado" class="label">
+            Región *
+          </label>
+
+          <div class="select is-fullwidth">
+            <select id="region_pensionado" required>
+              <option value="">Selecciona la región del pensionado</option>
+              <option value="1">1 Tarapaca</option> <option value="2">2 Antofagasta</option>
+              <option value="3">3 Atacama</option> <option value="4">4 Coquimbo</option>
+              <option value="5">5 Valparaiso</option> <option value="6">6 O'Higgins</option>
+              <option value="7">7 Maule</option> <option value="8">8 Bio - Bio</option>
+              <option value="9">9 Araucania</option> <option value="10">10 Los Lagos</option>
+              <option value="11">11 Aisen</option>
+              <option value="12">12 Magallanes Y Antartica</option>
+              <option value="13">13 Metropolitana</option>
+              <option value="14">14 Los Rios</option>
+              <option value="15">15 Arica y Parinacota</option>
+            </select>
+          </div> -->
+        </div>
+
+        <div class="field">
+          <DsSelect
+            v-model="model.community"
+            :option="communityOptions"
+            label="Comuna"
+            placeholder="Selecciona la comuna del pensionado"
+            class="select is-fullwidth"
+            required
+          />
+
+          <!-- <label for="comuna_pensionado" class="label">
+            Comuna *
+          </label>
+
+          <div class="select is-fullwidth">
+            <select id="comuna_pensionado" required>
+              <option value="">Selecciona la comuna del pensionado</option>
+              <option value="1">Uno</option>
+              <option value="2">Dos</option>
+              <option value="3">Tres</option>
+            </select>
+          </div> -->
+        </div>
+
+        <div class="field">
+          <DsInput
+            v-model="model.address"
+            label="Dirección del pensionado"
+            placeholder="Ingresa la dirección del pensionado"
+            class="input"
+            required
+          />
+
+          <!-- <label for="direccion_pensionado" class="label">
+            Dirección del pensionado *
+          </label>
+
+          <input id="direccion_pensionado" type="text"
+            placeholder="Ingresa la dirección del pensionado"
+            required class="input" /> -->
+        </div>
+
+        <div class="field">
+          <DsInput
+            v-model="model.addressNumber"
+            type="number"
+            label="Número"
+            placeholder="Ingrese número de la dirección del pensionado"
+            class="input"
+            :minValue="1"
+            :maxValue="999999"
+            required
+          />
+
+          <!-- <label for="numero_pensionado" class="label">
+            Número *
+          </label>
+
+          <input id="numero_pensionado" type="number"
+            placeholder="Ingrese número de la dirección del pensionado"
+            maxlength="6" max="999999" min="1" required class="input" /> -->
+        </div>
+      </div>
+
+      <div class="form-sector">
+        <header>
+          <DsTypography variant="h3">
+            Información del apoderado
+          </DsTypography>
+
+          <!-- <h3>Información del apoderado</h3> -->
+        </header>
+
+        <div class="field">
+          <DsInput
+            v-model="model.proxy.name"
+            label="Nombre del posible apoderado (en caso de realizar esta solicitud por parte de un tercero)"
+            placeholder="Ingrese nombre de apoderado"
+            class="input"
+            required
+          />
+
+          <!-- <label for="nombre_apoderado" class="label">
+            Nombre del posible apoderado
+            (en caso de realizar esta solicitud por parte de un tercero)*
+          </label>
+
+          <input id="nombre_apoderado" type="text"
+            placeholder="Ingrese nombre de apoderado" required class="input" /> -->
+        </div>
+
+        <div class="field">
+          <DsInput
+            v-model="model.proxy.run"
+            label="Indique el RUN del posible apoderado"
+            placeholder="Ingrese RUN del apoderado"
+            class="input"
+            required
+          />
+
+          <!-- <label for="run_apoderado" class="label">
+            Indique el RUN del posible apoderado *
+          </label>
+
+          <input id="run_apoderado" type="text"
+            placeholder="Ingrese RUN del apoderado" required class="input" /> -->
+        </div>
+
+        <div class="field">
+          <DsSelect
+            v-model="model.proxy.region"
+            :option="regionOptions"
+            label="Región"
+            placeholder="Selecciona la región del apoderado"
+            class="select is-fullwidth"
+            required
+          />
+
+          <!-- <label for="region_apoderado" class="label">
+            Región *
+          </label>
+
+          <div class="select is-fullwidth">
+            <select id="region_apoderado" required>
+              <option value="">Selecciona la región del apoderado</option>
+              <option value="1">1 Tarapaca</option>
+              <option value="2">2 Antofagasta</option>
+              <option value="3">3 Atacama</option>
+              <option value="4">4 Coquimbo</option>
+              <option value="5">5 Valparaiso</option>
+              <option value="6">6 O'Higgins</option>
+              <option value="7">7 Maule</option>
+              <option value="8">8 Bio - Bio</option>
+              <option value="9">9 Araucania</option>
+              <option value="10">10 Los Lagos</option>
+              <option value="11">11 Aisen</option>
+              <option value="12">12 Magallanes Y Antartica</option>
+              <option value="13">13 Metropolitana</option>
+              <option value="14">14 Los Rios</option>
+              <option value="15">15 Arica y Parinacota</option>
+            </select>
+          </div> -->
+        </div>
+
+        <div class="field">
+          <DsSelect
+            v-model="model.proxy.community"
+            :option="communityOptions"
+            label="Comuna"
+            placeholder="Selecciona la comuna del apoderado"
+            class="select is-fullwidth"
+            required
+          />
+
+          <!-- <label for="comuna_apoderado" class="label">
+            Comuna *
+          </label>
+
+          <div class="select is-fullwidth">
+            <select id="comuna_apoderado" required >
+              <option value="">Selecciona la comuna del apoderado</option>
+              <option value="1">Uno</option>
+              <option value="2">Dos</option>
+              <option value="3">Tres</option>
+            </select>
+          </div> -->
+        </div>
+
+        <div class="field">
+          <DsInput
+            v-model="model.proxy.address"
+            label="Dirección del apoderado"
+            placeholder="Ingresa la dirección del apoderado"
+            class="input"
+            required
+          />
+
+          <!-- <label for="direccion_apoderado" class="label">
+            Dirección del apoderado *
+          </label>
+
+          <input id="direccion_apoderado" type="text"
+            placeholder="Ingresa la dirección del apoderado" required class="input" /> -->
+        </div>
+
+        <div class="field">
+          <DsInput
+            v-model="model.proxy.addressNumber"
+            type="number"
+            label="Número"
+            placeholder="Ingrese número de la dirección del apoderado"
+            class="input"
+            :minValue="1"
+            :maxValue="999999"
+            required
+          />
+
+          <!-- <label for="numero_apoderado" class="label">
+            Número *
+          </label>
+
+          <input id="numero_apoderado" type="number"
+            placeholder="Ingrese número de la dirección del apoderado"
+            maxlength="6" max="999999" min="1" required class="input" /> -->
+        </div>
+
+        <div class="field">
+          <DsInput
+            v-model="model.proxy.email"
+            type="email"
+            label="Correo electrónico del apoderado que recibirá notificaciones"
+            placeholder="Ingrese correo del apoderado"
+            class="input"
+            required
+          />
+
+          <!-- <label for="email_apoderado" class="label">
+            Correo electrónico del apoderado que recibirá notificaciones *
+          </label>
+
+          <input id="email_apoderado" type="email"
+            placeholder="Ingrese correo del apoderado" required class="input" /> -->
+        </div>
+
+        <div class="field">
+          <DsInput
+            v-model="model.proxy.pensionerRelation"
+            label="Indique el parentesco o relación con el pensionado"
+            placeholder="Ingrese parentesco"
+            class="input"
+            required
+          />
+
+          <!-- <label for="parentesco_apoderado" class="label">
+            Indique el parentesco o relación con el pensionado *
+          </label>
+
+          <input id="parentesco_apoderado" type="text"
+            placeholder="Ingrese parentesco" required class="input" /> -->
+        </div>
+      </div>
+
+      <div class="cont-req">
+        <span>Los campos marcados con * son obligatorios</span>
+      </div>
+
+      <div class="cont-btn">
+        <!-- <button title="Continuar al paso siguiente" aria-labelledby="form_global"
+          class="button is-primary">
+          Continuar
+        </button> -->
+
+        <DsButton
+          color="primary"
+          title="Continuar al paso siguiente"
+          :rounded="false"
+          class="button is-primary"
+          aria-labelledby="form_global"
+          @click="submitForm">
+          Continuar
+        </DsButton>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script setup>
-import DsInput from '~/components/DesignSystem/components/form/input/DsInput.vue';
-import DsDatePicker from '~/components/DesignSystem/components/form/datePicker/DsDatePicker.vue';
-import DsButton from '~/components/DesignSystem/components/basic/button/DsButton.vue';
-import DsTypography from '~/components/DesignSystem/components/basic/typography/DsTypography.vue';
-import DsLink from '~/components/DesignSystem/components/navigation/link/DsLink.vue';
+import DsAlert from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/basic/alert/DsAlert.vue';
+import DsButton from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/basic/button/DsButton.vue';
+import DsTypography from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/basic/typography/DsTypography.vue';
+import DsModal from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/container/modal/DsModal.vue';
+import DsDatePicker from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/form/datePicker/DsDatePicker.vue';
+import DsInput from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/form/input/DsInput.vue';
+import DsRadio from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/form/radio/DsRadio.vue';
+import DsSelect from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/form/select/DsSelect.vue';
+import DsStepper from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/form/stepper/DsStepper.vue';
+import DsFile from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/form/file/DsFile.vue';
 import { useVuelidate } from '@vuelidate/core'
 import { required, helpers } from '@vuelidate/validators'
 
+const showContactDialog = ref(false);
+
+const model = reactive({
+  motivation: null,
+  date: null,
+  document: null,
+  birthDate: null,
+  phone: null,
+  email: null,
+  healthStatus: null,
+  residence: null,
+  region: null,
+  community: null,
+  address: null,
+  addressNumber: null,
+  visitSolicitor: null,
+
+  contact: {
+    name: null,
+    address: null,
+    addressNumber: null,
+    village: null,
+    city: null,
+    region: null,
+    community: null,
+    phone: null,
+    email: null,
+  },
+
+  proxy: {
+    name: null,
+    address: null,
+    addressNumber: null,
+    village: null,
+    city: null,
+    region: null,
+    community: null,
+    email: null,
+  },
+});
+
+const motivationOptions = reactive([{
+    value: 1,
+    text: 'Pensionados en hospitales o cárceles',
+  }, {
+    value: 2,
+    text: 'Pensionados con discapacidad mental',
+  }, {
+    value: 3,
+    text: 'Pensionado con enfermedades graves',
+  }, {
+    value: 4,
+    text: 'Pensionados en hospitales psiquiatricos',
+  }, {
+    value: 5,
+    text: 'Pensionados en casa de reposo',
+  }, {
+    value: 6,
+    text: 'Orfandad del ex SSS',
+  },
+]);
+
+const healthStatusOptions = reactive([{
+    value: 'uno',
+    text: 'Postrado en cama',
+  }, {
+    value: 'dos',
+    text: 'Movilidad normal o asistida',
+  },
+]);
+
+const residenceOptions = reactive([{
+    value: 'uno',
+    text: 'Domicilio particular',
+  }, {
+    value: 'dos',
+    text: 'Hospitalizado',
+  }, {
+    value: 'tres',
+    text: 'Hogar de ancianos u otra residencia',
+  },
+]);
+
+const regionOptions = reactive([{
+    value: 1,
+    text: 'Tarapaca',
+  }, {
+    value: 2,
+    text: 'Antofagasta',
+  }, {
+    value: 3,
+    text: 'Atacama',
+  }, {
+    value: 4,
+    text: 'Coquimbo',
+  }, {
+    value: 5,
+    text: 'Valparaíso',
+  }, {
+    value: 6,
+    text: "O'Higgins",
+  }, {
+    value: 7,
+    text: 'Maule',
+  }, {
+    value: 8,
+    text: 'Bio - Bio',
+  }, {
+    value: 9,
+    text: 'Araucanía',
+  }, {
+    value: 10,
+    text: 'Los Lagos',
+  }, {
+    value: 11,
+    text: 'Aisen',
+  }, {
+    value: 12,
+    text: 'Magallanes Y Antártica',
+  }, {
+    value: 13,
+    text: 'Metropolitana',
+  }, {
+    value: 14,
+    text: 'Los Ríos',
+  }, {
+    value: 15,
+    text: 'Arica y Parinacota',
+  },
+]);
+
+const communityOptions = reactive([{
+    value: 1,
+    text: 'Uno',
+  }, {
+    value: 2,
+    text: 'Dos',
+  }, {
+    value: 3,
+    text: 'Tres',
+  },]);
+
+const onShowContactDialog = () => showContactDialog.value = true;
+const onHideContactDialog = () => showContactDialog.value = false;
+const onSaveContactData = () => onHideContactDialog();
+
+const onFileSelected = (file) => model.value.document = file;
+
+const submitForm = async () => {
+  const isValid = await v$.value.$validate();
+
+  if (isValid) {
+    navigateTo({
+      path: '/final-consulta',
+    });
+  }
+};
+
+const rutValidator = (value) => {
+  if (!value) {
+    return true;
+  }
+
+  const regex = RegExp( '^\\d{2}\\.\\d{3}\\.\\d{3}\\-\\d$');
+
+  if (!regex.test( value)) {
+    return false;
+  }
+
+  return true;
+};
+
+const isValidRut = {
+  $message: 'Formato de RUT incorrecto.',
+  $validator: rutValidator,
+};
+
+const rules = () => ({
+  rut: {
+    required,
+    isValidRut,
+  },
+
+  date: { required },
+});
+
+const rutErrors = computed(() => {
+  return fieldErrors( v$.value.rut);
+});
+
+const dateErrors = computed(() => {
+  return fieldErrors( v$.value.date);
+});
+
+const fieldErrors = (field) => {
+  const errors = field.$errors.map( (error) => error.$message);
+  return errors.length > 0 ? errors[0] : null;
+};
+
+const v$ = useVuelidate( rules, model);
 </script>
