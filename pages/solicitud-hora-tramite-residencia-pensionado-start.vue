@@ -1,7 +1,7 @@
 <template>
   <div role="main"
     aria-label="Solicitud de hora para trámite en residencia del pensionado"
-    class="container column ml-3">
+    class="container ml-3">
     <header class="mb-6">
       <DsTypography>
         Servicio de información entregado por
@@ -78,16 +78,9 @@
         <section class="modal-form">
           <DsButton
             title="Ventana modal que permite editar los datos de contacto del usuario ingresado"
-            class="button btn-sm is-default"
             @click="onShowContactDialog">
             Editar datos de contacto
           </DsButton>
-
-          <!-- <button
-            title="Ventana modal que permite editar los datos de contacto del usuario ingresado"
-            class="button btn-sm is-default">
-            Editar datos de contacto
-          </button> -->
 
           <DsModal v-model="showContactDialog" modalTitle="Editar datos de contacto">
             <template #default>
@@ -284,15 +277,9 @@
               <DsButton
                 color="secondary"
                 title="Cancelar los cambios realizados"
-                class="button is-default"
                 @click="onHideContactDialog">
                 Cancelar
               </DsButton>
-
-              <!-- <button title="Cancelar los cambios realizados"
-                class="button is-default">
-                Cancelar
-              </button> -->
 
               <DsButton
                 title="Guardar los cambios realizados"
@@ -317,14 +304,14 @@
             <div class="modal-card">
               <header class="modal-card-head">
                 <div class="container">
-                  <div class="columns is-mobile">
-                    <div class="column">
+                  <div>
+                    <div>
                       <h3 id="titleModalDatos" class="modal-card-title">
                         Editar datos de contacto
                       </h3>
                     </div>
 
-                    <div class="column has-text-right is-hidden">
+                    <div class="has-text-right is-hidden">
                       <button aria-label="close"
                         class="button btn-sm button-bordered color-info">
                         <span class="text">
@@ -495,74 +482,74 @@
           <strong>condiciones excepcionales</strong> que son las siguientes:
         </p> -->
 
-        <div class="columns is-mobile">
-          <div class="column is-one-fifth-mobile is-2-tablet is-1-desktop">
+        <div>
+          <div>
             <span class="tag is-warning is-rounded">
               <span>1</span>
             </span>
           </div>
 
-          <div class="column">
+          <div>
             Pensionados en hospitales o cárceles
           </div>
         </div>
 
-        <div class="columns is-mobile">
-          <div class="column is-one-fifth-mobile is-2-tablet is-1-desktop">
+        <div>
+          <div>
             <span class="tag is-warning is-rounded">
               <span>2</span>
             </span>
           </div>
 
-          <div class="column">
+          <div>
             Pensionados con discapacidad mental
           </div>
         </div>
 
-        <div class="columns is-mobile">
-          <div class="column is-one-fifth-mobile is-2-tablet is-1-desktop">
+        <div>
+          <div>
             <span class="tag is-warning is-rounded">
               <span>3</span>
             </span>
           </div>
 
-          <div class="column">
+          <div>
             Pensionados con enfermedades graves
           </div>
         </div>
 
-        <div class="columns is-mobile">
-          <div class="column is-one-fifth-mobile is-2-tablet is-1-desktop">
+        <div>
+          <div>
             <span class="tag is-warning is-rounded">
               <span>4</span>
             </span>
           </div>
 
-          <div class="column">
+          <div>
             Pensionados en hospitales psiquiatricos
           </div>
         </div>
 
-        <div class="columns is-mobile">
-          <div class="column is-one-fifth-mobile is-2-tablet is-1-desktop">
+        <div>
+          <div>
             <span class="tag is-warning is-rounded">
               <span>5</span>
             </span>
           </div>
 
-          <div class="column">
+          <div>
             Pensionados en casas de reposo
           </div>
         </div>
 
-        <div class="columns is-mobile">
-          <div class="column is-one-fifth-mobile is-2-tablet is-1-desktop">
+        <div>
+          <div>
             <span class="tag is-warning is-rounded">
               <span>6</span>
             </span>
           </div>
 
-          <div class="column">
+          <div>
             Orfandad del ex SSS
           </div>
         </div>
@@ -679,7 +666,6 @@
           <DsDatePicker
             v-model="model.birthDate"
             labelText="Fecha de nacimiento"
-            class="columns is-mobile"
             :initialYear="1930"
             required />
 
@@ -687,8 +673,8 @@
             Fecha de nacimiento *
           </label>
 
-          <div class="columns is-mobile">
-            <div class="column">
+          <div>
+            <div>
               <div class="select is-fullwidth">
                 <select aria-labelledby="fecha_nacimiento" required>
                   <option value="">Día</option>
@@ -716,7 +702,7 @@
               </div>
             </div>
 
-            <div class="column">
+            <div>
               <div class="select is-fullwidth">
                 <select aria-labelledby="fecha_nacimiento" required>
                   <option value="">Mes</option>
@@ -732,7 +718,7 @@
               </div>
             </div>
 
-            <div class="column">
+            <div>
               <div class="select is-fullwidth">
                 <select aria-labelledby="fecha_nacimiento" required>
                   <option value="">Año</option>
@@ -1336,7 +1322,7 @@ const submitForm = async () => {
 
   if (isValid) {
     navigateTo({
-      path: '/final-consulta',
+      path: '/solicitud-hora-tramite-residencia-pensionado-end',
     });
   }
 };
@@ -1360,14 +1346,14 @@ const isValidRut = {
   $validator: rutValidator,
 };
 
-const rules = () => ({
+const rules = computed(() => ({
   rut: {
     required,
     isValidRut,
   },
 
   date: { required },
-});
+}));
 
 const rutErrors = computed(() => {
   return fieldErrors( v$.value.rut);
