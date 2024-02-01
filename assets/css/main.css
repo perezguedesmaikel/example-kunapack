@@ -72,8 +72,12 @@ input, select, textarea {
     @apply font-roboto text-base border p-2 block hover:border-dark-500 rounded border-neutral-300 w-full
 }
 
-input[required], select[required], textarea[required] {
+.error {
     @apply hover:border-danger-900 border-dashed border-2 border-danger-500
+}
+
+.error-message {
+    @apply text-danger-500
 }
 
 input[readonly], select[readonly], textarea[readonly],
@@ -301,4 +305,20 @@ p.ellipsis-2 {
     -webkit-box-orient: vertical;
     text-overflow: ellipsis;
     overflow: hidden;
+}
+
+.container {
+  @apply  m-0 m-auto p-10 max-w-[1200px] lg:p-0
+}
+
+@media (max-width:1999px) {
+  .container{
+      padding:0 20px
+  }
+}
+
+@media (max-width:768px) {
+  .container{
+      padding:0 20px
+  }
 }
