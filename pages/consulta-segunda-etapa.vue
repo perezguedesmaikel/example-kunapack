@@ -1,7 +1,6 @@
 <template>
-  <DsButtonContainer role="main"
-       aria-label="Consulta para saber si usted es el beneficiario del Aporte Familiar Permanente"
-       class="column">
+  <div role=" main" class="container"
+       aria-label="Consulta para saber si usted es el beneficiario del Aporte Familiar Permanente">
     <header class="mb-6">
       <DsTypography class="is-upper-text-title">
         Servicio de información entregado por
@@ -18,7 +17,7 @@
       </DsTypography>
     </header>
 
-    <section id="form_global" role="form">
+    <section role="form">
       <DsAlert type="info">
         <div class="columns is-mobile">
           <div class="column">
@@ -27,23 +26,27 @@
         </div>
       </DsAlert>
 
-      <DsButtonContainer>
-        <DsButton color="secondary"
+      <div class="cont-btn">
+        <DsButton color="tertiary"
           title="Consultar otro RUN"
           aria-labelledby="form_global"
           class="button is-default">
-          Consultar otro RUN
+          Consultar otro RUT
         </DsButton>
+      </div>
+    </section>
+  </div>
 
-        <DsButton color="secondary" :rounded="false"
+  <hr />
+
+  <div class="container pt-10">
+    <DsButton color="tertiary" :rounded="false"
           title="Continuar al paso siguiente"
           aria-labelledby="form_global"
           class="button btn-ref is-default">
           Continuar
-        </DsButton>
-      </DsButtonContainer>
-    </section>
-  </DsButtonContainer>
+    </DsButton>
+  </div>
 </template>
 
 <script setup>
