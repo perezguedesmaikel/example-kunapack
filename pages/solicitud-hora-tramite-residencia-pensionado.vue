@@ -3,7 +3,7 @@
     aria-label="Solicitud de hora para trámite en residencia del pensionado"
     class="container column ml-3">
     <header class="mb-6">
-      <DsTypography class="is-upper-text-title">
+      <DsTypography>
         Servicio de información entregado por
         <DsLink href="https://www.chileatiende.gob.cl/instituciones/AL005"
           title="Página web del Instituto de Previsión Social IPS"
