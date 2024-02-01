@@ -2,4 +2,4 @@
 
 set -e
 
-npm run dev
+NITRO_PORT=3100 npm run dev
