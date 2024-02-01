@@ -4,13 +4,13 @@
   <div>
     <ul>
       <li>
-        <NuxtLink to="/consulta-aporte-familiar">
+        <NuxtLink to="/consulta-aporte-familiar-start">
           Consulta de Aporte Familiar
         </NuxtLink>
       </li>
 
       <li>
-        <NuxtLink to="/solicitud-hora-tramite-residencia-pensionado">
+        <NuxtLink to="/solicitud-hora-tramite-residencia-pensionado-start">
           Solicitud de Hora Para Trámite en Residencia del Pensionado
         </NuxtLink>
       </li>
