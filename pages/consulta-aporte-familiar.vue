@@ -1,42 +1,43 @@
 <template>
-  <form>
-    <div class="columns">
-      <div role="main"
-           aria-label="Consulta para saber si usted es el beneficiario del Aporte Familiar Permanente"
-           class="column">
-        <header class="mb-6">
-          <DsTypography class="is-upper-text-title">
-              Servicio de información entregado por
-              <DsLink href="https://www.chileatiende.gob.cl/instituciones/AL005"
-                      title="Página web del Instituto de Previsión Social IPS"
-                      class="link">
-                Instituto de Previsión Social
-              </DsLink>
-          </DsTypography>
+  <div class="container columns">
+    <div role="main"
+          aria-label="Consulta para saber si usted es el beneficiario del Aporte Familiar Permanente"
+          class="column">
+      <header class="mb-6">
+        <DsTypography class="is-upper-text-title">
+            Servicio de información entregado por
+            <DsLink href="https://www.chileatiende.gob.cl/instituciones/AL005"
+                    title="Página web del Instituto de Previsión Social IPS"
+                    class="link">
+              Instituto de Previsión Social
+            </DsLink>
+        </DsTypography>
 
-          <DsTypography variant="h1">
-            ¿Desea saber si usted es beneficiario del Aporte Familiar Permanente?
-          </DsTypography>
-        </header>
+        <DsTypography variant="h1">
+          ¿Desea saber si usted es beneficiario del Aporte Familiar Permanente?
+        </DsTypography>
+      </header>
 
-        <section id="form_global" role="form">
+      <section id="form_global" role="form">
+        <form>
           <div class="form-sector">
             <div class="field">
-              <DsInput v-model="state.rut" label="Ingresa el RUT del beneficiario"
-                  placeholderText="Ejemplo: 12.345.678-9"
-                  :error="rutErrors"
-                  :errorMessage="rutErrors"
-                  required />
+              <DsInput
+                v-model="model.rut"
+                label="Ingresa el RUT del beneficiario"
+                placeholder="Ejemplo: 12.345.678-9"
+                :error="rutErrors"
+                required />
             </div>
 
             <div class="columns is-mobile">
               <div class="column">
                 <div class="field">
-                  <DsDatePicker v-model="state.date"
-                      labelText="Indica la fecha de nacimiento"
-                      :error="dateErrors"
-                      :errorMessage="dateErrors"
-                      required  />
+                  <DsDatePicker
+                    v-model="model.date"
+                    labelText="Indica la fecha de nacimiento"
+                    :error="dateErrors"
+                    required  />
                 </div>
               </div>
             </div>
@@ -53,26 +54,25 @@
               Consultar
             </DsButton>
           </div>
-        </section>
-      </div>
+        </form>
+      </section>
     </div>
-  </form>
+  </div>
 </template>
 
 <script setup type="ts">
-import DsInput from '~/components/DesignSystem/components/form/input/DsInput.vue';
-import DsDatePicker from '~/components/DesignSystem/components/form/datePicker/DsDatePicker.vue';
-import DsButton from '~/components/DesignSystem/components/basic/button/DsButton.vue';
-import DsTypography from '~/components/DesignSystem/components/basic/typography/DsTypography.vue';
-import DsLink from '~/components/DesignSystem/components/navigation/link/DsLink.vue';
+import DsButton from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/basic/button/DsButton.vue';
+import DsTypography from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/basic/typography/DsTypography.vue';
+import DsDatePicker from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/form/datePicker/DsDatePicker.vue';
+import DsInput from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/form/input/DsInput.vue';
+import DsLink from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/navigation/link/DsLink.vue';
 import { useVuelidate } from '@vuelidate/core'
 import { required, helpers } from '@vuelidate/validators'
 
-const state = reactive({
+const model = reactive({
   rut: '',
   date: null,
 });
-
 
 const submitForm = async () => {
   const isValid = await v$.value.$validate();
@@ -98,10 +98,10 @@ const rutValidator = (value) => {
   return true;
 };
 
-const isValidRut = helpers.withMessage(
-  'Formato de RUT incorrecto.',
-  rutValidator
-);
+const isValidRut = {
+  $message: 'Formato de RUT incorrecto.',
+  $validator: rutValidator,
+};
 
 const rutErrors = computed(() => {
   return fieldErrors( v$.value.rut);
@@ -124,5 +124,5 @@ const rules = () => ({
   date: { required },
 });
 
-const v$ = useVuelidate( rules, state);
+const v$ = useVuelidate( rules, model);
 </script>

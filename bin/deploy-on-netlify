@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -e
+
+netlify build
+netlify deploy --alias=preview
