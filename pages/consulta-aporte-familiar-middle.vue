@@ -1,7 +1,7 @@
 <template>
   <ProcedurePage
-    title="¿Desea saber si usted es beneficiario del Aporte Familiar Permanente?"
-    ariaTitle="Consulta para saber si usted es el beneficiario del Aporte Familiar Permanente">
+    ariaTitle="Consulta para saber si usted es el beneficiario del Aporte Familiar Permanente"
+    title="¿Desea saber si usted es beneficiario del Aporte Familiar Permanente?">
     <DsAlert type="info">
       <div>
         No se cumple segunda validación. (AFPER)
@@ -9,27 +9,27 @@
     </DsAlert>
 
     <div class="cont-btn">
-      <DsButton color="tertiary"
-        title="Consultar otro RUN"
-        aria-labelledby="form_global">
+      <DsButton aria-labelledby="form_global"
+                color="tertiary"
+                title="Consultar otro RUN">
         Consultar otro RUT
       </DsButton>
 
-      <DsButton color="tertiary"
-        title="Volver al paso anterior"
-        aria-labelledby="form_global"
-        @click="goBack">
+      <DsButton aria-labelledby="form_global"
+                color="tertiary"
+                title="Volver al paso anterior"
+                @click="goBack">
         <span>Volver</span>
       </DsButton>
     </div>
 
-    <hr />
+    <hr/>
 
     <div class="container pt-10">
-      <DsButton color="tertiary" :rounded="false"
-        title="Continuar al paso siguiente"
-        aria-labelledby="form_global"
-        @click="goToNext">
+      <DsButton :rounded="false" aria-labelledby="form_global"
+                color="tertiary"
+                title="Continuar al paso siguiente"
+                @click="goToNext">
         Continuar
       </DsButton>
     </div>
@@ -37,8 +37,10 @@
 </template>
 
 <script lang="ts" setup>
-import DsButton from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/basic/button/DsButton.vue';
-import DsAlert from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/basic/alert/DsAlert.vue';
+
+
+import DsButton from "~/components/DesignSystem/components/basic/button/DsButton.vue";
+import DsAlert from "~/components/DesignSystem/components/basic/alert/DsAlert.vue";
 
 const goBack = () => {
   navigateTo({

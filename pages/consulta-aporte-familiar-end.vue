@@ -1,8 +1,8 @@
 <template>
   <ProcedurePage
-    title="¿Desea saber si usted es beneficiario del Aporte Familiar Permanente?"
-    ariaTitle="Consulta para saber si usted es el beneficiario del Aporte Familiar Permanente">
-    <DsAlert type="success" aria-label="Cuadro de información importante">
+    ariaTitle="Consulta para saber si usted es el beneficiario del Aporte Familiar Permanente"
+    title="¿Desea saber si usted es beneficiario del Aporte Familiar Permanente?">
+    <DsAlert aria-label="Cuadro de información importante" type="success">
       <div>
         <div>
           <DsTypography variant="h3">
@@ -14,7 +14,7 @@
           Según la solicitud con la que cuenta el Instituto de Previsión Social,
           eres potencial beneficiario del <strong>Aporte Familiar Permanente 2020</strong>.
 
-          <DsLink target="_blank" title="Página web de IPS en Línea" class="link">
+          <DsLink class="link" target="_blank" title="Página web de IPS en Línea">
             Ingresa a IPS en Línea
           </DsLink>
 
@@ -42,16 +42,16 @@
     </DsTypography>
 
     <div class="cont-btn">
-      <DsButton color="tertiary"
-        title="Consultar otro RUT"
-        aria-labelledby="form_global">
+      <DsButton aria-labelledby="form_global"
+                color="tertiary"
+                title="Consultar otro RUT">
         <span>Consultar otro RUT</span>
       </DsButton>
 
-      <DsButton color="tertiary"
-        title="Volver al paso anterior"
-        aria-labelledby="form_global"
-        @click="goBack">
+      <DsButton aria-labelledby="form_global"
+                color="tertiary"
+                title="Volver al paso anterior"
+                @click="goBack">
         <span>Volver</span>
       </DsButton>
     </div>
@@ -59,10 +59,12 @@
 </template>
 
 <script lang="ts" setup>
-import DsAlert from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/basic/alert/DsAlert.vue';
-import DsButton from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/basic/button/DsButton.vue';
-import DsTypography from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/basic/typography/DsTypography.vue';
-import DsLink from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/navigation/link/DsLink.vue';
+
+
+import DsButton from "~/components/DesignSystem/components/basic/button/DsButton.vue";
+import DsTypography from "~/components/DesignSystem/components/basic/typography/DsTypography.vue";
+import DsLink from "~/components/DesignSystem/components/navigation/link/DsLink.vue";
+import DsAlert from "~/components/DesignSystem/components/basic/alert/DsAlert.vue";
 
 const goBack = () => {
   navigateTo({
