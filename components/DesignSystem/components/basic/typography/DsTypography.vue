@@ -1,0 +1,55 @@
+<script lang="ts" setup>
+import { elements, otherStyle } from "./data";
+import type {
+  DsElementNameType,
+  IDsTypographyElement,
+} from "../../basic/typography/interfaces";
+import { filterClass } from "../../../utils/filterClass";
+import { predefinedClasses } from "../../../common/propsStyle";
+import generateUniqueId from "../../../utils/generateUniqueId";
+
+const props = defineProps({
+  text: {
+    default: "Default text",
+  },
+
+  variant: {
+    type: String as () => DsElementNameType,
+    default: "p",
+  },
+
+  class: {
+    default: "",
+  },
+});
+
+const uniqueId = computed(() => generateUniqueId( 'typography'));
+
+const element = computed((): IDsTypographyElement => {
+  const el = elements.find((el) => el.name === props.variant);
+
+  if (el) {
+    return {
+      ...el,
+      name: el.name as DsElementNameType,
+    };
+  }
+
+  throw new Error("Element not found");
+});
+
+const filterClassComp = computed(() => {
+  return filterClass( predefinedClasses, props.class, otherStyle);
+});
+</script>
+
+<template>
+  <component
+    :is="element.component"
+    :id="uniqueId"
+    :class="filterClassComp">
+    <slot>
+      {{ text }}
+    </slot>
+  </component>
+</template>

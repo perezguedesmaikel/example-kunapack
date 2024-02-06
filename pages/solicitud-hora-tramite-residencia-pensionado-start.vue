@@ -1,13 +1,13 @@
 <template>
-  <div role="main"
-    aria-label="Solicitud de hora para trámite en residencia del pensionado"
-    class="container ml-3">
+  <div aria-label="Solicitud de hora para trámite en residencia del pensionado"
+       class="container ml-3"
+       role="main">
     <header class="mb-6">
       <DsTypography>
         Servicio de información entregado por
-        <DsLink href="https://www.chileatiende.gob.cl/instituciones/AL005"
-          title="Página web del Instituto de Previsión Social IPS"
-          class="link">
+        <DsLink class="link"
+                href="https://www.chileatiende.gob.cl/instituciones/AL005"
+                title="Página web del Instituto de Previsión Social IPS">
           Instituto de Previsión Social
         </DsLink>
       </DsTypography>
@@ -16,7 +16,7 @@
         Solicitud de hora para trámite en residencia del pensionado
       </DsTypography>
 
-      <DsStepper :stepCount="3" class="form-progress items-3" />
+      <DsStepper :stepCount="3" class="form-progress items-3"/>
 
       <!-- <div class="form-progress items-3">
         <div role="img" alt="Estás en el paso 1" class="form-progress-indicator p-active">
@@ -43,7 +43,7 @@
       </div> -->
     </header>
 
-    <section id="form_global" role="form">
+    <section id="form_global">
       <header class="mb-5">
         <DsTypography variant="h2">Formulario</DsTypography>
 
@@ -53,7 +53,7 @@
       <div class="form-sector p-4 rounded-lg bg-neutral-100">
         <header>
           <DsTypography variant="h2">Felipe Herrera Sotomayor</DsTypography>
-          <DsTypography variant="h3" class="rut">3.456.789-0</DsTypography>
+          <DsTypography class="rut" variant="h3">3.456.789-0</DsTypography>
 
           <!-- <h2>Felipe Herrera Sotomayor</h2>
           <h3 class="rut">3.456.789-0</h3> -->
@@ -85,7 +85,7 @@
           <DsModal v-model="showContactDialog" modalTitle="Editar datos de contacto">
             <template #default>
               <form id="modal_editar_datos_contacto" action="#"
-                  aria-label="Modal para editar datos de contacto" class="form-cha">
+                    aria-label="Modal para editar datos de contacto" class="form-cha">
 
                 <div class="field">
                   <DsInput
@@ -105,11 +105,11 @@
                 <div class="field">
                   <DsInput
                     v-model="model.contact.addressNumber"
-                    type="number"
-                    label="Ingrese la numeración"
-                    :minValue="900000001"
                     :maxValue="999999999"
+                    :minValue="900000001"
+                    label="Ingrese la numeración"
                     required
+                    type="number"
                   />
 
                   <!-- <label for="numero_modal_contacto" class="label">
@@ -141,10 +141,10 @@
                   <DsSelect
                     v-model="model.contact.region"
                     :option="regionOptions"
-                    label="Región"
-                    textDisabledValue="Seleccione la región"
                     class="select is-fullwidth"
+                    label="Región"
                     required
+                    textDisabledValue="Seleccione la región"
                   />
 
                   <!-- <label for="region_modal_contacto" class="label">
@@ -194,9 +194,9 @@
                   <DsSelect
                     v-model="model.contact.community"
                     :option="communityOptions"
+                    class="select is-fullwidth"
                     label="Comuna"
                     placeholder="Seleccione la comuna"
-                    class="select is-fullwidth"
                     required
                   />
 
@@ -218,11 +218,11 @@
                 <div class="field">
                   <DsInput
                     v-model="model.contact.phone"
-                    type="phone"
-                    label="Ingrese el teléfono"
-                    class="input"
                     aria-describedby="ejemplo_telefono"
+                    class="input"
+                    label="Ingrese el teléfono"
                     required
+                    type="phone"
                   />
 
                   <!-- <label for="telefono_modal_contacto" class="label">
@@ -242,11 +242,11 @@
                 <div class="field">
                   <DsInput
                     v-model="model.contact.email"
-                    type="email"
-                    label="Ingrese correo electrónico"
-                    class="input"
                     aria-describedby="msg_dialog"
+                    class="input"
+                    label="Ingrese correo electrónico"
                     required
+                    type="email"
                   />
 
                   <!-- <label for="email_modal_contacto" class="label">
@@ -282,9 +282,9 @@
               </DsButton>
 
               <DsButton
-                title="Guardar los cambios realizados"
-                class="button is-primary"
                 aria-labelledby="modal_editar_datos_contacto"
+                class="button is-primary"
+                title="Guardar los cambios realizados"
                 @click="onSaveContactData">
                 Guardar
               </DsButton>
@@ -472,7 +472,7 @@
       </div>
 
       <article class="mb-5">
-        <DsTypography variant="p" class="mb-4">
+        <DsTypography class="mb-4" variant="p">
           Es muy importante que el agendamiento de visitas se puede solicitar únicamente bajo
           <strong>condiciones excepcionales</strong> que son las siguientes:
         </DsTypography>
@@ -555,7 +555,7 @@
         </div>
       </article>
 
-      <DsAlert type="info" aria-label="Cuadro de información importante" class="msg msg-info">
+      <DsAlert aria-label="Cuadro de información importante" class="msg msg-info" type="info">
         En el momento de la visita debe tener fisicamente la cédula de identidad del apoderado
         y la cédula de identidad del pensionado vigentes
       </DsAlert>
@@ -581,10 +581,10 @@
           <div class="control">
             <DsRadio
               v-model="model.visitSolicitor"
-              value="uno"
-              label="Opción uno"
               aria-labelledby="label_quien_solicita_visita"
-              class="field" />
+              class="field"
+              label="Opción uno"
+              value="uno"/>
 
             <!-- <div aria-labelledby="label_quien_solicita_visita" class="field">
               <label id="radio_example_option1" class="radio">
@@ -596,10 +596,10 @@
 
             <DsRadio
               v-model="model.visitSolicitor"
-              value="dos"
-              label="Opción dos"
               aria-labelledby="label_quien_solicita_visita"
-              class="field" />
+              class="field"
+              label="Opción dos"
+              value="dos"/>
 
             <!-- <div aria-labelledby="label_quien_solicita_visita" class="field">
               <label id="radio_example_option2" class="radio">
@@ -611,10 +611,10 @@
 
             <DsRadio
               v-model="model.visitSolicitor"
-              value="tres"
-              label="Opción tres"
               aria-labelledby="label_quien_solicita_visita"
-              class="field" />
+              class="field"
+              label="Opción tres"
+              value="tres"/>
 
             <!-- <div aria-labelledby="label_quien_solicita_visita" class="field">
               <label id="radio_example_option3" class="radio">
@@ -630,10 +630,10 @@
           <DsSelect
             v-model="model.motivation"
             :option="motivationOptions"
-            label="Ingrese el motivo fundado por el cual se está solicitando esta visita"
             class="select is-fullwidth"
+            label="Ingrese el motivo fundado por el cual se está solicitando esta visita"
             placeholder="Motivo fundado"
-            required />
+            required/>
 
           <!-- <label for="motivo_fundado" class="label">
             Ingrese el motivo fundado por el cual se está solicitando esta visita *
@@ -654,10 +654,10 @@
 
         <div class="field">
           <DsFile
-            label="Adjunte documento"
-            class="upload control file-label" required
-            helpText="PDF, JPG o PNG"
-            @selectedFiles="onFileSelected" />
+            class="upload control file-label"
+            helpText="PDF, JPG o PNG" label="Adjunte documento"
+            required
+            @selectedFiles="onFileSelected"/>
         </div>
 
         <span class="input-info"></span>
@@ -665,9 +665,9 @@
         <div class="field">
           <DsDatePicker
             v-model="model.birthDate"
-            labelText="Fecha de nacimiento"
             :initialYear="1930"
-            required />
+            labelText="Fecha de nacimiento"
+            required/>
 
           <!-- <label id="fecha_nacimiento" aria-label="fecha de nacimiento" class="label">
             Fecha de nacimiento *
@@ -777,10 +777,10 @@
         <div class="field">
           <DsInput
             v-model="model.phone"
-            type="phone"
             label="Teléfono del pensionado"
             placeholder="Ingresa el teléfono del pensionado"
-            required />
+            required
+            type="phone"/>
 
           <!-- <label for="telefono_pensionado" class="label">
             Teléfono del pensionado*
@@ -798,10 +798,10 @@
         <div class="field">
           <DsInput
             v-model="model.email"
-            type="email"
             label="Correo electrónico del pensionado"
             placeholder="Ingresa el correo electrónico del pensionado"
-            required />
+            required
+            type="email"/>
 
           <!-- <label for="email_pensionado" class="label">
             Correo electrónico del pensionado *
@@ -815,10 +815,10 @@
           <DsSelect
             v-model="model.healthStatus"
             :option="healthStatusOptions"
+            class="select is-fullwidth"
             label="Estado de salud del pensionado"
             placeholder="Selecciona el estado de salud del pensionado"
-            class="select is-fullwidth"
-            required />
+            required/>
 
           <!-- <label for="estado_salud_pensionado" class="label">
             Estado de salud del pensionado*
@@ -837,10 +837,10 @@
           <DsSelect
             v-model="model.residence"
             :option="residenceOptions"
+            class="select is-fullwidth"
             label="Residencia del pensionado"
             placeholder="Seleccione residencia del pensionado"
-            class="select is-fullwidth"
-            required />
+            required/>
 
           <!-- <label for="residencia_pensionado" class="label">
             Residencia del pensionado *
@@ -860,10 +860,10 @@
           <DsSelect
             v-model="model.region"
             :option="regionOptions"
-            label="Región"
-            textDisabledValue="Selecciona la región del pensionado"
             class="select is-fullwidth"
+            label="Región"
             required
+            textDisabledValue="Selecciona la región del pensionado"
           />
 
           <!-- <label for="region_pensionado" class="label">
@@ -891,9 +891,9 @@
           <DsSelect
             v-model="model.community"
             :option="communityOptions"
+            class="select is-fullwidth"
             label="Comuna"
             placeholder="Selecciona la comuna del pensionado"
-            class="select is-fullwidth"
             required
           />
 
@@ -914,9 +914,9 @@
         <div class="field">
           <DsInput
             v-model="model.address"
+            class="input"
             label="Dirección del pensionado"
             placeholder="Ingresa la dirección del pensionado"
-            class="input"
             required
           />
 
@@ -932,13 +932,13 @@
         <div class="field">
           <DsInput
             v-model="model.addressNumber"
-            type="number"
+            :maxValue="999999"
+            :minValue="1"
+            class="input"
             label="Número"
             placeholder="Ingrese número de la dirección del pensionado"
-            class="input"
-            :minValue="1"
-            :maxValue="999999"
             required
+            type="number"
           />
 
           <!-- <label for="numero_pensionado" class="label">
@@ -963,9 +963,9 @@
         <div class="field">
           <DsInput
             v-model="model.proxy.name"
+            class="input"
             label="Nombre del posible apoderado (en caso de realizar esta solicitud por parte de un tercero)"
             placeholder="Ingrese nombre de apoderado"
-            class="input"
             required
           />
 
@@ -981,9 +981,9 @@
         <div class="field">
           <DsInput
             v-model="model.proxy.run"
+            class="input"
             label="Indique el RUN del posible apoderado"
             placeholder="Ingrese RUN del apoderado"
-            class="input"
             required
           />
 
@@ -999,9 +999,9 @@
           <DsSelect
             v-model="model.proxy.region"
             :option="regionOptions"
+            class="select is-fullwidth"
             label="Región"
             placeholder="Selecciona la región del apoderado"
-            class="select is-fullwidth"
             required
           />
 
@@ -1035,9 +1035,9 @@
           <DsSelect
             v-model="model.proxy.community"
             :option="communityOptions"
+            class="select is-fullwidth"
             label="Comuna"
             placeholder="Selecciona la comuna del apoderado"
-            class="select is-fullwidth"
             required
           />
 
@@ -1058,9 +1058,9 @@
         <div class="field">
           <DsInput
             v-model="model.proxy.address"
+            class="input"
             label="Dirección del apoderado"
             placeholder="Ingresa la dirección del apoderado"
-            class="input"
             required
           />
 
@@ -1075,13 +1075,13 @@
         <div class="field">
           <DsInput
             v-model="model.proxy.addressNumber"
-            type="number"
+            :maxValue="999999"
+            :minValue="1"
+            class="input"
             label="Número"
             placeholder="Ingrese número de la dirección del apoderado"
-            class="input"
-            :minValue="1"
-            :maxValue="999999"
             required
+            type="number"
           />
 
           <!-- <label for="numero_apoderado" class="label">
@@ -1096,11 +1096,11 @@
         <div class="field">
           <DsInput
             v-model="model.proxy.email"
-            type="email"
+            class="input"
             label="Correo electrónico del apoderado que recibirá notificaciones"
             placeholder="Ingrese correo del apoderado"
-            class="input"
             required
+            type="email"
           />
 
           <!-- <label for="email_apoderado" class="label">
@@ -1114,9 +1114,9 @@
         <div class="field">
           <DsInput
             v-model="model.proxy.pensionerRelation"
+            class="input"
             label="Indique el parentesco o relación con el pensionado"
             placeholder="Ingrese parentesco"
-            class="input"
             required
           />
 
@@ -1140,11 +1140,11 @@
         </button> -->
 
         <DsButton
+          :rounded="false"
+          aria-labelledby="form_global"
+          class="button is-primary"
           color="primary"
           title="Continuar al paso siguiente"
-          :rounded="false"
-          class="button is-primary"
-          aria-labelledby="form_global"
           @click="submitForm">
           Continuar
         </DsButton>
@@ -1154,19 +1154,20 @@
 </template>
 
 <script setup>
-import DsAlert from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/basic/alert/DsAlert.vue';
-import DsButton from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/basic/button/DsButton.vue';
-import DsTypography from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/basic/typography/DsTypography.vue';
-import DsModal from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/container/modal/DsModal.vue';
-import DsDatePicker from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/form/datePicker/DsDatePicker.vue';
-import DsInput from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/form/input/DsInput.vue';
-import DsRadio from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/form/radio/DsRadio.vue';
-import DsSelect from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/form/select/DsSelect.vue';
-import DsStepper from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/form/stepper/DsStepper.vue';
-import DsFile from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/form/file/DsFile.vue';
-import DsLink from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/navigation/link/DsLink.vue';
-import { useVuelidate } from '@vuelidate/core'
-import { required, helpers } from '@vuelidate/validators'
+
+import {useVuelidate} from '@vuelidate/core'
+import {required, helpers} from '@vuelidate/validators'
+import DsButton from "~/components/DesignSystem/components/basic/button/DsButton.vue";
+import DsInput from "~/components/DesignSystem/components/form/input/DsInput.vue";
+import DsSelect from "~/components/DesignSystem/components/form/select/DsSelect.vue";
+import DsTypography from "~/components/DesignSystem/components/basic/typography/DsTypography.vue";
+import DsDatePicker from "~/components/DesignSystem/components/form/datePicker/DsDatePicker.vue";
+import DsFile from "~/components/DesignSystem/components/form/file/DsFile.vue";
+import DsRadio from "~/components/DesignSystem/components/form/radio/DsRadio.vue";
+import DsAlert from "~/components/DesignSystem/components/basic/alert/DsAlert.vue";
+import DsModal from "~/components/DesignSystem/components/container/modal/DsModal.vue";
+import DsStepper from "~/components/DesignSystem/components/form/stepper/DsStepper.vue";
+import DsLink from "~/components/DesignSystem/components/navigation/link/DsLink.vue";
 
 const showContactDialog = ref(false);
 
@@ -1211,105 +1212,105 @@ const model = reactive({
 });
 
 const motivationOptions = reactive([{
-    value: 1,
-    text: 'Pensionados en hospitales o cárceles',
-  }, {
-    value: 2,
-    text: 'Pensionados con discapacidad mental',
-  }, {
-    value: 3,
-    text: 'Pensionado con enfermedades graves',
-  }, {
-    value: 4,
-    text: 'Pensionados en hospitales psiquiatricos',
-  }, {
-    value: 5,
-    text: 'Pensionados en casa de reposo',
-  }, {
-    value: 6,
-    text: 'Orfandad del ex SSS',
-  },
+  value: 1,
+  text: 'Pensionados en hospitales o cárceles',
+}, {
+  value: 2,
+  text: 'Pensionados con discapacidad mental',
+}, {
+  value: 3,
+  text: 'Pensionado con enfermedades graves',
+}, {
+  value: 4,
+  text: 'Pensionados en hospitales psiquiatricos',
+}, {
+  value: 5,
+  text: 'Pensionados en casa de reposo',
+}, {
+  value: 6,
+  text: 'Orfandad del ex SSS',
+},
 ]);
 
 const healthStatusOptions = reactive([{
-    value: 'uno',
-    text: 'Postrado en cama',
-  }, {
-    value: 'dos',
-    text: 'Movilidad normal o asistida',
-  },
+  value: 'uno',
+  text: 'Postrado en cama',
+}, {
+  value: 'dos',
+  text: 'Movilidad normal o asistida',
+},
 ]);
 
 const residenceOptions = reactive([{
-    value: 'uno',
-    text: 'Domicilio particular',
-  }, {
-    value: 'dos',
-    text: 'Hospitalizado',
-  }, {
-    value: 'tres',
-    text: 'Hogar de ancianos u otra residencia',
-  },
+  value: 'uno',
+  text: 'Domicilio particular',
+}, {
+  value: 'dos',
+  text: 'Hospitalizado',
+}, {
+  value: 'tres',
+  text: 'Hogar de ancianos u otra residencia',
+},
 ]);
 
 const regionOptions = reactive([{
-    value: 1,
-    text: 'Tarapaca',
-  }, {
-    value: 2,
-    text: 'Antofagasta',
-  }, {
-    value: 3,
-    text: 'Atacama',
-  }, {
-    value: 4,
-    text: 'Coquimbo',
-  }, {
-    value: 5,
-    text: 'Valparaíso',
-  }, {
-    value: 6,
-    text: "O'Higgins",
-  }, {
-    value: 7,
-    text: 'Maule',
-  }, {
-    value: 8,
-    text: 'Bio - Bio',
-  }, {
-    value: 9,
-    text: 'Araucanía',
-  }, {
-    value: 10,
-    text: 'Los Lagos',
-  }, {
-    value: 11,
-    text: 'Aisen',
-  }, {
-    value: 12,
-    text: 'Magallanes Y Antártica',
-  }, {
-    value: 13,
-    text: 'Metropolitana',
-  }, {
-    value: 14,
-    text: 'Los Ríos',
-  }, {
-    value: 15,
-    text: 'Arica y Parinacota',
-  },
+  value: 1,
+  text: 'Tarapaca',
+}, {
+  value: 2,
+  text: 'Antofagasta',
+}, {
+  value: 3,
+  text: 'Atacama',
+}, {
+  value: 4,
+  text: 'Coquimbo',
+}, {
+  value: 5,
+  text: 'Valparaíso',
+}, {
+  value: 6,
+  text: "O'Higgins",
+}, {
+  value: 7,
+  text: 'Maule',
+}, {
+  value: 8,
+  text: 'Bio - Bio',
+}, {
+  value: 9,
+  text: 'Araucanía',
+}, {
+  value: 10,
+  text: 'Los Lagos',
+}, {
+  value: 11,
+  text: 'Aisen',
+}, {
+  value: 12,
+  text: 'Magallanes Y Antártica',
+}, {
+  value: 13,
+  text: 'Metropolitana',
+}, {
+  value: 14,
+  text: 'Los Ríos',
+}, {
+  value: 15,
+  text: 'Arica y Parinacota',
+},
 ]);
 
 const communityOptions = reactive([{
-    value: 1,
-    text: 'Uno',
-  }, {
-    value: 2,
-    text: 'Dos',
-  }, {
-    value: 3,
-    text: 'Tres',
-  },]);
+  value: 1,
+  text: 'Uno',
+}, {
+  value: 2,
+  text: 'Dos',
+}, {
+  value: 3,
+  text: 'Tres',
+},]);
 
 const onShowContactDialog = () => showContactDialog.value = true;
 const onHideContactDialog = () => showContactDialog.value = false;
@@ -1332,13 +1333,11 @@ const rutValidator = (value) => {
     return true;
   }
 
-  const regex = RegExp( '^\\d{2}\\.\\d{3}\\.\\d{3}\\-\\d$');
+  const regex = RegExp('^\\d{2}\\.\\d{3}\\.\\d{3}-\\d$');
 
-  if (!regex.test( value)) {
-    return false;
-  }
+  return regex.test(value);
 
-  return true;
+
 };
 
 const isValidRut = {
@@ -1352,21 +1351,21 @@ const rules = computed(() => ({
     isValidRut,
   },
 
-  date: { required },
+  date: {required},
 }));
 
 const rutErrors = computed(() => {
-  return fieldErrors( v$.value.rut);
+  return fieldErrors(v$.value.rut);
 });
 
 const dateErrors = computed(() => {
-  return fieldErrors( v$.value.date);
+  return fieldErrors(v$.value.date);
 });
 
 const fieldErrors = (field) => {
-  const errors = field.$errors.map( (error) => error.$message);
+  const errors = field.$errors.map((error) => error.$message);
   return errors.length > 0 ? errors[0] : null;
 };
 
-const v$ = useVuelidate( rules, model);
+const v$ = useVuelidate(rules, model);
 </script>

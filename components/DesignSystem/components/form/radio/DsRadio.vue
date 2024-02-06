@@ -1,0 +1,134 @@
+<script lang="ts" setup>
+import {
+  elementsSizes,
+  predefinedClasses,
+} from "../../../common/propsStyle";
+import type { ISize } from "../../../interfaces/elements";
+import { filterClass } from "../../../utils/filterClass";
+import generateUniqueId from "../../../utils/generateUniqueId";
+import { translateError } from "../../../utils/translateErrorMessage";
+import buildAriaLabels from "../../../utils/buildAriaLabels";
+
+const props = defineProps({
+  modelValue: {
+    required: true,
+  },
+
+  value: {
+    type: String,
+    default: null,
+  },
+
+  class: {
+    type: String,
+    default: "",
+  },
+
+  group: {
+    type: String,
+    default: "Default Group",
+  },
+
+  size: {
+    type: String as () => ISize,
+    default: "normal",
+  },
+
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+
+  required: {
+    type: Boolean,
+    default: false,
+  },
+
+  label: {
+    type: String,
+    default: "Default label",
+  },
+
+  error: {
+    type: String,
+    default: null,
+  },
+
+  helpMessage: {
+    type: String as PropType<string|null>,
+    default: null,
+  },
+});
+
+const inputId = computed(() => generateUniqueId('radio'));
+const labelId = computed(() => `${inputId.value}-label`);
+const errorMessageId = computed(() => `${inputId.value}-error-message`);
+const helpMessageId = computed(() => `${inputId.value}-help-message`);
+
+const defaultClasses = "hover:border-dark-500 border p-2 mb-2 w-auto mr-1";
+
+const filterClassComp = computed(() => {
+  return filterClass(predefinedClasses, props.class);
+});
+
+const cssClasses = computed(() => [
+  elementsSizes[props.size],
+  {
+    error: hasError.value,
+  },
+  defaultClasses,
+]);
+
+const emit = defineEmits(["update:modelValue"]);
+
+const model = computed({
+  get() {
+    return props.modelValue;
+  },
+
+  set(value) {
+    emit("update:modelValue", value);
+  },
+});
+
+const hasError = computed(() => !!props.error);
+const errorMessage = computed(() => translateError( props.error));
+
+const ariaLabels = computed(() => buildAriaLabels( props, {
+  label: labelId.value,
+  error: errorMessageId.value,
+  helpMessage: helpMessageId.value,
+}));
+</script>
+
+<template>
+  <div :class="filterClassComp">
+    <div class="flex items-center">
+      <input
+        :id="inputId"
+        v-model="model"
+        type="radio"
+        :class="cssClasses"
+        :disabled="disabled"
+        :name="group"
+        :value="value"
+        :aria-required="required"
+        :aria-invalid="hasError"
+        :aria-labelledby="ariaLabels"
+      />
+
+      <label v-if="label" :id="labelId" :for="inputId" class="mb-2">
+        {{ label }}
+        <span v-if="required" class="required-marker" aria-hidden="true">*</span>
+      </label>
+    </div>
+
+    <label v-if="hasError" :id="errorMessageId" class="error-message block mb-0">
+      {{ errorMessage }}
+    </label>
+
+    <label v-if="helpMessage" :id="helpMessageId" class="help-message block">
+      {{ helpMessage }}
+    </label>
+  </div>
+</template>

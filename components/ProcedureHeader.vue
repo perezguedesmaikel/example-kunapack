@@ -3,9 +3,9 @@
     <DsTypography variant="span">
       Servicio de información entregado por
 
-      <DsLink href="https://www.chileatiende.gob.cl/instituciones/AL005"
-        title="Página web del Instituto de Previsión Social IPS"
-        class="link">
+      <DsLink class="link"
+              href="https://www.chileatiende.gob.cl/instituciones/AL005"
+              title="Página web del Instituto de Previsión Social IPS">
         Instituto de Previsión Social
       </DsLink>
     </DsTypography>
@@ -17,8 +17,10 @@
 </template>
 
 <script setup>
-import DsTypography from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/basic/typography/DsTypography.vue';
-import DsLink from '@perezguedesmaikel/chile-atiende-ui/components/DesignSystem/components/navigation/link/DsLink.vue';
+
+
+import DsTypography from "~/components/DesignSystem/components/basic/typography/DsTypography.vue";
+import DsLink from "~/components/DesignSystem/components/navigation/link/DsLink.vue";
 
 const props = defineProps({
   title: {

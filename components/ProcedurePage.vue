@@ -1,15 +1,15 @@
 <template>
   <div class="container">
     <div class="grid grid-cols-3 gap-2">
-      <main class="col-span-2" :aria-label="ariaTitle">
+      <main :aria-label="ariaTitle" class="col-span-2">
         <ProcedureHeader :title="title"/>
 
-        <section role="form" id="main_form">
-          <slot />
+        <section id="main_form">
+          <slot/>
         </section>
       </main>
 
-      <ProcedureHelpPanel />
+      <ProcedureHelpPanel/>
     </div>
   </div>
 </template>
