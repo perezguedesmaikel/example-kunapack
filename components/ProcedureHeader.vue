@@ -19,6 +19,7 @@
 </template>
 
 <script setup>
+// origin
 import DsTypography from "~/components/DesignSystem/components/basic/typography/DsTypography.vue";
 import DsLink from "~/components/DesignSystem/components/navigation/link/DsLink.vue";
 
