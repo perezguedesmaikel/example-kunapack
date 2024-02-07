@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import DsIcon from "../../basic/icon/DsIcon.vue";
-import {computed} from "vue";
+import { computed } from "vue";
 
 const props = defineProps({
   modelValue: {
@@ -11,6 +11,7 @@ const props = defineProps({
   title: {
     type: String,
     default: "Default title",
+    required: true,
   },
 
   acceptText: {
@@ -61,15 +62,15 @@ const onAccept = () => emit("accept");
 <template>
   <transition name="fade">
     <div v-if="modelValue"
-         class="modal flex items-center flex-col justify-center overflow-hidden fixed z-40 bottom-0 left-0 right-0 top-0">
+      class="modal flex items-center flex-col justify-center overflow-hidden fixed z-40 bottom-0 left-0 right-0 top-0">
       <section class="my-4">
         <div id="modal-js-example"
-             :class="[
+          :class="[
             'flex modal items-center flex-col justify-center overflow-hidden fixed z-40 bottom-0 left-0 right-0 top-0 ',
           ]"
-             aria-labelledby="title_modal_example1"
-             aria-modal="true"
-             role="dialog">
+          aria-labelledby="title_modal_example1"
+          aria-modal="true"
+          role="dialog">
 
           <div class="modal-background bg-black/80 absolute bottom-0 left-0 right-0 top-0"></div>
 
@@ -86,9 +87,9 @@ const onAccept = () => emit("accept");
                     class="close-modal border border-primary-500 p-2 bg-white rounded-lg text-sm"
                     @click="closeModal">
                     <DsIcon
+                      name="times"
                       aria-hidden="true"
-                      class="block text-primary-500"
-                      name="times"/>
+                      class="block text-primary-500" />
                   </button>
                 </header>
               </slot>
@@ -107,7 +108,7 @@ const onAccept = () => emit("accept");
             </section>
 
             <footer v-if="showFooter"
-                    class="bg-neutral-100 border border-t-neutral-300 text-center md:text-right p-5">
+              class="bg-neutral-100 border border-t-neutral-300 text-center md:text-right p-5">
               <div v-if="!$slots.footer">
                 <button
                   aria-labelledby="form_modal_example1"
@@ -119,9 +120,9 @@ const onAccept = () => emit("accept");
                 </button>
 
                 <button
-                  :title="acceptTooltip"
                   aria-labelledby="form_modal_example1"
                   class="font-roboto border border-primary-500 bg-primary-500 text-white px-3 py-2 hover:bg-primary-900"
+                  :title="acceptTooltip"
                   type="submit"
                   @click="onAccept">
                   {{ acceptText }}

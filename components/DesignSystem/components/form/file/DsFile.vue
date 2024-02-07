@@ -11,6 +11,7 @@ import { translateError } from "../../../utils/translateErrorMessage";
 import buildAriaLabels from "../../../utils/buildAriaLabels";
 import type { Ref } from "vue";
 
+//new change defile
 interface FileInputRef extends Ref<HTMLInputElement | null> {}
 
 const props = defineProps({
@@ -22,7 +23,6 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-
   size: {
     type: String as () => ISizeText,
     default: "normal",
@@ -144,28 +144,30 @@ const ariaLabels = computed(() =>
         type="file"
         @change="handleFileChange"
       />
-      <div>
+      <div class="w-full">
         <input
           ref="fileRef"
           :aria-invalid="hasError"
           :aria-labelledby="ariaLabels"
           :aria-required="required"
           :class="[
-            'hover:border-dark-500 border p-2 rounded rounded-e-none font-roboto',
+            'rounded rounded-e-none mb-0',
             { error: hasError },
             sizeSelect[size],
           ]"
           :placeholder="showPlaceholder ? placeholder : ''"
           :value="modelValue?.name"
-          readonly
+          @click="openFilePicker"
         />
       </div>
 
       <DsButton
         :color="buttonColor"
+        :rounded="false"
         :text="buttonText"
-        startIcon="search"
+        startIcon="file"
         text-color="white"
+        variant="buttonFile"
         @click="openFilePicker"
       />
     </div>

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import DsButton from "~/components/DesignSystem/components/basic/button/DsButton.vue";
-import type { IUserProfile } from "~/components/DesignSystem/components/form-example/interface";
+import type { IUserProfile } from "~/components/DesignSystem/components/form-example/pensionerResidency/interface";
 
 defineProps({
   dataProfile: {
@@ -16,8 +16,9 @@ function handleClick() {
 
 <template>
   <div>
-    <h2>{{ dataProfile?.name }}</h2>
-    <h3 class="rut">{{ dataProfile?.ruc }}</h3>
+    <h3>{{ dataProfile?.name }}</h3>
+    <h4>{{ dataProfile?.ruc }}</h4>
+    <hr class="my-3" />
     <div class="cont-gr">
       Fecha de nacimiento<br />
       <strong>{{ dataProfile?.birthday }}</strong>

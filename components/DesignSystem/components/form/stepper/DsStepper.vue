@@ -4,7 +4,7 @@ import { predefinedClasses } from "../../../common/propsStyle";
 import generateUniqueId from "../../../utils/generateUniqueId";
 import DsButton from "../../basic/button/DsButton.vue";
 import { ref, watch } from "vue";
-//version 1
+//prueba multiRepo
 const props = defineProps({
   modelValue: {
     type: Number,
@@ -89,14 +89,40 @@ watch(modelValueRef, (newProps) => {
 
 const steps = computed(() => stepStates.value);
 const uniqueId = computed(() => generateUniqueId("stepper"));
+
+function computeAriaLabel(item: any) {
+  const label = `Paso ${item.step}`;
+
+  if (props.modelValue === props.totalSteps) {
+    return `${label}, bloqueado`;
+  }
+
+  const states = {
+    selected: `, actualmente estás en este paso`,
+    blocked: `, bloqueado`,
+    lowerValue: `, Volver al paso ${item.step}`,
+    higherValue: `, Avanzar al paso ${item.step}`,
+  };
+
+  if (item.selected) {
+    return label + states.selected;
+  } else if (item.status === "blocked") {
+    return label + states.blocked;
+  } else if (item.step < props.modelValue) {
+    return label + states.lowerValue;
+  } else {
+    return label + states.higherValue;
+  }
+}
 </script>
 
 <template>
   <div :class="filterClassComp">
     <ol
       :id="uniqueId"
-      aria-label="Progreso del proceso"
-      class="flex items-center space-x-8"
+      aria-label="Progreso del trámite. Estás en el paso 1 de 4 "
+      class="flex items-center space-x-4 md:space-x-8"
+      tabindex="0"
     >
       <li
         v-for="(item, index) in steps"
@@ -106,10 +132,10 @@ const uniqueId = computed(() => generateUniqueId("stepper"));
       >
         <div class="flex justify-center items-center">
           <button
-            :aria-label="'Paso ' + item.step + ' ' + item.status"
+            :aria-label="computeAriaLabel(item)"
             :class="[
-              'h-14 w-14 font-robotoSlab border border-neutral-300  text-dark-500 ' +
-                'rounded-full flex align-middle justify-center items-center text-lg font-bold mr-8',
+              'h-10 w-10 md:h-14 md:w-14 font-robotoSlab border border-neutral-300  text-dark-500 ' +
+                'rounded-full flex align-middle justify-center items-center text-lg font-bold mr-4 md:mr-8',
               {
                 'border-transparent bg-primary-500 text-white cursor-pointer':
                   item.selected,
@@ -130,7 +156,7 @@ const uniqueId = computed(() => generateUniqueId("stepper"));
           <span
             v-if="index !== steps.length - 1"
             :class="[
-              'h-[5px] w-[100px]',
+              'h-[5px] w-[20px] md:w-[60px]',
               `${item.step < modelValue ? 'bg-primary-500' : 'bg-gray-200'}`,
             ]"
           ></span>
@@ -139,15 +165,7 @@ const uniqueId = computed(() => generateUniqueId("stepper"));
     </ol>
   </div>
   <slot />
-  <div v-if="!hideButton && modelValue !== totalSteps" class="flex justify-end">
-    <DsButton
-      :disabled="modelValue === 1 || error"
-      class="m-1 mt-3"
-      start-image="las la-angle-left"
-      @click="handleStep('restar')"
-      >Volver
-    </DsButton>
-
+  <div v-if="!hideButton && modelValue !== totalSteps" class="cont-btn w-full">
     <DsButton
       :disabled="error"
       class="m-1 mt-3"
@@ -158,6 +176,16 @@ const uniqueId = computed(() => generateUniqueId("stepper"));
         v-if="loading"
         class="ml-1 w-5 h-5 border-2 border-t-4 border-white rounded-full animate-spin"
       ></div>
+    </DsButton>
+
+    <DsButton
+      v-if="modelValue !== 1"
+      :disabled="error"
+      class="m-1 mt-3"
+      color="secondary"
+      start-image="las la-angle-left"
+      @click="handleStep('restar')"
+      >Volver
     </DsButton>
   </div>
 </template>

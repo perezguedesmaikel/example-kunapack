@@ -8,6 +8,7 @@ export function translateError(
     let errorMessages: { [key: string]: string } = {
       "Value is not a valid email address": "El valor no es un correo válido",
       "Value is required": "Campo requerido",
+      "Value must be numeric": "El valor debe ser un número",
       // Add as many as you need
     };
 

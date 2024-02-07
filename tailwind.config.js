@@ -1,9 +1,10 @@
-/** @type {import('tailwindcss').Config} */
+/** @type {import("tailwindcss").Config} */
 export default {
   content: [
-    "./components/**/*.{js,vue,ts}",
+    "./components/**/*.{js,vue,ts,mdx}",
+    "./stories/**/*.{js,vue,ts,mdx}",
     "./layouts/**/*.vue",
-    "./pages/**/*.vue",
+    "./layout/**/*.vue",
     "./plugins/**/*.{js,ts}",
     "./app.vue",
     "./error.vue",
@@ -11,7 +12,7 @@ export default {
   theme: {
     extend: {
       boxShadow: {
-        focus: "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
+        focus: "0 0 10px #35ac19",
       },
       backgroundImage: {
         qualification: "url('/images/emoji-qualification.png)",
@@ -26,6 +27,8 @@ export default {
       fontFamily: {
         roboto: ["Roboto"],
         robotoSlab: ["Roboto Slab"],
+        robotoBold: ["Roboto Bold"],
+        robotoSlabBold: ["Roboto Slab Bold"],
       },
       colors: {
         primary: {
@@ -55,5 +58,5 @@ export default {
       },
     },
   },
-  plugins: []
-}
+  plugins: [],
+};

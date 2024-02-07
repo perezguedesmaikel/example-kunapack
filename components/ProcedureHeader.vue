@@ -1,11 +1,13 @@
 <template>
   <header class="mb-6">
-    <DsTypography variant="span">
+    <DsTypography variant="h4">
       Servicio de información entregado por
 
-      <DsLink class="link"
-              href="https://www.chileatiende.gob.cl/instituciones/AL005"
-              title="Página web del Instituto de Previsión Social IPS">
+      <DsLink
+        class="link"
+        href="https://www.chileatiende.gob.cl/instituciones/AL005"
+        title="Página web del Instituto de Previsión Social IPS"
+      >
         Instituto de Previsión Social
       </DsLink>
     </DsTypography>
@@ -17,8 +19,6 @@
 </template>
 
 <script setup>
-
-
 import DsTypography from "~/components/DesignSystem/components/basic/typography/DsTypography.vue";
 import DsLink from "~/components/DesignSystem/components/navigation/link/DsLink.vue";
 

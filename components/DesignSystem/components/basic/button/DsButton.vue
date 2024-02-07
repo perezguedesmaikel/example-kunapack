@@ -1,18 +1,11 @@
 <script lang="ts" setup>
 import { filterClass } from "../../../utils/filterClass";
 import { predefinedClasses } from "../../../common/propsStyle";
-import type {
-  IButtonColor,
-  IButtonSize,
-  IButtonType,
-} from "./interfaces";
-import {
-  colorButtonClass,
-  sizeButtonClass,
-} from "./library";
+import type { IButtonColor, IButtonSize, IButtonType } from "./interfaces";
+import { colorButtonClass, sizeButtonClass } from "./library";
 import useFocus from "../../../composables/useFocus";
 import DsIcon from "../../basic/icon/DsIcon.vue";
-
+//resolve conflict and refactor
 const props = defineProps({
   text: {
     type: String,
@@ -22,6 +15,10 @@ const props = defineProps({
   color: {
     type: String as () => IButtonColor,
     default: "primary",
+  },
+  variant: {
+    type: String as () => "buttonFile" | "button",
+    default: "button",
   },
 
   size: {
@@ -49,10 +46,10 @@ const props = defineProps({
     default: false,
   },
 
-  rounded: {
-    type: Boolean,
-    default: true,
-  },
+  // rounded: {
+  //   type: Boolean,
+  //   default: true,
+  // },
 
   focus: {
     type: Boolean,
@@ -73,19 +70,21 @@ const filterClassComp = computed(() => {
 
 const { elementRef: buttonRef } = useFocus(
   () => props.focus,
-  () => '',
+  () => "",
 );
 
 const buttonClasses = computed(() => {
   let classes = [
     colorButtonClass[props.color],
-    sizeButtonClass[props.size],
+    props.variant !== "buttonFile" ? sizeButtonClass[props.size] : "",
     filterClassComp.value,
   ];
-
-  if (props.rounded) {
-    classes.push("rounded-lg");
-  }
+  //
+  // if (props.rounded) {
+  //   classes.push("rounded");
+  // } else {
+  //   classes.push("rounded-none");
+  // }
 
   if (props.disabled) {
     classes.push("opacity-50");
@@ -98,14 +97,19 @@ const buttonClasses = computed(() => {
 <template>
   <button
     ref="buttonRef"
-    :class="['flex items-center', buttonClasses]"
+    :class="[
+      'flex items-center',
+      buttonClasses,
+      { 'btn-file': variant === 'buttonFile' },
+    ]"
     :disabled="disabled"
     :type="type"
-    @click="$emit('click', $event)">
-    <DsIcon v-if="startIcon" :name="startIcon" class="mr-1" />
+    @click="$emit('click', $event)"
+  >
+    <DsIcon v-if="startIcon" :name="startIcon" class="mr-1" size="base" />
 
     <slot>{{ text }}</slot>
 
-    <DsIcon v-if="endIcon" :name="endIcon" class="ml-1" />
+    <DsIcon v-if="endIcon" :name="endIcon" class="ml-1" size="base" />
   </button>
 </template>

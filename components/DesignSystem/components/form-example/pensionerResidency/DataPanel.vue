@@ -26,7 +26,7 @@ const _config = computed(() => {
 });
 
 const isArray = (value: any) =>
-  typeof value === "object" && typeof value.push === "function";
+  typeof value === "object" && typeof value?.push === "function";
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import DsInput from "~/components/DesignSystem/components/form/input/DsInput.vue";
-import type { IUserProfile } from "~/components/DesignSystem/components/form-example/interface";
+import type { IUserProfile } from "~/components/DesignSystem/components/form-example/pensionerResidency/interface";
 
 const props = defineProps({
   dataForm: {

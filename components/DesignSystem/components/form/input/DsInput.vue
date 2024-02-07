@@ -80,7 +80,7 @@ const labelId = computed(() => `${inputId.value}-label`);
 const errorMessageId = computed(() => `${inputId.value}-error-message`);
 const helpMessageId = computed(() => `${inputId.value}-help-message`);
 
-const defaultClasses = "hover:border-dark-500 border p-2 block mb-2";
+const defaultClasses = "hover:border-dark-500 border p-2 block ";
 
 const filterClassComp = computed(() => {
   return filterClass(predefinedClasses, props.class);

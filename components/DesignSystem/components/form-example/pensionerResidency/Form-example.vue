@@ -1,16 +1,20 @@
 <script lang="ts" setup>
 import DsStepper from "~/components/DesignSystem/components/form/stepper/DsStepper.vue";
-import Form1 from "~/components/DesignSystem/components/form-example/Form1.vue";
-import Form2 from "~/components/DesignSystem/components/form-example/Form2.vue";
-import Form3 from "~/components/DesignSystem/components/form-example/Form3.vue";
-import Form4 from "~/components/DesignSystem/components/form-example/Form4.vue";
+import Form1 from "~/components/DesignSystem/components/form-example/pensionerResidency/Form1.vue";
+import Form2 from "~/components/DesignSystem/components/form-example/pensionerResidency/Form2.vue";
+import Form3 from "~/components/DesignSystem/components/form-example/pensionerResidency/Form3.vue";
+import Form4 from "~/components/DesignSystem/components/form-example/pensionerResidency/Form4.vue";
 import { useVuelidate } from "@vuelidate/core";
-import { required, email } from "@vuelidate/validators";
+import { required, email, numeric } from "@vuelidate/validators";
 import DsLink from "~/components/DesignSystem/components/navigation/link/DsLink.vue";
 import DsTypography from "~/components/DesignSystem/components/basic/typography/DsTypography.vue";
+import { isValidRUT } from "~/components/DesignSystem/utils/isValidRut";
 
 const step = ref(1);
-
+const rucValidate = {
+  $message: "No es un run valido",
+  $validator: isValidRUT,
+};
 const formApplicantState = reactive({
   applicant: "",
   reason: null,
@@ -50,8 +54,8 @@ const formApplicantRules = {
   reason: { required },
   docFile: { required },
   date: { required },
-  phone: { required },
-  mail: { required },
+  phone: { required, numeric },
+  mail: { required, email },
   healthStatus: { required },
   residence: { required },
   region: { required },
@@ -61,12 +65,12 @@ const formApplicantRules = {
 };
 const formAttorneyStateRules = reactive({
   name: { required },
-  run: { required },
+  run: { required, rucValidate },
   region: { required },
   community: { required },
   address: { required },
   addressNumber: { required },
-  email: { required },
+  email: { required, email },
   pensionerRelation: { required },
 });
 
@@ -77,15 +81,17 @@ function handleStep1(value: number) {
   form1.value.$touch();
   if (!form1.value.$invalid) {
     step.value = value;
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 }
 
 const loading = ref(false);
 
 function handleStep2(value: number) {
-  form2.value.$touch();
-  if (!form2.value.$invalid) {
+  if (value !== 1) form2.value.$touch();
+  if (value === 1 || !form2.value.$invalid) {
     step.value = value;
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 }
 
@@ -116,9 +122,10 @@ function handleStep3(value: number, type: string) {
         // This function executes when the promise is resolved, i.e., call to server was successful.
         console.log(dataServer);
         step.value = value;
+        window.scrollTo({ top: 0, behavior: "smooth" });
       })
       .catch(() => {
-        // This function executes when the promise is rejected, i.e., call to server failed.
+        // This function executes when the promise is rejected, i.e., call server failed.
         // Handle the error here
       })
       .finally(() => {
@@ -147,26 +154,39 @@ function handleChangeStep(value: number, type: string) {
 </script>
 
 <template>
-  <span class="is-upper-text-title">
-    Servicio de información entregado por
-    <DsLink>Instituto de Previsión Social</DsLink></span
-  >
-  <DsTypography class="text-3xl" variant="h1"
-    >Solicitud de hora para trámite en residencia del pensionado
-  </DsTypography>
+  <div class="container">
+    <DsTypography variant="h4">
+      Servicio de información entregado por
 
-  <div class="flex flex-col items-center justify-center mt-6">
-    <DsStepper
-      v-model="step"
-      :error="form1.$error || form2.$error"
-      :loading="loading"
-      @change-step="handleChangeStep"
-    >
-      <Form1 v-if="step == 1" v-model="formApplicantState" :validate="form1" />
-      <Form2 v-if="step == 2" v-model="formAttorneyState" :validate="form2" />
-      <Form3 v-if="step == 3" v-model="totalData" />
-      <Form4 v-if="step == 4" />
-    </DsStepper>
+      <DsLink
+        class="link"
+        href="https://www.chileatiende.gob.cl/instituciones/AL005"
+        title="Página web del Instituto de Previsión Social IPS"
+      >
+        Instituto de Previsión Social
+      </DsLink>
+    </DsTypography>
+    <DsTypography class="text-3xl" variant="h1"
+      >Solicitud de hora para trámite en residencia del pensionado
+    </DsTypography>
+
+    <div class="flex flex-col items-center justify-center mt-6">
+      <DsStepper
+        v-model="step"
+        :error="form1.$error || form2.$error"
+        :loading="loading"
+        @change-step="handleChangeStep"
+      >
+        <Form1
+          v-if="step == 1"
+          v-model="formApplicantState"
+          :validate="form1"
+        />
+        <Form2 v-if="step == 2" v-model="formAttorneyState" :validate="form2" />
+        <Form3 v-if="step == 3" v-model="totalData" />
+        <Form4 v-if="step == 4" />
+      </DsStepper>
+    </div>
   </div>
 </template>
 
