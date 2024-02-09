@@ -1,18 +1,19 @@
 <script lang="ts" setup>
 import DsButton from "../../basic/button/DsButton.vue";
 import generateUniqueId from "../../../utils/generateUniqueId";
-import { filterClass } from "../../../utils/filterClass";
-import { predefinedClasses } from "../../../common/propsStyle";
-import type { ISizeText } from "../../../interfaces/elements";
-import { sizeSelect } from "../select/library";
+import {filterClass} from "../../../utils/filterClass";
+import {predefinedClasses} from "../../../common/propsStyle";
+import type {ISizeText} from "../../../interfaces/elements";
+import {sizeSelect} from "../select/library";
 import useFocus from "../../../composables/useFocus";
-import type { IButtonColor } from "../../basic/button/interfaces";
-import { translateError } from "../../../utils/translateErrorMessage";
+import type {IButtonColor} from "../../basic/button/interfaces";
+import {translateError} from "../../../utils/translateErrorMessage";
 import buildAriaLabels from "../../../utils/buildAriaLabels";
-import type { Ref } from "vue";
+import type {Ref} from "vue";
 
 //new change defile
-interface FileInputRef extends Ref<HTMLInputElement | null> {}
+interface FileInputRef extends Ref<HTMLInputElement | null> {
+}
 
 const props = defineProps({
   modelValue: {
@@ -97,7 +98,7 @@ const emit = defineEmits(["fileSelected", "update:modelValue"]);
 const selectedFileName = ref(null);
 const refFileName: FileInputRef = ref(null);
 
-const { elementRef: fileRef } = useFocus(
+const {elementRef: fileRef} = useFocus(
   () => props.focus,
   () => props.error,
 );
@@ -158,6 +159,7 @@ const ariaLabels = computed(() =>
           :placeholder="showPlaceholder ? placeholder : ''"
           :value="modelValue?.name"
           @click="openFilePicker"
+          @keydown.prevent
         />
       </div>
 
