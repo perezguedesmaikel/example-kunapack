@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { filterClass } from "../../../utils/filterClass";
-import { predefinedClasses } from "../../../common/propsStyle";
+import {filterClass} from "../../../utils/filterClass";
+import {predefinedClasses} from "../../../common/propsStyle";
 import generateUniqueId from "../../../utils/generateUniqueId";
 import DsButton from "../../basic/button/DsButton.vue";
-import { ref, watch } from "vue";
+import {ref, watch} from "vue";
 //prueba multiRepo
 const props = defineProps({
   modelValue: {
@@ -66,7 +66,7 @@ function handleClick(item: any) {
 }
 
 const stepStates = ref<ISteps[]>(
-  Array.from({ length: props.totalSteps }, (_, i) => ({
+  Array.from({length: props.totalSteps}, (_, i) => ({
     step: i + 1,
     status: i + 1 === props.modelValue ? "default" : "blocked",
     selected: i + 1 === props.modelValue,
@@ -76,13 +76,13 @@ const stepStates = ref<ISteps[]>(
 watch(modelValueRef, (newProps) => {
   stepStates.value = stepStates.value.map((step) => {
     if (step.step < newProps) {
-      return { ...step, status: "default", selected: false };
+      return {...step, status: "default", selected: false};
     } else if (step.step === newProps) {
-      return { ...step, status: "default", selected: true };
+      return {...step, status: "default", selected: true};
     } else if (step.status !== "default") {
-      return { ...step, status: "blocked", selected: false };
+      return {...step, status: "blocked", selected: false};
     } else {
-      return { ...step, selected: false };
+      return {...step, selected: false};
     }
   });
 });
@@ -120,7 +120,12 @@ function computeAriaLabel(item: any) {
   <div :class="filterClassComp">
     <ol
       :id="uniqueId"
-      aria-label="Progreso del trámite. Estás en el paso 1 de 4 "
+      :aria-label="
+        'Progreso del trámite. Estás en el paso ' +
+        modelValue +
+        ' de ' +
+        totalSteps
+      "
       class="flex items-center space-x-4 md:space-x-8"
       tabindex="0"
     >
@@ -164,14 +169,14 @@ function computeAriaLabel(item: any) {
       </li>
     </ol>
   </div>
-  <slot />
+  <slot/>
   <div v-if="!hideButton && modelValue !== totalSteps" class="cont-btn w-full">
     <DsButton
       :disabled="error"
       class="m-1 mt-3"
       end-image="las la-angle-right"
       @click="handleStep('sumar')"
-      ><span>{{ !loading ? buttonMainText : "Enviando..." }}</span>
+    ><span>{{ !loading ? buttonMainText : "Enviando..." }}</span>
       <div
         v-if="loading"
         class="ml-1 w-5 h-5 border-2 border-t-4 border-white rounded-full animate-spin"
@@ -185,7 +190,7 @@ function computeAriaLabel(item: any) {
       color="secondary"
       start-image="las la-angle-left"
       @click="handleStep('restar')"
-      >Volver
+    >Volver
     </DsButton>
   </div>
 </template>
