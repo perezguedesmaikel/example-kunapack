@@ -2,9 +2,8 @@
 import DsAccordion from "../../container/accordion/DsAccordion.vue";
 import DataPanel from "./DataPanel.vue";
 import sampleData from "./form3-data";
-import type {ITotalData} from "~/components/DesignSystem/components/form-example/pensionerResidency/interface";
+import type { ITotalData } from "~/components/DesignSystem/components/form-example/pensionerResidency/interface";
 import {
-  contactConfigData,
   proxyConfigData,
   solicitorConfigData,
   warrantConfigData,
@@ -36,36 +35,32 @@ const solicitorConfig = reactive(solicitorConfigData);
 const proxyConfig = reactive(proxyConfigData);
 
 const warrantConfig = reactive(warrantConfigData);
-const contactConfig = reactive(contactConfigData);
 </script>
 
 <template>
   <div class="text-left w-full mt-5">
     <header class="my-4">
       <DsTypography variant="h2"
-      >Confirma la información de tu solicitud
+        >Confirma la información de tu solicitud
       </DsTypography>
       <DsTypography variant="p"
-      >Estás apunto de enviar tu solicitud. Por favor verifica la exactitud de
+        >Estás apunto de enviar tu solicitud. Por favor verifica la exactitud de
         tus datos. Si todo está bien, dale al botón “confirmar”.
       </DsTypography>
     </header>
   </div>
 
   <div class="w-full mt-5">
-    <DsAccordion class="mt-2 w-full" title="Información del contacto">
-      <DataPanel :config="contactConfig" :model="modelValue?.contact"/>
-    </DsAccordion>
     <DsAccordion class="mt-2 w-full" title="Información del solicitante">
-      <DataPanel :config="solicitorConfig" :model="modelValue?.solicitor"/>
+      <DataPanel :config="solicitorConfig" :model="modelValue?.solicitor" />
     </DsAccordion>
 
     <DsAccordion class="mt-2 w-full" title="Información del apoderado">
-      <DataPanel :config="proxyConfig" :model="modelValue?.proxy"/>
+      <DataPanel :config="proxyConfig" :model="modelValue?.proxy" />
     </DsAccordion>
 
     <DsAccordion class="mt-2 w-full" title="Información de poder/mandato">
-      <DataPanel :config="warrantConfig" :model="modelValue?.warrant"/>
+      <DataPanel :config="warrantConfig" :model="modelValue?.warrant" />
     </DsAccordion>
   </div>
 </template>

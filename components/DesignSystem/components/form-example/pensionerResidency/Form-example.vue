@@ -4,12 +4,11 @@ import Form1 from "~/components/DesignSystem/components/form-example/pensionerRe
 import Form2 from "~/components/DesignSystem/components/form-example/pensionerResidency/Form2.vue";
 import Form3 from "~/components/DesignSystem/components/form-example/pensionerResidency/Form3.vue";
 import Form4 from "~/components/DesignSystem/components/form-example/pensionerResidency/Form4.vue";
-import {useVuelidate} from "@vuelidate/core";
-import {required, email, numeric} from "@vuelidate/validators";
+import { useVuelidate } from "@vuelidate/core";
+import { required, email, numeric } from "@vuelidate/validators";
 import DsLink from "~/components/DesignSystem/components/navigation/link/DsLink.vue";
 import DsTypography from "~/components/DesignSystem/components/basic/typography/DsTypography.vue";
-import {isValidRUT} from "~/components/DesignSystem/utils/isValidRut";
-import {userProfile} from "~/components/DesignSystem/components/form-example/pensionerResidency/library";
+import { isValidRUT } from "~/components/DesignSystem/utils/isValidRut";
 
 const step = ref(1);
 const rucValidate = {
@@ -41,9 +40,8 @@ const formAttorneyState = reactive({
   pensionerRelation: "",
 });
 const totalData = ref({
-  ...{contact: userProfile},
-  ...{solicitor: formApplicantState},
-  ...{proxy: formAttorneyState},
+  ...{ solicitor: formApplicantState },
+  ...{ proxy: formAttorneyState },
   ...{
     warrant: {
       date: "24/10/2020",
@@ -52,28 +50,28 @@ const totalData = ref({
   },
 });
 const formApplicantRules = {
-  applicant: {required},
-  reason: {required},
-  docFile: {required},
-  date: {required},
-  phone: {required, numeric},
-  mail: {required, email},
-  healthStatus: {required},
-  residence: {required},
-  region: {required},
-  comuna: {required},
-  address: {required},
-  number: {required},
+  applicant: { required },
+  reason: { required },
+  docFile: { required },
+  date: { required },
+  phone: { required, numeric },
+  mail: { required, email },
+  healthStatus: { required },
+  residence: { required },
+  region: { required },
+  comuna: { required },
+  address: { required },
+  number: { required },
 };
 const formAttorneyStateRules = reactive({
-  name: {required},
-  run: {required, rucValidate},
-  region: {required},
-  community: {required},
-  address: {required},
-  addressNumber: {required},
-  email: {required, email},
-  pensionerRelation: {required},
+  name: { required },
+  run: { required, rucValidate },
+  region: { required },
+  community: { required },
+  address: { required },
+  addressNumber: { required },
+  email: { required, email },
+  pensionerRelation: { required },
 });
 
 const form1 = useVuelidate(formApplicantRules, formApplicantState);
@@ -83,7 +81,7 @@ function handleStep1(value: number) {
   form1.value.$touch();
   if (!form1.value.$invalid) {
     step.value = value;
-    window.scrollTo({top: 0, behavior: "smooth"});
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 }
 
@@ -93,15 +91,15 @@ function handleStep2(value: number) {
   if (value !== 1) form2.value.$touch();
   if (value === 1 || !form2.value.$invalid) {
     step.value = value;
-    window.scrollTo({top: 0, behavior: "smooth"});
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 }
 
 function handleStep3(value: number, type: string) {
   if (type == "mainButton") {
     const dataServer = {
-      ...{solicitor: formAttorneyState},
-      ...{proxy: formApplicantState},
+      ...{ solicitor: formAttorneyState },
+      ...{ proxy: formApplicantState },
       ...{
         warrant: {
           date: "24/10/2020",
@@ -124,7 +122,7 @@ function handleStep3(value: number, type: string) {
         // This function executes when the promise is resolved, i.e., call to server was successful.
         console.log(dataServer);
         step.value = value;
-        window.scrollTo({top: 0, behavior: "smooth"});
+        window.scrollTo({ top: 0, behavior: "smooth" });
       })
       .catch(() => {
         // This function executes when the promise is rejected, i.e., call server failed.
@@ -169,7 +167,7 @@ function handleChangeStep(value: number, type: string) {
       </DsLink>
     </DsTypography>
     <DsTypography class="text-3xl" variant="h1"
-    >Solicitud de hora para trámite en residencia del pensionado
+      >Solicitud de hora para trámite en residencia del pensionado
     </DsTypography>
 
     <div class="flex flex-col items-center justify-center mt-6">
@@ -184,9 +182,9 @@ function handleChangeStep(value: number, type: string) {
           v-model="formApplicantState"
           :validate="form1"
         />
-        <Form2 v-if="step == 2" v-model="formAttorneyState" :validate="form2"/>
-        <Form3 v-if="step == 3" v-model="totalData"/>
-        <Form4 v-if="step == 4"/>
+        <Form2 v-if="step == 2" v-model="formAttorneyState" :validate="form2" />
+        <Form3 v-if="step == 3" v-model="totalData" />
+        <Form4 v-if="step == 4" />
       </DsStepper>
     </div>
   </div>

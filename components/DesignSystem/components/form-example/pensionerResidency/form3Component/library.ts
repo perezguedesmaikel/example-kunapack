@@ -1,27 +1,4 @@
-export const contactConfigData = [
-  {
-    title: "Nombre",
-    field: "name",
-  },
-  {
-    title: "Fecha de Nacimiento",
-    field: "birthday",
-  },
-  {
-    title: "Dirección",
-    field: "address",
-  },
-  {
-    title: "Teléfono",
-    field: "phoneNumber",
-  },
-  {
-    title: "Correo electrónico",
-    field: "email",
-  },
-];
 export const solicitorConfigData = [
-
   {
     title: "Quién solicita la visita",
     field: "applicant",
@@ -55,15 +32,15 @@ export const solicitorConfigData = [
     field: "residence",
   },
   {
-    title: "Dirección del pensionado",
+    title: "Dirección",
     field: "address",
   },
   {
-    title: "Número de teléfono del pensionado",
+    title: "Número de teléfono",
     field: "phone",
   },
   {
-    title: "Correo Electrónico del pensionado",
+    title: "Correo Electrónico",
     field: "mail",
   },
 ];
