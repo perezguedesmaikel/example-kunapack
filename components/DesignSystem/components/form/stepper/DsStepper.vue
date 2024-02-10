@@ -30,10 +30,10 @@ const props = defineProps({
     type: String,
     default: "",
   },
-  buttonMainText: {
-    type: String,
-    default: "Continuar",
-  },
+  // buttonMainText: {
+  //   type: String,
+  //   default: "Continuar",
+  // },
 });
 
 interface ISteps {
@@ -176,7 +176,8 @@ function computeAriaLabel(item: any) {
       class="m-1 mt-3"
       end-image="las la-angle-right"
       @click="handleStep('sumar')"
-    ><span>{{ !loading ? buttonMainText : "Enviando..." }}</span>
+    >
+      <span>{{ !loading ? (totalSteps - modelValue === 1 ? 'Confirmar' : 'Continuar') : "Enviando..." }}</span>
       <div
         v-if="loading"
         class="ml-1 w-5 h-5 border-2 border-t-4 border-white rounded-full animate-spin"
