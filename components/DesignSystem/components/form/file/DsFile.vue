@@ -158,9 +158,14 @@ const ariaLabels = computed(() =>
           ]"
           :placeholder="showPlaceholder ? placeholder : ''"
           :value="modelValue?.name"
+          tabindex="0"
           @click="openFilePicker"
+          @keydown="
+            (event) => {
+              if (event.key !== 'Tab') event.preventDefault();
+            }
+          "
           @keydown.enter.prevent="openFilePicker"
-          @keydown.prevent
         />
       </div>
 

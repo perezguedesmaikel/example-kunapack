@@ -118,7 +118,6 @@ function handleClick() {
         <DsFile
           v-model="modelValue.docFile"
           :error="translateError(validate?.docFile.$errors[0]?.$message)"
-          class="upload control file-label"
           helpText="PDF, JPG o PNG"
           label="Adjunte documento"
           required
