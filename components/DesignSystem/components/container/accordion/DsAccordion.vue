@@ -2,10 +2,10 @@
 import DsIcon from "../../basic/icon/DsIcon.vue";
 import DsTypography from "../../../components/basic/typography/DsTypography.vue";
 import generateUniqueId from "../../../utils/generateUniqueId";
-import { predefinedClasses } from "../../../common/propsStyle";
-import { filterClass } from "../../../utils/filterClass";
-import { loremItsum } from "../../../utils/loremItsum";
-import { ref, computed } from "vue";
+import {predefinedClasses} from "../../../common/propsStyle";
+import {filterClass} from "../../../utils/filterClass";
+import {loremItsum} from "../../../utils/loremItsum";
+import {ref, computed} from "vue";
 
 const props = defineProps({
   class: {
@@ -125,7 +125,7 @@ const isCard = computed(() => {
     <div class="collapse-trigger">
       <button
         :aria-controls="uniqueId"
-        :class="triggerClass"
+        :class="[triggerClass, { 'rounded-b-none': !isCollapsed }]"
         type="button"
         @click="toggleCollapse"
       >
