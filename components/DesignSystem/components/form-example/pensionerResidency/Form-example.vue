@@ -9,8 +9,9 @@ import {required, email, numeric} from "@vuelidate/validators";
 import DsLink from "~/components/DesignSystem/components/navigation/link/DsLink.vue";
 import DsTypography from "~/components/DesignSystem/components/basic/typography/DsTypography.vue";
 import {isValidRUT} from "~/components/DesignSystem/utils/isValidRut";
+import {userProfile} from "~/components/DesignSystem/components/form-example/pensionerResidency/library";
 
-const step = ref(3);
+const step = ref(1);
 const rucValidate = {
   $message: "No es un run valido",
   $validator: isValidRUT,
@@ -40,6 +41,7 @@ const formAttorneyState = reactive({
   pensionerRelation: "",
 });
 const totalData = ref({
+  ...{contact: userProfile},
   ...{solicitor: formApplicantState},
   ...{proxy: formAttorneyState},
   ...{

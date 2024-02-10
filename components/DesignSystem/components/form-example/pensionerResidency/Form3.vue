@@ -54,7 +54,7 @@ const contactConfig = reactive(contactConfigData);
 
   <div class="w-full mt-5">
     <DsAccordion class="mt-2 w-full" title="Información del contacto">
-      <DataPanel :config="contactConfig" :model="modelValue?.solicitor"/>
+      <DataPanel :config="contactConfig" :model="modelValue?.contact"/>
     </DsAccordion>
     <DsAccordion class="mt-2 w-full" title="Información del solicitante">
       <DataPanel :config="solicitorConfig" :model="modelValue?.solicitor"/>
