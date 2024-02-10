@@ -159,6 +159,7 @@ const ariaLabels = computed(() =>
           :placeholder="showPlaceholder ? placeholder : ''"
           :value="modelValue?.name"
           @click="openFilePicker"
+          @keydown.enter.prevent="openFilePicker"
           @keydown.prevent
         />
       </div>
