@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import type { ISizeText } from "../../../interfaces/elements";
-import { sizeSelect } from "./library";
-import type { ISelect } from "./interfaces";
-import { predefinedClasses } from "../../../common/propsStyle";
-import { filterClass } from "../../../utils/filterClass";
+import type {ISizeText} from "../../../interfaces/elements";
+import {sizeSelect} from "./library";
+import type {ISelect} from "./interfaces";
+import {predefinedClasses} from "../../../common/propsStyle";
+import {filterClass} from "../../../utils/filterClass";
 import generateUniqueId from "../../../utils/generateUniqueId";
 import useFocus from "../../../composables/useFocus";
-import { translateError } from "../../../utils/translateErrorMessage";
+import {translateError} from "../../../utils/translateErrorMessage";
 import buildAriaLabels from "../../../utils/buildAriaLabels";
 
 const props = defineProps({
@@ -51,7 +51,7 @@ const props = defineProps({
   },
 
   helpMessage: {
-    type: String as PropType<string|null>,
+    type: String as PropType<string | null>,
     default: null,
   },
 
@@ -68,9 +68,9 @@ const props = defineProps({
   option: {
     type: Array as () => ISelect[],
     default: [
-      { value: 1, text: "option 1" },
-      { value: 2, text: "option 2" },
-      { value: 3, text: "option 3" },
+      {value: 1, text: "option 1"},
+      {value: 2, text: "option 2"},
+      {value: 3, text: "option 3"},
     ],
   },
 
@@ -80,15 +80,18 @@ const props = defineProps({
   },
 });
 
-const { elementRef: selectRef } = useFocus(
+const {elementRef: selectRef} = useFocus(
   () => props.focus,
   () => props.error,
 );
 
-const inputId = computed(() => generateUniqueId('select'));
-const labelId = computed(() => `${inputId.value}-label`);
-const errorMessageId = computed(() => `${inputId.value}-error-message`);
-const helpMessageId = computed(() => `${inputId.value}-help-message`);
+const uniqueID = ref('')
+onMounted(() => {
+  uniqueID.value = generateUniqueId('typography');
+});
+const labelId = computed(() => `${uniqueID.value}-label`);
+const errorMessageId = computed(() => `${uniqueID.value}-error-message`);
+const helpMessageId = computed(() => `${uniqueID.value}-help-message`);
 
 const filterClassComp = computed(() => {
   return filterClass(predefinedClasses, props.class);
@@ -111,9 +114,9 @@ const model = computed({
 });
 
 const hasError = computed(() => !!props.error);
-const errorMessage = computed(() => translateError( props.error));
+const errorMessage = computed(() => translateError(props.error));
 
-const ariaLabels = computed(() => buildAriaLabels( props, {
+const ariaLabels = computed(() => buildAriaLabels(props, {
   label: labelId.value,
   error: errorMessageId.value,
   helpMessage: helpMessageId.value,
@@ -121,15 +124,18 @@ const ariaLabels = computed(() => buildAriaLabels( props, {
 </script>
 
 <template>
-  <label v-if="label" :id="labelId" :for="inputId" class="mb-2">
+  <label v-if="label" :id="labelId" :for="uniqueID" class="mb-2">
     {{ label }}
-    <span v-if="required" class="required-marker" aria-hidden="true">*</span>
+    <span v-if="required" aria-hidden="true" class="required-marker">*</span>
   </label>
 
   <select
-    :id="inputId"
+    :id="uniqueID"
     ref="selectRef"
     v-model="model"
+    :aria-invalid="hasError"
+    :aria-labelledby="ariaLabels"
+    :aria-required="required"
     :class="[
       filterClassComp,
       { error: hasError },
@@ -139,9 +145,6 @@ const ariaLabels = computed(() => buildAriaLabels( props, {
       { rounded: rounded },
     ]"
     :disabled="disabled"
-    :aria-required="required"
-    :aria-invalid="hasError"
-    :aria-labelledby="ariaLabels"
     @input="handleInput"
   >
     <slot>

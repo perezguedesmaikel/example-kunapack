@@ -3,11 +3,12 @@ import {
   elementsSizes,
   predefinedClasses,
 } from "../../../common/propsStyle";
-import type { ISize } from "../../../interfaces/elements";
-import { filterClass } from "../../../utils/filterClass";
+import type {ISize} from "../../../interfaces/elements";
+import {filterClass} from "../../../utils/filterClass";
 import generateUniqueId from "../../../utils/generateUniqueId";
-import { translateError } from "../../../utils/translateErrorMessage";
+import {translateError} from "../../../utils/translateErrorMessage";
 import buildAriaLabels from "../../../utils/buildAriaLabels";
+import {ref} from "vue";
 
 const props = defineProps({
   modelValue: {
@@ -55,15 +56,18 @@ const props = defineProps({
   },
 
   helpMessage: {
-    type: String as PropType<string|null>,
+    type: String as PropType<string | null>,
     default: null,
   },
 });
 
-const inputId = computed(() => generateUniqueId('radio'));
-const labelId = computed(() => `${inputId.value}-label`);
-const errorMessageId = computed(() => `${inputId.value}-error-message`);
-const helpMessageId = computed(() => `${inputId.value}-help-message`);
+const uniqueID = ref('')
+onMounted(() => {
+  uniqueID.value = generateUniqueId('typography');
+});
+const labelId = computed(() => `${uniqueID.value}-label`);
+const errorMessageId = computed(() => `${uniqueID.value}-error-message`);
+const helpMessageId = computed(() => `${uniqueID.value}-help-message`);
 
 const defaultClasses = "hover:border-dark-500 border p-2 mb-2 w-auto mr-1";
 
@@ -92,9 +96,9 @@ const model = computed({
 });
 
 const hasError = computed(() => !!props.error);
-const errorMessage = computed(() => translateError( props.error));
+const errorMessage = computed(() => translateError(props.error));
 
-const ariaLabels = computed(() => buildAriaLabels( props, {
+const ariaLabels = computed(() => buildAriaLabels(props, {
   label: labelId.value,
   error: errorMessageId.value,
   helpMessage: helpMessageId.value,
@@ -105,21 +109,21 @@ const ariaLabels = computed(() => buildAriaLabels( props, {
   <div :class="filterClassComp">
     <div class="flex items-center">
       <input
-        :id="inputId"
+        :id="uniqueID"
         v-model="model"
-        type="radio"
+        :aria-invalid="hasError"
+        :aria-labelledby="ariaLabels"
+        :aria-required="required"
         :class="cssClasses"
         :disabled="disabled"
         :name="group"
         :value="value"
-        :aria-required="required"
-        :aria-invalid="hasError"
-        :aria-labelledby="ariaLabels"
+        type="radio"
       />
 
-      <label v-if="label" :id="labelId" :for="inputId" class="mb-2">
+      <label v-if="label" :id="labelId" :for="uniqueID" class="mb-2">
         {{ label }}
-        <span v-if="required" class="required-marker" aria-hidden="true">*</span>
+        <span v-if="required" aria-hidden="true" class="required-marker">*</span>
       </label>
     </div>
 

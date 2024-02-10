@@ -1,18 +1,19 @@
 <script lang="ts" setup>
 import DsButton from "../../basic/button/DsButton.vue";
 import generateUniqueId from "../../../utils/generateUniqueId";
-import { filterClass } from "../../../utils/filterClass";
-import { predefinedClasses } from "../../../common/propsStyle";
-import type { ISizeText } from "../../../interfaces/elements";
-import { sizeSelect } from "../select/library";
+import {filterClass} from "../../../utils/filterClass";
+import {predefinedClasses} from "../../../common/propsStyle";
+import type {ISizeText} from "../../../interfaces/elements";
+import {sizeSelect} from "../select/library";
 import useFocus from "../../../composables/useFocus";
-import type { IButtonColor } from "../../basic/button/interfaces";
-import { translateError } from "../../../utils/translateErrorMessage";
+import type {IButtonColor} from "../../basic/button/interfaces";
+import {translateError} from "../../../utils/translateErrorMessage";
 import buildAriaLabels from "../../../utils/buildAriaLabels";
-import type { Ref } from "vue";
+import type {Ref} from "vue";
 
 //new change defile
-interface FileInputRef extends Ref<HTMLInputElement | null> {}
+interface FileInputRef extends Ref<HTMLInputElement | null> {
+}
 
 const props = defineProps({
   modelValue: {
@@ -84,10 +85,13 @@ const props = defineProps({
   },
 });
 
-const inputId = computed(() => generateUniqueId("file"));
-const labelId = computed(() => `${inputId.value}-label`);
-const errorMessageId = computed(() => `${inputId.value}-error-message`);
-const helpMessageId = computed(() => `${inputId.value}-help-message`);
+const uniqueID = ref('')
+onMounted(() => {
+  uniqueID.value = generateUniqueId('typography');
+});
+const labelId = computed(() => `${uniqueID.value}-label`);
+const errorMessageId = computed(() => `${uniqueID.value}-error-message`);
+const helpMessageId = computed(() => `${uniqueID.value}-help-message`);
 
 const filterClassComp = computed(() => {
   return filterClass(predefinedClasses, props.class);
@@ -97,9 +101,9 @@ const emit = defineEmits(["fileSelected", "update:modelValue"]);
 const selectedFileName = ref(null);
 const refFileName: FileInputRef = ref(null);
 
-const { elementRef: fileRef } = useFocus(
-  () => props.focus,
-  () => props.error,
+const {elementRef: fileRef} = useFocus(
+    () => props.focus,
+    () => props.error,
 );
 
 const openFilePicker = () => {
@@ -119,70 +123,70 @@ const hasError = computed(() => !!props.error);
 const errorMessage = computed(() => translateError(props.error));
 
 const ariaLabels = computed(() =>
-  buildAriaLabels(props, {
-    label: labelId.value,
-    error: errorMessageId.value,
-    helpMessage: helpMessageId.value,
-  }),
+    buildAriaLabels(props, {
+      label: labelId.value,
+      error: errorMessageId.value,
+      helpMessage: helpMessageId.value,
+    }),
 );
 </script>
 
 <template>
   <div :class="filterClassComp">
-    <label v-if="!hideLabel" :id="labelId" :for="inputId" class="block mb-1">
+    <label v-if="!hideLabel" :id="labelId" :for="uniqueID" class="block mb-1">
       {{ label }}
       <span v-if="required" aria-hidden="true" class="required-marker">*</span>
     </label>
 
     <div class="flex">
       <input
-        :id="inputId"
-        ref="refFileName"
-        :disabled="disabled"
-        class="hidden"
-        name="file"
-        type="file"
-        @change="handleFileChange"
+          :id="uniqueID"
+          ref="refFileName"
+          :disabled="disabled"
+          class="hidden"
+          name="file"
+          type="file"
+          @change="handleFileChange"
       />
       <div class="w-full">
         <input
-          ref="fileRef"
-          :aria-invalid="hasError"
-          :aria-labelledby="ariaLabels"
-          :aria-required="required"
-          :class="[
+            ref="fileRef"
+            :aria-invalid="hasError"
+            :aria-labelledby="ariaLabels"
+            :aria-required="required"
+            :class="[
             'rounded rounded-e-none mb-0',
             { error: hasError },
             sizeSelect[size],
           ]"
-          :placeholder="showPlaceholder ? placeholder : ''"
-          :value="modelValue?.name"
-          tabindex="0"
-          @click="openFilePicker"
-          @keydown="
+            :placeholder="showPlaceholder ? placeholder : ''"
+            :value="modelValue?.name"
+            tabindex="0"
+            @click="openFilePicker"
+            @keydown="
             (event) => {
               if (event.key !== 'Tab') event.preventDefault();
             }
           "
-          @keydown.enter.prevent="openFilePicker"
+            @keydown.enter.prevent="openFilePicker"
         />
       </div>
 
       <DsButton
-        :color="buttonColor"
-        :rounded="false"
-        :text="buttonText"
-        startIcon="file"
-        text-color="white"
-        variant="buttonFile"
-        @click="openFilePicker"
+          :color="buttonColor"
+          :rounded="false"
+          :text="buttonText"
+          startIcon="file"
+          text-color="white"
+          variant="buttonFile"
+          @click="openFilePicker"
       />
     </div>
 
     <label
-      v-if="hasError"
-      :id="errorMessageId"
-      class="error-message block mb-0"
+        v-if="hasError"
+        :id="errorMessageId"
+        class="error-message block mb-0"
     >
       {{ errorMessage }}
     </label>
