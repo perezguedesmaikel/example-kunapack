@@ -5,8 +5,8 @@ import DsSelect from "~/components/DesignSystem/components/form/select/DsSelect.
 import DsFile from "~/components/DesignSystem/components/form/file/DsFile.vue";
 import DsDatePicker from "~/components/DesignSystem/components/form/datePicker/DsDatePicker.vue";
 import DsInput from "~/components/DesignSystem/components/form/input/DsInput.vue";
-import type { IForm1State } from "~/components/DesignSystem/components/form-example/pensionerResidency/interface";
-import { translateError } from "~/components/DesignSystem/utils/translateErrorMessage";
+import type {IForm1State} from "~/components/DesignSystem/components/form-example/pensionerResidency/interface";
+import {translateError} from "~/components/DesignSystem/utils/translateErrorMessage";
 import {
   comunaOption,
   healthStatusOption,
@@ -15,11 +15,16 @@ import {
   residenceOption,
   userProfile,
 } from "~/components/DesignSystem/components/form-example/pensionerResidency/library";
-import type { IVualidateApplicantState } from "~/components/DesignSystem/components/form-example/pensionerResidency/vualidate";
+import type {
+  IVualidateApplicantState
+} from "~/components/DesignSystem/components/form-example/pensionerResidency/vualidate";
 import DsModal from "~/components/DesignSystem/components/container/modal/DsModal.vue";
-import FormModal from "~/components/DesignSystem/components/form-example/pensionerResidency/form1Components/FormModal.vue";
-import UserCardProfile from "~/components/DesignSystem/components/form-example/pensionerResidency/form1Components/UserCardProfile.vue";
-import UserInfo from "~/components/DesignSystem/components/form-example/pensionerResidency/form1Components/UserInfo.vue";
+import FormModal
+  from "~/components/DesignSystem/components/form-example/pensionerResidency/form1Components/FormModal.vue";
+import UserCardProfile
+  from "~/components/DesignSystem/components/form-example/pensionerResidency/form1Components/UserCardProfile.vue";
+import UserInfo
+  from "~/components/DesignSystem/components/form-example/pensionerResidency/form1Components/UserInfo.vue";
 
 defineProps({
   modelValue: {
@@ -41,14 +46,14 @@ function handleClick() {
 
 <template>
   <DsModal v-model="showModal" title="Editar datos de Contacto">
-    <FormModal :data-form="userProfile" />
+    <FormModal :data-form="userProfile"/>
   </DsModal>
   <div class="mt-5 w-full">
     <div id="relleno">
       <DsTypography class="my-4" variant="h2">Formulario</DsTypography>
 
       <DsTypography aria-hidden="true" class="my-4" variant="p"
-        >Los campos marcados con * son obligatorios
+      >Los campos marcados con * son obligatorios
       </DsTypography>
 
       <div class="cont-form-sector">
@@ -58,7 +63,7 @@ function handleClick() {
         />
       </div>
 
-      <UserInfo />
+      <UserInfo/>
     </div>
     <form class="cont-form-sector">
       <header>
@@ -66,10 +71,11 @@ function handleClick() {
       </header>
 
       <div class="cont-form-group">
-        <legend id="label_quien_solicita_visita" class="mb-2">
-          ¿Quién solicita la visita? *
-        </legend>
-
+        <fieldset>
+          <legend id="label_quien_solicita_visita" class="mb-2">
+            ¿Quién solicita la visita? *
+          </legend>
+        </fieldset>
         <div class="control">
           <DsRadio
             v-model="modelValue.applicant"
