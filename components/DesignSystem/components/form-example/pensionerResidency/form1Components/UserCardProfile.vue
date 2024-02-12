@@ -33,7 +33,10 @@ function handleClick() {
       ><br />
       <strong>{{ dataProfile?.email }}</strong>
     </div>
-    <DsButton color="tertiary" @click="handleClick"
+    <DsButton
+      aria-controls="modal-content"
+      color="tertiary"
+      @click="handleClick"
       >Editar datos de contacto
     </DsButton>
   </div>

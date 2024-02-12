@@ -68,7 +68,7 @@ const { elementRef: selectRef } = useFocus(
 );
 const uniqueID = ref("");
 onMounted(() => {
-  uniqueID.value = generateUniqueId("typography");
+  uniqueID.value = generateUniqueId("radio");
 });
 const labelId = computed(() => `${uniqueID.value}-label`);
 const errorMessageId = computed(() => `${uniqueID.value}-error-message`);
@@ -119,6 +119,7 @@ const ariaLabels = computed(() =>
         :id="uniqueID"
         ref="selectRef"
         v-model="model"
+        :aria-checked="model"
         :aria-invalid="hasError"
         :aria-labelledby="ariaLabels"
         :aria-required="required"

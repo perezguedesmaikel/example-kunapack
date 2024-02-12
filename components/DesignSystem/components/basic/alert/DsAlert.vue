@@ -47,7 +47,7 @@ const cssClasses = computed(() => {
 
   return {
     component: ["p-4 mb-2", typeClass.bg, baseClass],
-    title: [typeClass.title].join( ' '),
+    title: [typeClass.title].join(" "),
     icon: typeClass.icon,
     defaultText: typeClass.defaultText,
   };
@@ -55,13 +55,9 @@ const cssClasses = computed(() => {
 </script>
 
 <template>
-  <div :class="cssClasses.component" role="alert">
+  <div :class="cssClasses.component" class="rounded-lg">
     <DsTypography :class="cssClasses.title" variant="h3">
-      <DsIcon
-        v-if="showIcon"
-        :name="cssClasses.icon"
-        size="medium"
-      />
+      <DsIcon v-if="showIcon" :name="cssClasses.icon" size="medium" />
       {{ title ?? cssClasses.defaultText }}
     </DsTypography>
 

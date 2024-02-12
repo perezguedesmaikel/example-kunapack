@@ -147,10 +147,10 @@ const hasError = computed(() => !!props.error);
 </script>
 
 <template>
-  <div :class="filterClassComp">
+  <fieldset :class="filterClassComp" role="">
     <legend v-if="!hideLabel" class="mb-2">
       {{ label }}
-      <span v-if="required" class="required-marker" aria-hidden="true">*</span>
+      <span v-if="required" aria-hidden="true" class="required-marker">*</span>
     </legend>
 
     <div class="grid grid-cols-3 gap-2">
@@ -162,11 +162,11 @@ const hasError = computed(() => !!props.error);
           :focus="focus"
           :required="required"
           :rounded="rounded"
-          label="Selecciona Día"
+          label="Día"
           size="full"
           @select="(e: any) => emitCompleteDate(e, 'day')"
         >
-          <option :value="0" disabled selected>Día</option>
+          <option :value="0" disabled selected>Selecciona</option>
           <option
             v-for="tDay in days"
             :key="tDay"
@@ -186,11 +186,11 @@ const hasError = computed(() => !!props.error);
           :focus="focus"
           :required="required"
           :rounded="rounded"
-          label="Selecciona Mes"
+          label="Mes"
           size="full"
           @select="(e: any) => emitCompleteDate(e, 'month')"
         >
-          <option :value="0" disabled selected>Mes</option>
+          <option :value="0" disabled selected>Selecciona</option>
 
           <option
             v-for="tMonth in months"
@@ -211,11 +211,11 @@ const hasError = computed(() => !!props.error);
           :focus="focus"
           :required="required"
           :rounded="rounded"
-          label="Selecciona Año"
+          label="Año"
           size="full"
           @select="(e: any) => emitCompleteDate(e, 'year')"
         >
-          <option :value="0" disabled selected>Año</option>
+          <option :value="0" disabled selected>Selecciona</option>
           <option
             v-for="tYear in years"
             :key="tYear"
@@ -227,6 +227,6 @@ const hasError = computed(() => !!props.error);
         </DsSelect>
       </div>
     </div>
-  </div>
+  </fieldset>
   <br />
 </template>

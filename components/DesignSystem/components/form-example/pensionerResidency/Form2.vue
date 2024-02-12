@@ -9,6 +9,7 @@ import {
 } from "~/components/DesignSystem/components/form-example/pensionerResidency/library";
 import type { IVualidateFormAttorneyState } from "~/components/DesignSystem/components/form-example/pensionerResidency/vualidate";
 import { translateError } from "~/components/DesignSystem/utils/translateErrorMessage";
+import { isFieldFirstError } from "~/components/DesignSystem/utils/isFieldFirstError";
 
 const props = defineProps({
   modelValue: {
@@ -31,6 +32,16 @@ const model = computed({
     emit("update:modelValue", value);
   },
 });
+const errors = computed(() => ({
+  name: props.validate?.name.$errors[0]?.$message,
+  run: props.validate?.run.$errors[0]?.$message,
+  region: props.validate?.region.$errors[0]?.$message,
+  community: props.validate?.community.$errors[0]?.$message,
+  address: props.validate?.address.$errors[0]?.$message,
+  addressNumber: props.validate?.addressNumber.$errors[0]?.$message,
+  email: props.validate?.email.$errors[0]?.$message,
+  pensionerRelation: props.validate?.pensionerRelation.$errors[0]?.$message,
+}));
 </script>
 
 <template>
@@ -48,7 +59,7 @@ const model = computed({
       <DsInput
         v-model="modelValue.name"
         :error="translateError(validate?.name.$errors[0]?.$message)"
-        :focus="true"
+        :focus="isFieldFirstError(errors, 'name')"
         class="input"
         label="Nombre del posible apoderado (en caso de realizar esta solicitud por parte de un tercero)"
         required
@@ -59,6 +70,7 @@ const model = computed({
       <DsInput
         v-model="modelValue.run"
         :error="translateError(validate?.run.$errors[0]?.$message)"
+        :focus="isFieldFirstError(errors, 'run')"
         class="input"
         help-message="Ejemplo: 17.231.182-4"
         label="Indique el RUN del posible apoderado"
@@ -70,6 +82,7 @@ const model = computed({
       <DsSelect
         v-model="modelValue.region"
         :error="translateError(validate?.region.$errors[0]?.$message)"
+        :focus="isFieldFirstError(errors, 'region')"
         :option="regionOption"
         class="select w-full"
         label="Seleccione la región"
@@ -81,6 +94,7 @@ const model = computed({
       <DsSelect
         v-model="modelValue.community"
         :error="translateError(validate?.community.$errors[0]?.$message)"
+        :focus="isFieldFirstError(errors, 'community')"
         :option="comunaOption"
         class="w-full"
         label="Seleccione la comuna"
@@ -92,6 +106,7 @@ const model = computed({
       <DsInput
         v-model="modelValue.address"
         :error="translateError(validate?.address.$errors[0]?.$message)"
+        :focus="isFieldFirstError(errors, 'address')"
         class="input"
         label="Ingrese la dirección del apoderado"
         required
@@ -102,6 +117,7 @@ const model = computed({
       <DsInput
         v-model="modelValue.addressNumber"
         :error="translateError(validate?.addressNumber.$errors[0]?.$message)"
+        :focus="isFieldFirstError(errors, 'addressNumber')"
         :maxValue="999999"
         :minValue="1"
         class="input"
@@ -115,6 +131,7 @@ const model = computed({
       <DsInput
         v-model="modelValue.email"
         :error="translateError(validate?.email.$errors[0]?.$message)"
+        :focus="isFieldFirstError(errors, 'email')"
         class="input"
         label="Ingrese el correo electrónico del apoderado donde recibirá las notificaciones"
         required
@@ -128,6 +145,7 @@ const model = computed({
         :error="
           translateError(validate?.pensionerRelation.$errors[0]?.$message)
         "
+        :focus="isFieldFirstError(errors, 'pensionerRelation')"
         class="input"
         label="Indique el parentesco o relación con el pensionado"
         required

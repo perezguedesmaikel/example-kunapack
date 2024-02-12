@@ -35,9 +35,20 @@ const props = defineProps({
   },
 });
 const closeButton = ref<Ref | null>(null);
-onMounted(async () => {
-  window.addEventListener("keyup", handleKeyUp);
+onMounted(() => {
+  window.addEventListener("keydown", handleKeydown);
 });
+
+onUnmounted(() => {
+  window.removeEventListener("keydown", handleKeydown);
+});
+
+function handleKeydown(event: KeyboardEvent) {
+  if (event.key === "Escape" && props.modelValue === true) {
+    closeModal.value();
+  }
+}
+
 watch(
   () => props.modelValue,
   async (newValue) => {
@@ -48,22 +59,12 @@ watch(
   },
 );
 
-onUnmounted(() => {
-  window.removeEventListener("keyup", handleKeyUp);
-});
-
 const emit = defineEmits(["update:modelValue", "accept", "close"]);
 
 const closeModal: any = computed(() => {
   emit("update:modelValue", !props.modelValue);
   emit("close");
 });
-
-const handleKeyUp = (e: any) => {
-  if (e.key === "Escape" || e.key === "Esc" || e.keyCode === 27) {
-    emit("update:modelValue", !props.modelValue);
-  }
-};
 
 const onAccept = () => emit("accept");
 
@@ -85,7 +86,6 @@ function loopFocus() {
             :class="[
               'flex modal items-center flex-col justify-center overflow-hidden fixed z-40 bottom-0 left-0 right-0 top-0 ',
             ]"
-            aria-labelledby="title_modal_example1"
             aria-modal="true"
             role="dialog"
           >
@@ -94,7 +94,10 @@ function loopFocus() {
             ></div>
 
             <div
+              ref="closeButton"
+              aria-labelledby="modal-title"
               class="max-h-fit relative flex flex-col w-full md:my-0 md:mx-auto max-w-screen-md overflow-visible"
+              tabindex="0"
             >
               <section
                 v-if="showHeader"
@@ -105,14 +108,13 @@ function loopFocus() {
                     class="p-2 text-left border-b border-b-primary-500 flex items-center justify-between"
                   >
                     <h3
-                      id="modal-title text-left"
+                      id="modal-title"
                       class="font-bold text-primary-500 text-xl"
                     >
                       {{ title }}
                     </h3>
 
                     <button
-                      ref="closeButton"
                       aria-label="Cerrar"
                       class="close-modal border border-primary-500 p-2 bg-white rounded-lg text-sm"
                       @click="closeModal"

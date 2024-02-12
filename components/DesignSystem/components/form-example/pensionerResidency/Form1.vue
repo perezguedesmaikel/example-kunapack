@@ -63,10 +63,6 @@ const errors = computed(() => ({
     <div id="relleno">
       <DsTypography class="my-4" variant="h2">Formulario</DsTypography>
 
-      <DsTypography aria-hidden="true" class="my-4" variant="p"
-        >Los campos marcados con * son obligatorios
-      </DsTypography>
-
       <div class="cont-form-sector">
         <UserCardProfile
           :data-profile="userProfile"
@@ -76,12 +72,49 @@ const errors = computed(() => ({
 
       <UserInfo />
     </div>
+
+    <DsTypography aria-hidden="true" class="my-4" variant="p"
+      >Los campos marcados con * son obligatorios
+    </DsTypography>
+    <!--diseño Mondaca para validación de errores-->
+    <!--    <div-->
+    <!--      aria-labelledby="title-panel-error"-->
+    <!--      class="border border-danger-500 rounded-lg overflow-hidden my-5 focus:border-lime-300 focus:shadow-lime-500 focus:shadow focus:outline-0"-->
+    <!--      tabindex="0"-->
+    <!--    >-->
+    <!--      <header class="bg-danger-500 p-3">-->
+    <!--        <h3 id="title-panel-error" class="text-white m-0">-->
+    <!--          Valida estos campos antes de continuar-->
+    <!--        </h3>-->
+    <!--      </header>-->
+
+    <!--      <ul class="p-3 ul marker:text-danger-500">-->
+    <!--        <li>-->
+    <!--          <a class="mb-2 text-danger-500" href="#"-->
+    <!--            >¿Quién solicita la visita?</a-->
+    <!--          >-->
+    <!--        </li>-->
+    <!--        <li>-->
+    <!--          <a class="mb-2 text-danger-500" href="#"-->
+    <!--            >Ingrese el motivo fundado por el cual se está solicitando esta-->
+    <!--            visita-->
+    <!--          </a>-->
+    <!--        </li>-->
+    <!--        <li>-->
+    <!--          <a class="mb-2 text-danger-500" href="#">Adjunte documento</a>-->
+    <!--        </li>-->
+    <!--      </ul>-->
+    <!--    </div>-->
     <form class="cont-form-sector">
       <header>
         <DsTypography variant="h3"> Información del solicitante</DsTypography>
       </header>
 
-      <div class="cont-form-group">
+      <fieldset
+        aria-labelledby="label_quien_solicita_visita"
+        class="cont-form-group"
+        role="radiogroup"
+      >
         <legend id="label_quien_solicita_visita" class="mb-2">
           ¿Quién solicita la visita? *
         </legend>
@@ -89,14 +122,12 @@ const errors = computed(() => ({
         <div class="control">
           <DsRadio
             v-model="modelValue.applicant"
-            aria-labelledby="label_quien_solicita_visita"
             class="cont-gr"
             label="Pensionado"
             value="Pensionado"
           />
           <DsRadio
             v-model="modelValue.applicant"
-            aria-labelledby="label_quien_solicita_visita"
             class="cont-gr"
             label="Familiar directo"
             value="Familiar directo"
@@ -105,13 +136,12 @@ const errors = computed(() => ({
             v-model="modelValue.applicant"
             :error="translateError(validate?.applicant.$errors[0]?.$message)"
             :focus="isFieldFirstError(errors, 'applicant')"
-            aria-labelledby="label_quien_solicita_visita"
             class="cont-gr"
             label="Encargado de cuidados u otro"
             value="Encargado de cuidados u otro"
           />
         </div>
-      </div>
+      </fieldset>
 
       <div class="cont-form-group">
         <DsSelect
@@ -121,7 +151,7 @@ const errors = computed(() => ({
           :option="reasonOption"
           class="select w-full"
           label="Ingrese el motivo fundado por el cual se está solicitando esta visita"
-          placeholder="Motivo fundado"
+          placeholder="Seleccione"
           required
         />
       </div>

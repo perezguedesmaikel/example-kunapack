@@ -165,7 +165,7 @@ onMounted(() => {
           <span
             v-if="index !== steps.length - 1"
             :class="[
-              'h-[5px] w-[20px] md:w-[60px]',
+              'h-[2px] w-[20px] md:w-[60px]',
               `${item.step < modelValue ? 'bg-primary-500' : 'bg-gray-200'}`,
             ]"
           ></span>
@@ -174,7 +174,10 @@ onMounted(() => {
     </ol>
   </div>
   <slot />
-  <div v-if="!hideButton && modelValue !== totalSteps" class="cont-btn w-full">
+  <div
+    v-if="!hideButton && modelValue !== totalSteps"
+    class="cont-form-btn w-full"
+  >
     <DsButton
       class="m-1 mt-3"
       end-image="las la-angle-right"
@@ -197,7 +200,7 @@ onMounted(() => {
       v-if="modelValue !== 1"
       :disabled="error"
       class="m-1 mt-3"
-      color="secondary"
+      color="tertiary"
       start-image="las la-angle-left"
       @click="handleStep('restar')"
       >Volver

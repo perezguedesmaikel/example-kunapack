@@ -38,7 +38,7 @@ const warrantConfig = reactive(warrantConfigData);
 </script>
 
 <template>
-  <div class="text-left w-full mt-5">
+  <div class="text-left w-full">
     <header class="my-4">
       <DsTypography variant="h2"
         >Confirma la información de tu solicitud
