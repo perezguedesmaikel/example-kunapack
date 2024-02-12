@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import type {ISizeText} from "../../../interfaces/elements";
-import {sizeSelect} from "./library";
-import type {ISelect} from "./interfaces";
-import {predefinedClasses} from "../../../common/propsStyle";
-import {filterClass} from "../../../utils/filterClass";
+import type { ISizeText } from "../../../interfaces/elements";
+import { sizeSelect } from "./library";
+import type { ISelect } from "./interfaces";
+import { predefinedClasses } from "../../../common/propsStyle";
+import { filterClass } from "../../../utils/filterClass";
 import generateUniqueId from "../../../utils/generateUniqueId";
 import useFocus from "../../../composables/useFocus";
-import {translateError} from "../../../utils/translateErrorMessage";
+import { translateError } from "../../../utils/translateErrorMessage";
 import buildAriaLabels from "../../../utils/buildAriaLabels";
 
 const props = defineProps({
@@ -68,9 +68,9 @@ const props = defineProps({
   option: {
     type: Array as () => ISelect[],
     default: [
-      {value: 1, text: "option 1"},
-      {value: 2, text: "option 2"},
-      {value: 3, text: "option 3"},
+      { value: 1, text: "option 1" },
+      { value: 2, text: "option 2" },
+      { value: 3, text: "option 3" },
     ],
   },
 
@@ -80,14 +80,14 @@ const props = defineProps({
   },
 });
 
-const {elementRef: selectRef} = useFocus(
+const { elementRef: selectRef } = useFocus(
   () => props.focus,
   () => props.error,
 );
 
-const uniqueID = ref('')
+const uniqueID = ref("");
 onMounted(() => {
-  uniqueID.value = generateUniqueId('typography');
+  uniqueID.value = generateUniqueId("select");
 });
 const labelId = computed(() => `${uniqueID.value}-label`);
 const errorMessageId = computed(() => `${uniqueID.value}-error-message`);
@@ -116,11 +116,13 @@ const model = computed({
 const hasError = computed(() => !!props.error);
 const errorMessage = computed(() => translateError(props.error));
 
-const ariaLabels = computed(() => buildAriaLabels(props, {
-  label: labelId.value,
-  error: errorMessageId.value,
-  helpMessage: helpMessageId.value,
-}));
+const ariaLabels = computed(() =>
+  buildAriaLabels(props, {
+    label: labelId.value,
+    error: errorMessageId.value,
+    helpMessage: helpMessageId.value,
+  }),
+);
 </script>
 
 <template>

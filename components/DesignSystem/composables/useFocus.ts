@@ -22,9 +22,19 @@ export default function useFocus(
     { immediate: true },
   );
 
+  watch(
+    errorState,
+    (hasError) => {
+      if (hasError && initialState()) {
+        setFocus();
+      }
+    },
+    { immediate: true },
+  );
+
   onMounted(async () => {
     await nextTick(() => {
-      if (errorState() || initialState()) {
+      if (initialState()) {
         setFocus();
       }
     });

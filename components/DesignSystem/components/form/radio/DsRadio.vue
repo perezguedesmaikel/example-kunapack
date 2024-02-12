@@ -1,14 +1,12 @@
 <script lang="ts" setup>
-import {
-  elementsSizes,
-  predefinedClasses,
-} from "../../../common/propsStyle";
-import type {ISize} from "../../../interfaces/elements";
-import {filterClass} from "../../../utils/filterClass";
+import { elementsSizes, predefinedClasses } from "../../../common/propsStyle";
+import type { ISize } from "../../../interfaces/elements";
+import { filterClass } from "../../../utils/filterClass";
 import generateUniqueId from "../../../utils/generateUniqueId";
-import {translateError} from "../../../utils/translateErrorMessage";
+import { translateError } from "../../../utils/translateErrorMessage";
 import buildAriaLabels from "../../../utils/buildAriaLabels";
-import {ref} from "vue";
+import { type PropType, ref } from "vue";
+import useFocus from "~/components/DesignSystem/composables/useFocus";
 
 const props = defineProps({
   modelValue: {
@@ -59,11 +57,18 @@ const props = defineProps({
     type: String as PropType<string | null>,
     default: null,
   },
+  focus: {
+    type: Boolean,
+    default: false,
+  },
 });
-
-const uniqueID = ref('')
+const { elementRef: selectRef } = useFocus(
+  () => props.focus,
+  () => props.error,
+);
+const uniqueID = ref("");
 onMounted(() => {
-  uniqueID.value = generateUniqueId('typography');
+  uniqueID.value = generateUniqueId("typography");
 });
 const labelId = computed(() => `${uniqueID.value}-label`);
 const errorMessageId = computed(() => `${uniqueID.value}-error-message`);
@@ -98,11 +103,13 @@ const model = computed({
 const hasError = computed(() => !!props.error);
 const errorMessage = computed(() => translateError(props.error));
 
-const ariaLabels = computed(() => buildAriaLabels(props, {
-  label: labelId.value,
-  error: errorMessageId.value,
-  helpMessage: helpMessageId.value,
-}));
+const ariaLabels = computed(() =>
+  buildAriaLabels(props, {
+    label: labelId.value,
+    error: errorMessageId.value,
+    helpMessage: helpMessageId.value,
+  }),
+);
 </script>
 
 <template>
@@ -110,6 +117,7 @@ const ariaLabels = computed(() => buildAriaLabels(props, {
     <div class="flex items-center">
       <input
         :id="uniqueID"
+        ref="selectRef"
         v-model="model"
         :aria-invalid="hasError"
         :aria-labelledby="ariaLabels"
@@ -123,11 +131,17 @@ const ariaLabels = computed(() => buildAriaLabels(props, {
 
       <label v-if="label" :id="labelId" :for="uniqueID" class="mb-2">
         {{ label }}
-        <span v-if="required" aria-hidden="true" class="required-marker">*</span>
+        <span v-if="required" aria-hidden="true" class="required-marker"
+          >*</span
+        >
       </label>
     </div>
 
-    <label v-if="hasError" :id="errorMessageId" class="error-message block mb-0">
+    <label
+      v-if="hasError"
+      :id="errorMessageId"
+      class="error-message block mb-0"
+    >
       {{ errorMessage }}
     </label>
 
