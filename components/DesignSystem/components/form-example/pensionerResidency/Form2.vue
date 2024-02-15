@@ -9,7 +9,9 @@ import {
 } from "~/components/DesignSystem/components/form-example/pensionerResidency/library";
 import type { IVualidateFormAttorneyState } from "~/components/DesignSystem/components/form-example/pensionerResidency/vualidate";
 import { translateError } from "~/components/DesignSystem/utils/translateErrorMessage";
-import { isFieldFirstError } from "~/components/DesignSystem/utils/isFieldFirstError";
+import FormValidatorPanel from "~/components/DesignSystem/components/form/formValidatorPanel/DsFormValidatorPanel.vue";
+import type { ComputedRef } from "vue";
+import type { errorPanelInterface } from "~/components/DesignSystem/components/form/formValidatorPanel/interface";
 
 const props = defineProps({
   modelValue: {
@@ -42,6 +44,49 @@ const errors = computed(() => ({
   email: props.validate?.email.$errors[0]?.$message,
   pensionerRelation: props.validate?.pensionerRelation.$errors[0]?.$message,
 }));
+const errorPanel: ComputedRef<errorPanelInterface[]> = computed(() => [
+  {
+    id: "name",
+    details: "Nombre del posible apoderado",
+    errorMessage: errors.value.name,
+  },
+  {
+    id: "run",
+    details: "Indique el RUN del posible apoderado",
+    errorMessage: errors.value.run,
+  },
+  {
+    id: "region",
+    details: "Seleccione la región",
+    errorMessage: errors.value.region,
+  },
+  {
+    id: "community",
+    details: "Seleccione la comuna",
+    errorMessage: errors.value.community,
+  },
+  {
+    id: "address",
+    details: "Ingrese la dirección del apoderado",
+    errorMessage: errors.value.address,
+  },
+  {
+    id: "addressNumber",
+    details: "Ingrese número de la dirección del apoderado",
+    errorMessage: errors.value.addressNumber,
+  },
+  {
+    id: "email",
+    details:
+      "Ingrese el correo electrónico del apoderado donde recibirá las notificaciones",
+    errorMessage: errors.value.email,
+  },
+  {
+    id: "pensionerRelation",
+    details: "Indique el parentesco o relación con el pensionado",
+    errorMessage: errors.value.pensionerRelation,
+  },
+]);
 </script>
 
 <template>
@@ -50,6 +95,7 @@ const errors = computed(() => ({
       >Los campos marcados con * son obligatorios
     </DsTypography>
   </header>
+  <FormValidatorPanel id="validator-panel" :errors="errorPanel" />
   <div class="cont-form-sector mt-5 w-full">
     <header class="mb-5">
       <DsTypography variant="h3"> Información del apoderado</DsTypography>
@@ -57,9 +103,9 @@ const errors = computed(() => ({
 
     <div class="cont-form-group">
       <DsInput
+        id="name"
         v-model="modelValue.name"
         :error="translateError(validate?.name.$errors[0]?.$message)"
-        :focus="isFieldFirstError(errors, 'name')"
         class="input"
         label="Nombre del posible apoderado (en caso de realizar esta solicitud por parte de un tercero)"
         required
@@ -68,9 +114,9 @@ const errors = computed(() => ({
 
     <div class="cont-form-group">
       <DsInput
+        id="run"
         v-model="modelValue.run"
         :error="translateError(validate?.run.$errors[0]?.$message)"
-        :focus="isFieldFirstError(errors, 'run')"
         class="input"
         help-message="Ejemplo: 17.231.182-4"
         label="Indique el RUN del posible apoderado"
@@ -80,9 +126,9 @@ const errors = computed(() => ({
 
     <div class="cont-form-group">
       <DsSelect
+        id="region"
         v-model="modelValue.region"
         :error="translateError(validate?.region.$errors[0]?.$message)"
-        :focus="isFieldFirstError(errors, 'region')"
         :option="regionOption"
         class="select w-full"
         label="Seleccione la región"
@@ -92,9 +138,9 @@ const errors = computed(() => ({
 
     <div class="cont-form-group">
       <DsSelect
+        id="community"
         v-model="modelValue.community"
         :error="translateError(validate?.community.$errors[0]?.$message)"
-        :focus="isFieldFirstError(errors, 'community')"
         :option="comunaOption"
         class="w-full"
         label="Seleccione la comuna"
@@ -104,9 +150,9 @@ const errors = computed(() => ({
 
     <div class="cont-form-group">
       <DsInput
+        id="address"
         v-model="modelValue.address"
         :error="translateError(validate?.address.$errors[0]?.$message)"
-        :focus="isFieldFirstError(errors, 'address')"
         class="input"
         label="Ingrese la dirección del apoderado"
         required
@@ -115,9 +161,9 @@ const errors = computed(() => ({
 
     <div class="cont-form-group">
       <DsInput
+        id="addressNumber"
         v-model="modelValue.addressNumber"
         :error="translateError(validate?.addressNumber.$errors[0]?.$message)"
-        :focus="isFieldFirstError(errors, 'addressNumber')"
         :maxValue="999999"
         :minValue="1"
         class="input"
@@ -129,9 +175,9 @@ const errors = computed(() => ({
 
     <div class="cont-form-group">
       <DsInput
+        id="email"
         v-model="modelValue.email"
         :error="translateError(validate?.email.$errors[0]?.$message)"
-        :focus="isFieldFirstError(errors, 'email')"
         class="input"
         label="Ingrese el correo electrónico del apoderado donde recibirá las notificaciones"
         required
@@ -141,11 +187,11 @@ const errors = computed(() => ({
 
     <div class="cont-form-group">
       <DsInput
+        id="pensionerRelation"
         v-model="modelValue.pensionerRelation"
         :error="
           translateError(validate?.pensionerRelation.$errors[0]?.$message)
         "
-        :focus="isFieldFirstError(errors, 'pensionerRelation')"
         class="input"
         label="Indique el parentesco o relación con el pensionado"
         required

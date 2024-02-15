@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import {elements, otherStyle} from "./data";
+import { elements, otherStyle } from "./data";
 import type {
   DsElementNameType,
   IDsTypographyElement,
 } from "../../basic/typography/interfaces";
-import {filterClass} from "../../../utils/filterClass";
-import {predefinedClasses} from "../../../common/propsStyle";
+import { filterClass } from "../../../utils/filterClass";
+import { predefinedClasses } from "../../../common/propsStyle";
 import generateUniqueId from "../../../utils/generateUniqueId";
 
 const props = defineProps({
@@ -17,14 +17,17 @@ const props = defineProps({
     type: String as () => DsElementNameType,
     default: "p",
   },
+  id: {
+    type: String,
+  },
 
   class: {
     default: "",
   },
 });
-const uniqueID = ref('')
+const uniqueID = ref("");
 onMounted(() => {
-  uniqueID.value = generateUniqueId('typography');
+  uniqueID.value = generateUniqueId("typography");
 });
 // const uniqueId = computed(() => generateUniqueId( 'typography'));
 
@@ -49,8 +52,9 @@ const filterClassComp = computed(() => {
 <template>
   <component
     :is="element.component"
-    :id="uniqueID"
-    :class="filterClassComp">
+    :id="id ?? uniqueID"
+    :class="filterClassComp"
+  >
     <slot>
       {{ text }}
     </slot>

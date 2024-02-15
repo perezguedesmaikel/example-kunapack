@@ -6,6 +6,7 @@ import type { InputType } from "./interface";
 import { filterClass } from "../../../utils/filterClass";
 import { predefinedClasses } from "../../../common/propsStyle";
 import type { Ref } from "vue";
+import generateUniqueId from "~/components/DesignSystem/utils/generateUniqueId";
 
 type DateKind = "finalDay" | "finalMonth" | "finalYear";
 
@@ -18,6 +19,9 @@ const props = defineProps({
   error: {
     type: String,
     default: null,
+  },
+  id: {
+    type: String,
   },
 
   rounded: {
@@ -144,10 +148,19 @@ const yearError = computed<any>(() => {
 });
 
 const hasError = computed(() => !!props.error);
+const uniqueID = ref("");
+onMounted(() => {
+  uniqueID.value = generateUniqueId("datePicker");
+});
 </script>
 
 <template>
-  <fieldset :class="filterClassComp" role="">
+  <fieldset
+    :id="id ?? uniqueID"
+    :class="filterClassComp"
+    class="focus:border-lime-300 focus:shadow-lime-500 focus:shadow focus:outline-0"
+    tabindex="0"
+  >
     <legend v-if="!hideLabel" class="mb-2">
       {{ label }}
       <span v-if="required" aria-hidden="true" class="required-marker">*</span>

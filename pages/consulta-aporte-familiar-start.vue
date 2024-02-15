@@ -1,53 +1,14 @@
-<template>
-  <ProcedurePage
-    title="¿Desea saber si usted es beneficiario del Aporte Familiar Permanente?"
-  >
-    <div aria-hidden="true" class="my-5">
-      <span>Los campos marcados con * son obligatorios</span>
-    </div>
-    <form>
-      <div class="cont-form-sector">
-        <div class="cont-form-group">
-          <DsInput
-            v-model="model.rut"
-            :error="rutErrors"
-            help-message="Ejemplo: 12.345.678-9"
-            label="Ingresa el RUT del beneficiario"
-            required
-          />
-        </div>
-
-        <div>
-          <DsDatePicker
-            v-model="model.date"
-            :error="dateErrors"
-            label="Indica la fecha de nacimiento"
-            required
-          />
-        </div>
-      </div>
-
-      <div class="flex justify-end cont-btn my-5">
-        <DsButton
-          :rounded="false"
-          color="primary"
-          title="Continuar al paso siguiente"
-          @click="submitForm"
-        >
-          Consultar
-        </DsButton>
-      </div>
-    </form>
-  </ProcedurePage>
-</template>
-
 <script lang="ts" setup>
 import { useVuelidate } from "@vuelidate/core";
-import { required, helpers } from "@vuelidate/validators";
+import { required } from "@vuelidate/validators";
 import DsInput from "~/components/DesignSystem/components/form/input/DsInput.vue";
 import DsDatePicker from "~/components/DesignSystem/components/form/datePicker/DsDatePicker.vue";
 import DsButton from "~/components/DesignSystem/components/basic/button/DsButton.vue";
 import ProcedurePage from "~/components/ProcedurePage.vue";
+import FormValidatorPanel from "~/components/DesignSystem/components/form/formValidatorPanel/DsFormValidatorPanel.vue";
+import { type ComputedRef, nextTick } from "vue";
+import type { errorPanelInterface } from "~/components/DesignSystem/components/form/formValidatorPanel/interface";
+import { scrollToSection } from "~/components/DesignSystem/utils/scrollToSection";
 
 const model = reactive({
   rut: "",
@@ -61,6 +22,8 @@ const submitForm = async () => {
     navigateTo({
       path: "/consulta-aporte-familiar-middle",
     });
+  } else {
+    await nextTick(scrollToSection);
   }
 };
 
@@ -80,16 +43,12 @@ const isValidRut = {
 };
 
 const rutErrors = computed(() => {
-  return fieldErrors(v$.value.rut);
+  return v$.value.rut.$errors[0]?.$message;
 });
 
 const dateErrors = computed(() => {
-  return fieldErrors(v$.value.date);
+  return v$.value.date.$errors[0]?.$message;
 });
-
-const fieldErrors = (field: any) => {
-  return field.$errors.map((error: any) => error.$message).join("<br/>");
-};
 
 const rules = computed(() => ({
   rut: {
@@ -101,4 +60,65 @@ const rules = computed(() => ({
 }));
 
 const v$ = useVuelidate(rules, model);
+
+const errorPanel: ComputedRef<errorPanelInterface[]> = computed(() => [
+  {
+    id: "rut",
+    details: "Ingresa el RUT del beneficiario",
+    errorMessage: rutErrors.value,
+  },
+  {
+    id: "date",
+    details: "Indica la fecha de nacimiento",
+    errorMessage: dateErrors.value,
+  },
+]);
 </script>
+
+<template>
+  <ProcedurePage
+    title="¿Desea saber si usted es beneficiario del Aporte Familiar Permanente?"
+  >
+    <div aria-hidden="true" class="my-5">
+      <span>Los campos marcados con * son obligatorios</span>
+    </div>
+    <div class="my-5">
+      <FormValidatorPanel id="validator-panel" :errors="errorPanel" />
+    </div>
+    <form>
+      <div class="cont-form-sector">
+        <div class="cont-form-group">
+          <DsInput
+            id="rut"
+            v-model="model.rut"
+            :error="rutErrors"
+            help-message="Ejemplo: 12.345.678-9"
+            label="Ingresa el RUT del beneficiario"
+            required
+          />
+        </div>
+
+        <div>
+          <DsDatePicker
+            id="date"
+            v-model="model.date"
+            :error="dateErrors"
+            label="Indica la fecha de nacimiento"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="flex justify-end cont-form-btn my-5">
+        <DsButton
+          :rounded="false"
+          color="primary"
+          title="Continuar al paso siguiente"
+          @click="submitForm"
+        >
+          Consultar
+        </DsButton>
+      </div>
+    </form>
+  </ProcedurePage>
+</template>

@@ -19,6 +19,9 @@ const props = defineProps({
     type: String,
     default: null,
   },
+  id: {
+    type: String,
+  },
 
   label: {
     type: String,
@@ -132,7 +135,7 @@ const ariaLabels = computed(() =>
   </label>
 
   <select
-    :id="uniqueID"
+    :id="id ?? uniqueID"
     ref="selectRef"
     v-model="model"
     :aria-invalid="hasError"

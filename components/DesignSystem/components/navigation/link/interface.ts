@@ -9,7 +9,7 @@
 //   | "text-4xl"
 //   | "text-5xl";
 
-export type ILinkVariant = "dark" | "primary" | "white";
+export type ILinkVariant = "dark" | "primary" | "white" | "danger";
 export type ILinkSize =
   | "xs"
   | "sm"

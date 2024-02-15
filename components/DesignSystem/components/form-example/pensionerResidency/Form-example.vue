@@ -9,6 +9,8 @@ import { required, email, numeric } from "@vuelidate/validators";
 import DsLink from "~/components/DesignSystem/components/navigation/link/DsLink.vue";
 import DsTypography from "~/components/DesignSystem/components/basic/typography/DsTypography.vue";
 import { isValidRUT } from "~/components/DesignSystem/utils/isValidRut";
+import { nextTick } from "vue";
+import { scrollToSection } from "~/components/DesignSystem/utils/scrollToSection";
 
 const step = ref(1);
 const rucValidate = {
@@ -82,6 +84,8 @@ function handleStep1(value: number) {
   if (!form1.value.$invalid) {
     step.value = value;
     window.scrollTo({ top: 0, behavior: "smooth" });
+  } else {
+    nextTick(scrollToSection);
   }
 }
 
@@ -92,6 +96,8 @@ function handleStep2(value: number) {
   if (value === 1 || !form2.value.$invalid) {
     step.value = value;
     window.scrollTo({ top: 0, behavior: "smooth" });
+  } else {
+    nextTick(scrollToSection);
   }
 }
 

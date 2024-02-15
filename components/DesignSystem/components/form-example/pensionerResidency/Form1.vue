@@ -20,7 +20,9 @@ import DsModal from "~/components/DesignSystem/components/container/modal/DsModa
 import FormModal from "~/components/DesignSystem/components/form-example/pensionerResidency/form1Components/FormModal.vue";
 import UserCardProfile from "~/components/DesignSystem/components/form-example/pensionerResidency/form1Components/UserCardProfile.vue";
 import UserInfo from "~/components/DesignSystem/components/form-example/pensionerResidency/form1Components/UserInfo.vue";
-import { isFieldFirstError } from "~/components/DesignSystem/utils/isFieldFirstError";
+import FormValidatorPanel from "~/components/DesignSystem/components/form/formValidatorPanel/DsFormValidatorPanel.vue";
+import type { errorPanelInterface } from "~/components/DesignSystem/components/form/formValidatorPanel/interface";
+import type { ComputedRef } from "vue";
 
 const props = defineProps({
   modelValue: {
@@ -53,6 +55,69 @@ const errors = computed(() => ({
   address: props.validate?.address.$errors[0]?.$message,
   number: props.validate?.number.$errors[0]?.$message,
 }));
+const errorPanel: ComputedRef<errorPanelInterface[]> = computed(() => [
+  {
+    id: "applicant",
+    details: "¿Quién solicita la visita?",
+    errorMessage: errors.value.applicant,
+  },
+  {
+    id: "reason",
+    details:
+      "Ingrese el motivo fundado por el cual se está solicitando esta visita",
+    errorMessage: errors.value.reason,
+  },
+  {
+    id: "file",
+    details: "Adjunte documento",
+    errorMessage: errors.value.docFile,
+  },
+  {
+    id: "date",
+    details: "Fecha de nacimiento ",
+    errorMessage: errors.value.date,
+  },
+  {
+    id: "phone",
+    details: "Teléfono del pensionado",
+    errorMessage: errors.value.phone,
+  },
+  {
+    id: "mail",
+    details: "Correo electrónico del pensionado",
+    errorMessage: errors.value.mail,
+  },
+  {
+    id: "healthStatus",
+    details: "Estado de salud del pensionado",
+    errorMessage: errors.value.healthStatus,
+  },
+  {
+    id: "residence",
+    details: "Residencia del pensionado",
+    errorMessage: errors.value.residence,
+  },
+  {
+    id: "region",
+    details: "Región ",
+    errorMessage: errors.value.region,
+  },
+  {
+    id: "comuna",
+    details: "Comuna",
+    errorMessage: errors.value.comuna,
+  },
+  {
+    id: "address",
+    details: "Dirección del pensionado",
+    errorMessage: errors.value.address,
+  },
+  {
+    id: "number",
+    details: "Número",
+    errorMessage: errors.value.number,
+  },
+]);
 </script>
 
 <template>
@@ -76,35 +141,10 @@ const errors = computed(() => ({
     <DsTypography aria-hidden="true" class="my-4" variant="p"
       >Los campos marcados con * son obligatorios
     </DsTypography>
-    <!--diseño Mondaca para validación de errores-->
-    <!--    <div-->
-    <!--      aria-labelledby="title-panel-error"-->
-    <!--      class="border border-danger-500 rounded-lg overflow-hidden my-5 focus:border-lime-300 focus:shadow-lime-500 focus:shadow focus:outline-0"-->
-    <!--      tabindex="0"-->
-    <!--    >-->
-    <!--      <header class="bg-danger-500 p-3">-->
-    <!--        <h3 id="title-panel-error" class="text-white m-0">-->
-    <!--          Valida estos campos antes de continuar-->
-    <!--        </h3>-->
-    <!--      </header>-->
 
-    <!--      <ul class="p-3 ul marker:text-danger-500">-->
-    <!--        <li>-->
-    <!--          <a class="mb-2 text-danger-500" href="#"-->
-    <!--            >¿Quién solicita la visita?</a-->
-    <!--          >-->
-    <!--        </li>-->
-    <!--        <li>-->
-    <!--          <a class="mb-2 text-danger-500" href="#"-->
-    <!--            >Ingrese el motivo fundado por el cual se está solicitando esta-->
-    <!--            visita-->
-    <!--          </a>-->
-    <!--        </li>-->
-    <!--        <li>-->
-    <!--          <a class="mb-2 text-danger-500" href="#">Adjunte documento</a>-->
-    <!--        </li>-->
-    <!--      </ul>-->
-    <!--    </div>-->
+    <div class="my-5">
+      <FormValidatorPanel id="validator-panel" :errors="errorPanel" />
+    </div>
     <form class="cont-form-sector">
       <header>
         <DsTypography variant="h3"> Información del solicitante</DsTypography>
@@ -121,6 +161,7 @@ const errors = computed(() => ({
 
         <div class="control">
           <DsRadio
+            id="applicant"
             v-model="modelValue.applicant"
             class="cont-gr"
             label="Pensionado"
@@ -135,7 +176,6 @@ const errors = computed(() => ({
           <DsRadio
             v-model="modelValue.applicant"
             :error="translateError(validate?.applicant.$errors[0]?.$message)"
-            :focus="isFieldFirstError(errors, 'applicant')"
             class="cont-gr"
             label="Encargado de cuidados u otro"
             value="Encargado de cuidados u otro"
@@ -145,9 +185,9 @@ const errors = computed(() => ({
 
       <div class="cont-form-group">
         <DsSelect
+          id="reason"
           v-model="modelValue.reason"
           :error="translateError(validate?.reason.$errors[0]?.$message)"
-          :focus="isFieldFirstError(errors, 'reason')"
           :option="reasonOption"
           class="select w-full"
           label="Ingrese el motivo fundado por el cual se está solicitando esta visita"
@@ -158,9 +198,9 @@ const errors = computed(() => ({
 
       <div class="cont-form-group">
         <DsFile
+          id="file"
           v-model="modelValue.docFile"
           :error="translateError(validate?.docFile.$errors[0]?.$message)"
-          :focus="isFieldFirstError(errors, 'docFile')"
           class="upload control file-label"
           helpText="PDF, JPG o PNG"
           label="Adjunte documento"
@@ -171,9 +211,9 @@ const errors = computed(() => ({
 
       <div>
         <DsDatePicker
+          id="date"
           v-model="modelValue.date"
           :error="translateError(validate?.date.$errors[0]?.$message)"
-          :focus="isFieldFirstError(errors, 'date')"
           class="columns is-mobile mb-0"
           label="Fecha de nacimiento"
           required
@@ -182,9 +222,9 @@ const errors = computed(() => ({
 
       <div class="cont-form-group">
         <DsInput
+          id="phone"
           v-model="modelValue.phone"
           :error="translateError(validate?.phone.$errors[0]?.$message)"
-          :focus="isFieldFirstError(errors, 'phone')"
           help-message="Ejemplos: Móvil:  91234567 / Fijo: 521234567"
           label="Teléfono del pensionado"
           placeholder="Ingresa el teléfono del pensionado"
@@ -195,9 +235,9 @@ const errors = computed(() => ({
 
       <div class="cont-form-group">
         <DsInput
+          id="mail"
           v-model="modelValue.mail"
           :error="translateError(validate?.mail.$errors[0]?.$message)"
-          :focus="isFieldFirstError(errors, 'mail')"
           label="Correo electrónico del pensionado"
           placeholder="Ingresa el correo electrónico del pensionado"
           required
@@ -207,9 +247,9 @@ const errors = computed(() => ({
 
       <div class="cont-form-group">
         <DsSelect
+          id="healthStatus"
           v-model="modelValue.healthStatus"
           :error="translateError(validate?.healthStatus.$errors[0]?.$message)"
-          :focus="isFieldFirstError(errors, 'healthStatus')"
           :option="healthStatusOption"
           class="select w-full"
           label="Estado de salud del pensionado"
@@ -220,9 +260,9 @@ const errors = computed(() => ({
 
       <div class="cont-form-group">
         <DsSelect
+          id="residence"
           v-model="modelValue.residence"
           :error="translateError(validate?.residence.$errors[0]?.$message)"
-          :focus="isFieldFirstError(errors, 'residence')"
           :option="residenceOption"
           class="select w-full"
           label="Residencia del pensionado"
@@ -233,9 +273,9 @@ const errors = computed(() => ({
 
       <div class="cont-form-group">
         <DsSelect
+          id="region"
           v-model="modelValue.region"
           :error="translateError(validate?.region.$errors[0]?.$message)"
-          :focus="isFieldFirstError(errors, 'region')"
           :option="regionOption"
           class="select w-full"
           label="Región"
@@ -246,9 +286,9 @@ const errors = computed(() => ({
 
       <div class="cont-form-group">
         <DsSelect
+          id="comuna"
           v-model="modelValue.comuna"
           :error="translateError(validate?.comuna.$errors[0]?.$message)"
-          :focus="isFieldFirstError(errors, 'comuna')"
           :option="comunaOption"
           class="select w-full"
           label="Comuna"
@@ -259,9 +299,9 @@ const errors = computed(() => ({
 
       <div class="cont-form-group">
         <DsInput
+          id="address"
           v-model="modelValue.address"
           :error="translateError(validate?.address.$errors[0]?.$message)"
-          :focus="isFieldFirstError(errors, 'address')"
           class="input"
           label="Dirección del pensionado"
           placeholder="Ingresa la dirección del pensionado"
@@ -271,9 +311,9 @@ const errors = computed(() => ({
 
       <div class="cont-form-group">
         <DsInput
+          id="number"
           v-model="modelValue.number"
           :error="translateError(validate?.number.$errors[0]?.$message)"
-          :focus="isFieldFirstError(errors, 'number')"
           :maxValue="999999"
           :minValue="1"
           class="input"

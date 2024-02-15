@@ -17,6 +17,9 @@ const props = defineProps({
     type: String,
     default: null,
   },
+  id: {
+    type: String,
+  },
 
   class: {
     type: String,
@@ -116,7 +119,7 @@ const ariaLabels = computed(() =>
   <div :class="filterClassComp">
     <div class="flex items-center">
       <input
-        :id="uniqueID"
+        :id="id ?? uniqueID"
         ref="selectRef"
         v-model="model"
         :aria-checked="model"

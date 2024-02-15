@@ -27,6 +27,9 @@ const props = defineProps({
     type: String as () => ISizeText,
     default: "normal",
   },
+  id: {
+    type: String,
+  },
 
   required: {
     type: Boolean,
@@ -139,7 +142,6 @@ const ariaLabels = computed(() =>
 
     <div class="flex">
       <input
-        :id="uniqueID"
         ref="refFileName"
         :disabled="disabled"
         class="hidden"
@@ -149,6 +151,7 @@ const ariaLabels = computed(() =>
       />
       <div class="w-full">
         <input
+          :id="id ?? uniqueID"
           ref="fileRef"
           :aria-invalid="hasError"
           :aria-labelledby="ariaLabels"

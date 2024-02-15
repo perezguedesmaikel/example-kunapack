@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import {elementsSizes, predefinedClasses} from "../../../common/propsStyle";
-import type {ISize, ITextType} from "../../../interfaces/elements";
-import {filterClass} from "../../../utils/filterClass";
+import { elementsSizes, predefinedClasses } from "../../../common/propsStyle";
+import type { ISize, ITextType } from "../../../interfaces/elements";
+import { filterClass } from "../../../utils/filterClass";
 import generateUniqueId from "../../../utils/generateUniqueId";
 import useFocus from "../../../composables/useFocus";
-import {translateError} from "../../../utils/translateErrorMessage";
+import { translateError } from "../../../utils/translateErrorMessage";
 import buildAriaLabels from "../../../utils/buildAriaLabels";
-import {type PropType, ref} from "vue";
+import { type PropType, ref } from "vue";
 
 const props = defineProps({
   modelValue: {
@@ -17,6 +17,9 @@ const props = defineProps({
   type: {
     type: String as () => ITextType,
     default: "text",
+  },
+  id: {
+    type: String,
   },
 
   size: {
@@ -75,9 +78,9 @@ const props = defineProps({
   },
 });
 
-const uniqueID = ref('')
+const uniqueID = ref("");
 onMounted(() => {
-  uniqueID.value = generateUniqueId('typography');
+  uniqueID.value = generateUniqueId("typography");
 });
 const labelId = computed(() => `${uniqueID.value}-label`);
 const errorMessageId = computed(() => `${uniqueID.value}-error-message`);
@@ -99,7 +102,7 @@ const cssClasses = computed(() => [
   defaultClasses,
 ]);
 
-const {elementRef: inputRef} = useFocus(
+const { elementRef: inputRef } = useFocus(
   () => props.focus,
   () => props.error,
 );
@@ -137,7 +140,7 @@ const ariaLabels = computed(() =>
     </label>
 
     <input
-      :id="uniqueID"
+      :id="id ?? uniqueID"
       ref="inputRef"
       v-model="model"
       :aria-invalid="hasError"
