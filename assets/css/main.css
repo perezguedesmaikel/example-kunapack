@@ -21,9 +21,11 @@ button.btn-primary:focus:not(:active),
 button.btn-primary.is-focused:not(:active),
 input:focus,
 textarea:focus,
+select:focus,
 input[type="checkbox"]:focus,
 input[type="radio"]:focus {
-    @apply z-0
+    @apply z-0 shadow-focus border-lime-300 outline-none outline-lime-400 outline-1 outline-offset-0
+    /* border-lime-300 outline-none outline-lime-400 outline-1 outline-offset-0*/
 }
 
 /*typography*/
@@ -127,7 +129,7 @@ input[type="radio"] {
 
 /*Botones*/
 button, .btn {
-    @apply cursor-pointer px-3 py-2 border rounded-md no-underline hover:ring
+    @apply cursor-pointer px-3 py-2 border rounded no-underline hover:ring
 }
 
 .btn-primary, a.btn-primary {
@@ -177,7 +179,7 @@ button[readonly], .btn[readonly] {
 
 /*Alertas*/
 .alert-primary {
-    @apply p-4 bg-cyan-500
+    @apply p-4 bg-cyan-500 rounded-lg
 }
 
 .alert-primary h2 {
@@ -185,7 +187,7 @@ button[readonly], .btn[readonly] {
 }
 
 .alert-danger {
-    @apply p-4 bg-danger-100
+    @apply p-4 bg-danger-100 rounded-lg
 }
 
 .alert-danger h2 {
@@ -193,7 +195,7 @@ button[readonly], .btn[readonly] {
 }
 
 .alert-warning {
-    @apply p-4 bg-yellow-50
+    @apply p-4 bg-yellow-50 rounded-lg
 }
 
 .alert-warning h2 {
@@ -201,7 +203,7 @@ button[readonly], .btn[readonly] {
 }
 
 .alert-success {
-    @apply p-4 bg-success-100
+    @apply p-4 bg-success-100 rounded-lg
 }
 
 .alert-success h2 {
@@ -270,19 +272,19 @@ nav.menu-horizontal ul li .relative .dropdownlv1 .dropdownlv2 button.subDropdown
 }
 
 .cont-form-sector {
-    @apply p-4 md:p-7 bg-neutral-100
+    @apply p-4 rounded-lg md:p-7 bg-neutral-100
 }
 
 .cont-form-sector h2 {
     @apply text-stone-600
 }
 
-.cont-btn {
-    @apply flex flex-col items-center sm:text-right sm:justify-start sm:flex-row-reverse
+.cont-form-btn {
+    @apply flex flex-col items-center sm:text-right sm:justify-start sm:flex-row-reverse my-6 sm:my-8
 }
 
-.cont-btn button {
-    @apply w-fit inline-block mb-2 sm:ml-2 min-w-[200px] sm:min-w-0
+.cont-form-btn button {
+    @apply w-fit inline-flex justify-center  mb-0 sm:mb-2 sm:ml-2 min-w-[200px] sm:min-w-0
 }
 
 .cont-form-group {
