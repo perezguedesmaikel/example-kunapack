@@ -178,7 +178,7 @@ const ariaLabels = computed(() =>
         :color="buttonColor"
         :rounded="false"
         :text="buttonText"
-        startIcon="file"
+        startImage="file"
         text-color="white"
         variant="buttonFile"
         @click="openFilePicker"

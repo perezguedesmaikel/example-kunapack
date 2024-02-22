@@ -10,7 +10,7 @@ import useFocus from "~/components/DesignSystem/composables/useFocus";
 
 const props = defineProps({
   modelValue: {
-    required: true,
+    type: String,
   },
 
   value: {

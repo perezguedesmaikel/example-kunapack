@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import DsIcon from "../../basic/icon/DsIcon.vue";
 import type { IBreadcrumbItem } from "./interface";
+import { filterClass } from "~/components/DesignSystem/utils/filterClass";
+import { predefinedClasses } from "~/components/DesignSystem/common/propsStyle";
 
 const props = defineProps({
   items: {
@@ -16,18 +18,25 @@ const props = defineProps({
   showLinkAtLastItem: {
     type: Boolean,
     default: false,
-  }
-});
+  },
 
-const emit = defineEmits(['itemClick']);
-const selectedItem = ref<IBreadcrumbItem|null>(null);
+  class: {
+    type: String,
+    default: "",
+  },
+});
+const filterClassComp = computed(() => {
+  return filterClass(predefinedClasses, props.class);
+});
+const emit = defineEmits(["itemClick"]);
+const selectedItem = ref<IBreadcrumbItem | null>(null);
 
 const normalizedItems = computed(() => {
   let i = 1;
 
-  return props.items.map( (item: IBreadcrumbItem) => {
+  return props.items.map((item: IBreadcrumbItem) => {
     item.id = item.id ?? i++;
-    item.link = item.link ?? '#';
+    item.link = item.link ?? "#";
 
     return item;
   });
@@ -42,62 +51,71 @@ const isLastItem = (item: IBreadcrumbItem) => {
 };
 
 const itemIconClass = (item: IBreadcrumbItem) =>
-  `las la-${item.icon} ${item !== selectedItem.value ? 'text-base text-primary-500' : ''}`;
+  `las la-${item.icon} ${
+    item !== selectedItem.value ? "text-base text-primary-500" : ""
+  }`;
 
 const itemLinkClass = (item: IBreadcrumbItem) => [
-  ' font-roboto px-3 ',
+  " font-roboto px-3 ",
   {
-    'border-r border-gray-300': !isLastItem( item) && !props.hideSeparator,
+    "border-r border-gray-300": !isLastItem(item) && !props.hideSeparator,
   },
   {
-    'text-base text-primary-500 hover:text-primary-900 underline':
-    item !== selectedItem.value,
+    "text-base text-primary-500 hover:text-primary-900 underline":
+      item !== selectedItem.value,
   },
 ];
 
 const itemNoLinkClass = (item: IBreadcrumbItem) => [
-  'font-roboto px-3 text-base',
+  "font-roboto px-3 text-base",
 
   {
-    'border-r border-gray-300': !isLastItem( item) && !props.hideSeparator,
+    "border-r border-gray-300": !isLastItem(item) && !props.hideSeparator,
   },
 ];
 
 const onItemClick = (e: Event, item: IBreadcrumbItem) => {
   selectedItem.value = item;
 
-  emit('itemClick', item);
+  emit("itemClick", item);
 
-  if (item.link === '#') {
+  if (item.link === "#") {
     e.preventDefault();
   }
 };
 
 const itemLocation = (item: IBreadcrumbItem): any => {
-  return item.link !== '#' ? item.link : null;
+  return item.link !== "#" ? item.link : null;
 };
 </script>
 
 <template>
-  <nav class="my-3 block" role="navigation">
+  <nav :class="['my-3 block', filterClassComp]" role="navigation">
     <ol class="flex">
-      <div v-if="!hasItems">
-        [No items defined in breadcrumb]
-      </div>
+      <div v-if="!hasItems">[No items defined in breadcrumb]</div>
 
       <li v-for="item in normalizedItems">
-        <DsIcon v-if="item.icon" :name="item.icon" size="base" class="text-primary-500" />
+        <DsIcon
+          v-if="item.icon"
+          :name="item.icon"
+          class="text-primary-500"
+          size="base"
+        />
 
-        <NuxtLink v-if="item.link && (!isLastItem( item) || showLinkAtLastItem)"
+        <NuxtLink
+          v-if="item.link && (!isLastItem(item) || showLinkAtLastItem)"
           :class="itemLinkClass(item)"
           :to="itemLocation(item)"
           role="button"
-          @click="onItemClick($event, item)">
+          @click="onItemClick($event, item)"
+        >
           {{ item.label }}
         </NuxtLink>
 
-        <span v-if="isLastItem( item) && !showLinkAtLastItem"
-            :class="itemNoLinkClass(item)">
+        <span
+          v-if="isLastItem(item) && !showLinkAtLastItem"
+          :class="itemNoLinkClass(item)"
+        >
           {{ item.label }}
         </span>
       </li>

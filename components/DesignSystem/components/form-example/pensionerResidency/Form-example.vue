@@ -82,6 +82,7 @@ const form2 = useVuelidate(formAttorneyStateRules, formAttorneyState);
 function handleStep1(value: number) {
   form1.value.$touch();
   if (!form1.value.$invalid) {
+    console.log("form1 data", formApplicantState);
     step.value = value;
     window.scrollTo({ top: 0, behavior: "smooth" });
   } else {

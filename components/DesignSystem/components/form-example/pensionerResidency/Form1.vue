@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import DsTypography from "~/components/DesignSystem/components/basic/typography/DsTypography.vue";
-import DsRadio from "~/components/DesignSystem/components/form/radio/DsRadio.vue";
+import DsRadio from "~/components/DesignSystem/components/form/radio-group/DsRadio.vue";
+import DsRadioOld from "~/components/DesignSystem/components/form/radio/DsRadio.vue";
 import DsSelect from "~/components/DesignSystem/components/form/select/DsSelect.vue";
 import DsFile from "~/components/DesignSystem/components/form/file/DsFile.vue";
 import DsDatePicker from "~/components/DesignSystem/components/form/datePicker/DsDatePicker.vue";
@@ -23,6 +24,7 @@ import UserInfo from "~/components/DesignSystem/components/form-example/pensione
 import FormValidatorPanel from "~/components/DesignSystem/components/form/formValidatorPanel/DsFormValidatorPanel.vue";
 import type { errorPanelInterface } from "~/components/DesignSystem/components/form/formValidatorPanel/interface";
 import type { ComputedRef } from "vue";
+import DsRadioGroup from "~/components/DesignSystem/components/form/radio-group/DsRadioGroup.vue";
 
 const props = defineProps({
   modelValue: {
@@ -158,28 +160,22 @@ const errorPanel: ComputedRef<errorPanelInterface[]> = computed(() => [
         <legend id="label_quien_solicita_visita" class="mb-2">
           ¿Quién solicita la visita? *
         </legend>
-
         <div class="control">
-          <DsRadio
+          <DsRadioGroup
             id="applicant"
             v-model="modelValue.applicant"
-            class="cont-gr"
-            label="Pensionado"
-            value="Pensionado"
-          />
-          <DsRadio
-            v-model="modelValue.applicant"
-            class="cont-gr"
-            label="Familiar directo"
-            value="Familiar directo"
-          />
-          <DsRadio
-            v-model="modelValue.applicant"
             :error="translateError(validate?.applicant.$errors[0]?.$message)"
-            class="cont-gr"
-            label="Encargado de cuidados u otro"
-            value="Encargado de cuidados u otro"
-          />
+            label="¿Quién solicita la visita?"
+            required
+          >
+            <DsRadio name="applicant" value="Pensionado">Pensionado</DsRadio>
+            <DsRadio name="applicant" value="Familiar directo"
+              >Familiar directo
+            </DsRadio>
+            <DsRadio name="applicant" value="Encargado de cuidados u otro"
+              >Encargado de cuidados u otro
+            </DsRadio>
+          </DsRadioGroup>
         </div>
       </fieldset>
 

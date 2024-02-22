@@ -26,12 +26,12 @@ const props = defineProps({
     default: "default",
   },
 
-  startIcon: {
+  startImage: {
     type: String,
     default: "",
   },
 
-  endIcon: {
+  endImage: {
     type: String,
     default: "",
   },
@@ -106,10 +106,10 @@ const buttonClasses = computed(() => {
     :type="type"
     @click="$emit('click', $event)"
   >
-    <DsIcon v-if="startIcon" :name="startIcon" class="mr-1" size="base" />
+    <DsIcon v-if="startImage" :name="startImage" class="mr-1" size="base" />
 
     <slot>{{ text }}</slot>
 
-    <DsIcon v-if="endIcon" :name="endIcon" class="ml-1" size="base" />
+    <DsIcon v-if="endImage" :name="endImage" class="ml-1" size="base" />
   </button>
 </template>
