@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { elementsSizes, predefinedClasses } from "../../../common/propsStyle";
+import { elementSizes, predefinedClasses } from "../../../common/propsStyle";
 import type { ISize } from "../../../interfaces/elements";
 import { filterClass } from "../../../utils/filterClass";
 import generateUniqueId from "../../../utils/generateUniqueId";
@@ -70,7 +70,7 @@ const filterClassComp = computed(() => {
 
 const cssClasses = computed(() => [
   filterClassComp,
-  elementsSizes[props.size],
+  elementSizes[props.size],
   {
     rounded: props.rounded,
     error: hasError.value,

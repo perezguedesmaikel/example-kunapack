@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import DsTypography from "~/components/DesignSystem/components/basic/typography/DsTypography.vue";
 import DsRadio from "~/components/DesignSystem/components/form/radio-group/DsRadio.vue";
-import DsRadioOld from "~/components/DesignSystem/components/form/radio/DsRadio.vue";
 import DsSelect from "~/components/DesignSystem/components/form/select/DsSelect.vue";
 import DsFile from "~/components/DesignSystem/components/form/file/DsFile.vue";
 import DsDatePicker from "~/components/DesignSystem/components/form/datePicker/DsDatePicker.vue";

@@ -4,13 +4,13 @@ import Form1 from "~/components/DesignSystem/components/form-example/pensionerRe
 import Form2 from "~/components/DesignSystem/components/form-example/pensionerResidency/Form2.vue";
 import Form3 from "~/components/DesignSystem/components/form-example/pensionerResidency/Form3.vue";
 import Form4 from "~/components/DesignSystem/components/form-example/pensionerResidency/Form4.vue";
-import { useVuelidate } from "@vuelidate/core";
-import { required, email, numeric } from "@vuelidate/validators";
+import {useVuelidate} from "@vuelidate/core";
+import {required, email, numeric} from "@vuelidate/validators";
 import DsLink from "~/components/DesignSystem/components/navigation/link/DsLink.vue";
 import DsTypography from "~/components/DesignSystem/components/basic/typography/DsTypography.vue";
-import { isValidRUT } from "~/components/DesignSystem/utils/isValidRut";
-import { nextTick } from "vue";
-import { scrollToSection } from "~/components/DesignSystem/utils/scrollToSection";
+import {isValidRUT} from "~/components/DesignSystem/utils/isValidRut";
+import {nextTick} from "vue";
+import {scrollToSection} from "~/components/DesignSystem/utils/scrollToSection";
 
 const step = ref(1);
 const rucValidate = {
@@ -42,8 +42,8 @@ const formAttorneyState = reactive({
   pensionerRelation: "",
 });
 const totalData = ref({
-  ...{ solicitor: formApplicantState },
-  ...{ proxy: formAttorneyState },
+  ...{solicitor: formApplicantState},
+  ...{proxy: formAttorneyState},
   ...{
     warrant: {
       date: "24/10/2020",
@@ -52,28 +52,28 @@ const totalData = ref({
   },
 });
 const formApplicantRules = {
-  applicant: { required },
-  reason: { required },
-  docFile: { required },
-  date: { required },
-  phone: { required, numeric },
-  mail: { required, email },
-  healthStatus: { required },
-  residence: { required },
-  region: { required },
-  comuna: { required },
-  address: { required },
-  number: { required },
+  applicant: {required},
+  reason: {required},
+  docFile: {required},
+  date: {required},
+  phone: {required, numeric},
+  mail: {required, email},
+  healthStatus: {required},
+  residence: {required},
+  region: {required},
+  comuna: {required},
+  address: {required},
+  number: {required},
 };
 const formAttorneyStateRules = reactive({
-  name: { required },
-  run: { required, rucValidate },
-  region: { required },
-  community: { required },
-  address: { required },
-  addressNumber: { required },
-  email: { required, email },
-  pensionerRelation: { required },
+  name: {required},
+  run: {required, rucValidate},
+  region: {required},
+  community: {required},
+  address: {required},
+  addressNumber: {required},
+  email: {required, email},
+  pensionerRelation: {required},
 });
 
 const form1 = useVuelidate(formApplicantRules, formApplicantState);
@@ -84,7 +84,7 @@ function handleStep1(value: number) {
   if (!form1.value.$invalid) {
     console.log("form1 data", formApplicantState);
     step.value = value;
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({top: 0, behavior: "smooth"});
   } else {
     nextTick(scrollToSection);
   }
@@ -96,7 +96,7 @@ function handleStep2(value: number) {
   if (value !== 1) form2.value.$touch();
   if (value === 1 || !form2.value.$invalid) {
     step.value = value;
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({top: 0, behavior: "smooth"});
   } else {
     nextTick(scrollToSection);
   }
@@ -105,8 +105,8 @@ function handleStep2(value: number) {
 function handleStep3(value: number, type: string) {
   if (type == "mainButton") {
     const dataServer = {
-      ...{ solicitor: formAttorneyState },
-      ...{ proxy: formApplicantState },
+      ...{solicitor: formAttorneyState},
+      ...{proxy: formApplicantState},
       ...{
         warrant: {
           date: "24/10/2020",
@@ -129,7 +129,7 @@ function handleStep3(value: number, type: string) {
         // This function executes when the promise is resolved, i.e., call to server was successful.
         console.log(dataServer);
         step.value = value;
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({top: 0, behavior: "smooth"});
       })
       .catch(() => {
         // This function executes when the promise is rejected, i.e., call server failed.
@@ -161,40 +161,36 @@ function handleChangeStep(value: number, type: string) {
 </script>
 
 <template>
-  <div class="container">
-    <DsTypography variant="h4">
-      Servicio de información entregado por
+  <DsTypography variant="h4">
+    Servicio de información entregado por
 
-      <DsLink
-        class="link"
-        href="https://www.chileatiende.gob.cl/instituciones/AL005"
-        title="Página web del Instituto de Previsión Social IPS"
-      >
-        Instituto de Previsión Social
-      </DsLink>
-    </DsTypography>
-    <DsTypography class="text-3xl" variant="h1"
-      >Solicitud de hora para trámite en residencia del pensionado
-    </DsTypography>
+    <DsLink
+      class="link"
+      href="https://www.chileatiende.gob.cl/instituciones/AL005"
+      title="Página web del Instituto de Previsión Social IPS"
+    >
+      Instituto de Previsión Social
+    </DsLink>
+  </DsTypography>
+  <DsTypography class="text-3xl" variant="h1"
+  >Solicitud de hora para trámite en residencia del pensionado
+  </DsTypography>
 
-    <div class="flex flex-col items-center justify-center mt-6">
-      <DsStepper
-        v-model="step"
-        :error="form1.$error || form2.$error"
-        :loading="loading"
-        @change-step="handleChangeStep"
-      >
-        <Form1
-          v-if="step == 1"
-          v-model="formApplicantState"
-          :validate="form1"
-        />
-        <Form2 v-if="step == 2" v-model="formAttorneyState" :validate="form2" />
-        <Form3 v-if="step == 3" v-model="totalData" />
-        <Form4 v-if="step == 4" />
-      </DsStepper>
-    </div>
+  <div class="flex flex-col items-center justify-center mt-6">
+    <DsStepper
+      v-model="step"
+      :error="form1.$error || form2.$error"
+      :loading="loading"
+      @change-step="handleChangeStep"
+    >
+      <Form1
+        v-if="step == 1"
+        v-model="formApplicantState"
+        :validate="form1"
+      />
+      <Form2 v-if="step == 2" v-model="formAttorneyState" :validate="form2"/>
+      <Form3 v-if="step == 3" v-model="totalData"/>
+      <Form4 v-if="step == 4"/>
+    </DsStepper>
   </div>
 </template>
-
-<style scoped></style>

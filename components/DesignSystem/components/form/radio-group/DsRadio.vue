@@ -2,7 +2,7 @@
 import { inject, type Ref } from "vue";
 import { filterClass } from "~/components/DesignSystem/utils/filterClass";
 import {
-  elementsSizes,
+  elementSizes,
   predefinedClasses,
 } from "~/components/DesignSystem/common/propsStyle";
 import type { ISize } from "~/components/DesignSystem/interfaces/elements";
@@ -54,7 +54,7 @@ const handleChange = () => {
 const defaultClasses = "hover:border-dark-500 border p-2 w-auto mr-1";
 const hasError = computed(() => !!props.error);
 const cssClasses = computed(() => [
-  elementsSizes[props.size],
+  elementSizes[props.size],
   {
     error: hasError.value,
   },

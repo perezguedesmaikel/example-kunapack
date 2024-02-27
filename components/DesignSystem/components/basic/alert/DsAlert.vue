@@ -61,10 +61,8 @@ const cssClasses = computed(() => {
       {{ title ?? cssClasses.defaultText }}
     </DsTypography>
 
-    <DsTypography variant="p">
-      <slot>
-        {{ text }}
-      </slot>
-    </DsTypography>
+    <slot>
+      {{ text }}
+    </slot>
   </div>
 </template>

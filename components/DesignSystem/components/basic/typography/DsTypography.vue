@@ -7,6 +7,8 @@ import type {
 import { filterClass } from "../../../utils/filterClass";
 import { predefinedClasses } from "../../../common/propsStyle";
 import generateUniqueId from "../../../utils/generateUniqueId";
+import type { ILinkVariant } from "~/components/DesignSystem/components/navigation/link/interface";
+import { variantLinkClasses } from "~/components/DesignSystem/components/navigation/link/library";
 
 const props = defineProps({
   text: {
@@ -19,6 +21,9 @@ const props = defineProps({
   },
   id: {
     type: String,
+  },
+  color: {
+    type: String as () => ILinkVariant,
   },
 
   class: {
@@ -53,7 +58,7 @@ const filterClassComp = computed(() => {
   <component
     :is="element.component"
     :id="id ?? uniqueID"
-    :class="filterClassComp"
+    :class="[filterClassComp, variantLinkClasses[color]]"
   >
     <slot>
       {{ text }}

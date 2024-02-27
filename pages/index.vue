@@ -14,7 +14,13 @@
           Solicitud de Hora Para Trámite en Residencia del Pensionado
         </NuxtLink>
       </li>
+      <li>
+        <NuxtLink to="/consulta-fecha-forma-pago-beneficios">
+          Consulta la fecha y forma de pago de tus beneficios
+        </NuxtLink>
+      </li>
     </ul>
   </div>
 </template>
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+</script>

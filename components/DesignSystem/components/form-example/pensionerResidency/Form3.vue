@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import DsAccordion from "../../container/accordion/DsAccordion.vue";
-import DataPanel from "./DataPanel.vue";
+import DataPanel from "../../container/dataPanel/DsDataPanel.vue";
 import sampleData from "./form3-data";
 import type { ITotalData } from "~/components/DesignSystem/components/form-example/pensionerResidency/interface";
 import {

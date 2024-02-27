@@ -2,7 +2,7 @@
 import { inject, type Ref } from "vue";
 import { filterClass } from "~/components/DesignSystem/utils/filterClass";
 import {
-  elementsSizes,
+  elementSizes,
   predefinedClasses,
 } from "~/components/DesignSystem/common/propsStyle";
 import type { ISize } from "~/components/DesignSystem/interfaces/elements";
@@ -47,6 +47,7 @@ const filterClassComp = computed(() => {
 });
 const checkGroup = inject("checkGroup") as Ref<string[]>;
 const disabledParent = inject("disabled") as Ref<boolean>;
+const checked = ref(checkGroup.value.includes(props.value!));
 const handleChange = () => {
   checked.value = !checked.value;
   if (checked.value) {
@@ -57,14 +58,6 @@ const handleChange = () => {
 };
 const defaultClasses = "hover:border-dark-500 border p-2 mb-2 w-auto mr-1";
 const hasError = computed(() => !!props.error);
-const cssClasses = computed(() => [
-  elementsSizes[props.size],
-  {
-    error: hasError.value,
-  },
-  defaultClasses,
-]);
-const checked = ref(checkGroup.value.includes(<string>props.value));
 
 // console.log("Viendo valor inicial", initialValue.value);
 </script>
@@ -74,7 +67,13 @@ const checked = ref(checkGroup.value.includes(<string>props.value));
     <input
       ref="checkRef"
       :checked="checked"
-      :class="cssClasses"
+      :class="[
+        {
+          error: hasError,
+        },
+        defaultClasses,
+        elementSizes[props.size],
+      ]"
       :disabled="disabled || disabledParent"
       :name="name"
       type="checkbox"

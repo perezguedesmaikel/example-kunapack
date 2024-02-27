@@ -42,10 +42,7 @@ const props = defineProps({
     default: "",
   },
 });
-const { elementRef: selectRef } = useFocus(
-  () => props.focus,
-  () => props.error,
-);
+const { elementRef: selectRef } = useFocus(() => props.focus);
 const filterClassComp = computed(() => {
   return filterClass(predefinedClasses, props.class);
 });
@@ -69,7 +66,6 @@ const hasError = computed(() => !!props.error);
 </script>
 
 <template>
-  {{ checkGroup }}
   <div
     :id="uniqueID"
     ref="selectRef"

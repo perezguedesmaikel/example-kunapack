@@ -1,8 +1,5 @@
 <script lang="ts" setup>
-import {
-  elementsSizes,
-  predefinedClasses,
-} from "../../../common/propsStyle";
+import { elementSizes, predefinedClasses } from "../../../common/propsStyle";
 import { filterClass } from "../../../utils/filterClass";
 import generateUniqueId from "../../../utils/generateUniqueId";
 import type { ISize } from "../../../interfaces/elements";
@@ -52,7 +49,7 @@ const filterClassComp = computed(() => {
 
 const cssClasses = computed(() => [
   filterClassComp,
-  elementsSizes[props.size],
+  elementSizes[props.size],
   defaultClasses,
 ]);
 
