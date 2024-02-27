@@ -27,11 +27,23 @@ const validateForm = useVuelidate(formRules, form);
 function handleSubmit() {
   validateForm.value.$touch();
   if (!validateForm.value.$invalid) {
-    console.log("Aquí se maneja el tema de integración", form);
-    step.value = 2;
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    validateForm.value.$reset();
-    form.rut = "";
+    // Activar el spinner de carga
+    loading.value = true;
+    console.log("Envío del formulario iniciado");
+
+    // Simular conexión API con setTimeout
+    setTimeout(() => {
+      console.log("Conexion con API simulada finalizada");
+
+      // Aquí es donde se maneja la integración, después de que se "conecte" con la API.
+      step.value = 2;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      validateForm.value.$reset();
+      form.rut = "";
+
+      // Detener el spinner de carga
+      loading.value = false;
+    }, 1000);
   }
 }
 </script>
@@ -106,18 +118,20 @@ function handleSubmit() {
             <DsInput
               v-model="form.rut"
               :error="translateError(validateForm?.rut.$errors[0]?.$message)"
+              :focus="validateForm.rut.$invalid && validateForm.rut.$dirty"
               help-message="Los campos marcados con * son obligatorios, Ejemplo: 17.231.182-4"
               label="Ingresa el RUT del beneficiario"
               required
             />
           </div>
           <div class="flex justify-end">
-            <DsButton class="m-1 mt-3" color="primary" type="submit">
+            <DsButton
+              :loading="loading"
+              class="m-1 mt-3"
+              color="primary"
+              type="submit"
+            >
               Consultar
-              <div
-                v-if="loading"
-                class="ml-1 w-5 h-5 border-2 border-t-4 border-white rounded-full animate-spin"
-              ></div>
             </DsButton>
           </div>
         </form>

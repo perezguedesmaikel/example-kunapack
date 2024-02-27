@@ -5,6 +5,7 @@ import type { IButtonColor, IButtonSize, IButtonType } from "./interfaces";
 import { colorButtonClass, sizeButtonClass } from "./library";
 import useFocus from "../../../composables/useFocus";
 import DsIcon from "../../basic/icon/DsIcon.vue";
+import DsSpinner from "~/components/DesignSystem/components/basic/spinner/DsSpinner.vue";
 //resolve conflict and refactor
 const props = defineProps({
   text: {
@@ -25,7 +26,14 @@ const props = defineProps({
     type: String as () => IButtonSize,
     default: "default",
   },
-
+  loading: {
+    type: Boolean,
+    default: false,
+  },
+  loadingColor: {
+    type: String as () => "white" | "red" | "blue" | "gray",
+    value: "white",
+  },
   startImage: {
     type: String,
     default: "",
@@ -109,7 +117,7 @@ const buttonClasses = computed(() => {
     <DsIcon v-if="startImage" :name="startImage" class="mr-1" size="base" />
 
     <slot>{{ text }}</slot>
-
+    <DsSpinner v-if="loading" :color="loadingColor" />
     <DsIcon v-if="endImage" :name="endImage" class="ml-1" size="base" />
   </button>
 </template>
