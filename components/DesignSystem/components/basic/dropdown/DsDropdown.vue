@@ -59,12 +59,12 @@ const menuCssClass = computed(() => {
     "left-0",
     "min-w-[12rem]",
     "pt-0",
-    'absolute',
+    "absolute",
     "w-full",
     "z-20",
     { "top-full": props.dropDirection === "dropdown" },
     { "pb-0 top-auto bottom-full": props.dropDirection === "dropup" },
-  ].join( ' ');
+  ].join(" ");
 });
 
 const emit = defineEmits(["select"]);
@@ -108,7 +108,7 @@ const onClickOutside = () => {
         :disabled="disabled"
         :rounded="rounded"
         :size="size"
-        :start-icon="triggerIcon"
+        :start-image="triggerIcon"
         aria-haspopup="true"
       >
         {{ " " + label }}

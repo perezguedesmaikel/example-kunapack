@@ -6,6 +6,7 @@ import type { InputType } from "./interface";
 import { filterClass } from "../../../utils/filterClass";
 import { predefinedClasses } from "../../../common/propsStyle";
 import type { Ref } from "vue";
+import generateUniqueId from "~/components/DesignSystem/utils/generateUniqueId";
 
 type DateKind = "finalDay" | "finalMonth" | "finalYear";
 
@@ -18,6 +19,9 @@ const props = defineProps({
   error: {
     type: String,
     default: null,
+  },
+  id: {
+    type: String,
   },
 
   rounded: {
@@ -144,13 +148,22 @@ const yearError = computed<any>(() => {
 });
 
 const hasError = computed(() => !!props.error);
+const uniqueID = ref("");
+onMounted(() => {
+  uniqueID.value = generateUniqueId("datePicker");
+});
 </script>
 
 <template>
-  <div :class="filterClassComp">
+  <fieldset
+    :id="id ?? uniqueID"
+    :class="filterClassComp"
+    class="focus:border-lime-300 focus:shadow-lime-500 focus:shadow focus:outline-0"
+    tabindex="0"
+  >
     <legend v-if="!hideLabel" class="mb-2">
       {{ label }}
-      <span v-if="required" class="required-marker" aria-hidden="true">*</span>
+      <span v-if="required" aria-hidden="true" class="required-marker">*</span>
     </legend>
 
     <div class="grid grid-cols-3 gap-2">
@@ -162,11 +175,11 @@ const hasError = computed(() => !!props.error);
           :focus="focus"
           :required="required"
           :rounded="rounded"
-          label="Selecciona Día"
+          label="Día"
           size="full"
           @select="(e: any) => emitCompleteDate(e, 'day')"
         >
-          <option :value="0" disabled selected>Día</option>
+          <option :value="0" disabled selected>Selecciona</option>
           <option
             v-for="tDay in days"
             :key="tDay"
@@ -186,11 +199,11 @@ const hasError = computed(() => !!props.error);
           :focus="focus"
           :required="required"
           :rounded="rounded"
-          label="Selecciona Mes"
+          label="Mes"
           size="full"
           @select="(e: any) => emitCompleteDate(e, 'month')"
         >
-          <option :value="0" disabled selected>Mes</option>
+          <option :value="0" disabled selected>Selecciona</option>
 
           <option
             v-for="tMonth in months"
@@ -211,11 +224,11 @@ const hasError = computed(() => !!props.error);
           :focus="focus"
           :required="required"
           :rounded="rounded"
-          label="Selecciona Año"
+          label="Año"
           size="full"
           @select="(e: any) => emitCompleteDate(e, 'year')"
         >
-          <option :value="0" disabled selected>Año</option>
+          <option :value="0" disabled selected>Selecciona</option>
           <option
             v-for="tYear in years"
             :key="tYear"
@@ -227,6 +240,6 @@ const hasError = computed(() => !!props.error);
         </DsSelect>
       </div>
     </div>
-  </div>
+  </fieldset>
   <br />
 </template>

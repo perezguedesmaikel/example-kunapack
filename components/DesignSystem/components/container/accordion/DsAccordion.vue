@@ -2,10 +2,10 @@
 import DsIcon from "../../basic/icon/DsIcon.vue";
 import DsTypography from "../../../components/basic/typography/DsTypography.vue";
 import generateUniqueId from "../../../utils/generateUniqueId";
-import {predefinedClasses} from "../../../common/propsStyle";
-import {filterClass} from "../../../utils/filterClass";
-import {loremItsum} from "../../../utils/loremItsum";
-import {ref, computed} from "vue";
+import { predefinedClasses } from "../../../common/propsStyle";
+import { filterClass } from "../../../utils/filterClass";
+import { loremItsum } from "../../../utils/loremItsum";
+import { ref, computed } from "vue";
 
 const props = defineProps({
   class: {
@@ -118,13 +118,19 @@ const isStandard = computed(() => {
 const isCard = computed(() => {
   return props.type === "card";
 });
+const uniqueID = ref("");
+onMounted(() => {
+  uniqueID.value = generateUniqueId("accordion");
+});
 </script>
 
 <template>
   <div :class="[cssClasses, 'w-full']">
     <div class="collapse-trigger">
       <button
+        :id="uniqueID"
         :aria-controls="uniqueId"
+        :aria-expanded="!isCollapsed"
         :class="[triggerClass, { 'rounded-b-none': !isCollapsed }]"
         type="button"
         @click="toggleCollapse"
@@ -146,7 +152,7 @@ const isCard = computed(() => {
     </div>
 
     <div v-if="!isCollapsed" :id="uniqueId" :class="contentCssClass">
-      <div class="colap-cont">
+      <div :aria-labelledby="uniqueID" class="colap-cont">
         <slot>
           <DsTypography>
             {{ children }}

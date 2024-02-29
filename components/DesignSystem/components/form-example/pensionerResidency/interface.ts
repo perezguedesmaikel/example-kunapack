@@ -24,19 +24,9 @@ export interface IForm2State {
   pensionerRelation: string;
 }
 
-export interface ICombinedState extends IForm1State, IForm2State {
-}
+export interface ICombinedState extends IForm1State, IForm2State {}
 
 export interface ITotalData {
-  contact: {
-    name: string,
-    ruc: string,
-    birthday: string,
-    address:
-      string,
-    phoneNumber: string,
-    email: string,
-  };
   solicitor: {
     familyRelation: string;
     motivation: string;

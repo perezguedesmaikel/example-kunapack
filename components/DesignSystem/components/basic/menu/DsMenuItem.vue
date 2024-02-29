@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { elementsSizes, predefinedClasses } from "../../../common/propsStyle";
+import { elementSizes, predefinedClasses } from "../../../common/propsStyle";
 import { filterClass } from "../../../utils/filterClass";
 import generateUniqueId from "../../../utils/generateUniqueId";
 import type { ISize } from "../../../interfaces/elements";
@@ -38,25 +38,24 @@ const props = defineProps({
   },
 });
 
-const uniqueId = computed(() => generateUniqueId('menu-item'));
+const uniqueId = computed(() => generateUniqueId("menu-item"));
 
-const defaultClasses = "flex items-center text-sm py-1.5 px-4 relative whitespace-nowrap w-full hover:bg-primary-900";
+const defaultClasses =
+  "flex items-center text-sm py-1.5 px-4 relative whitespace-nowrap w-full hover:bg-primary-900";
 
 const filterClassComp = computed(() => {
   return filterClass(predefinedClasses, props.class);
 });
 
-const cssClasses = computed(() =>
-  [
-    filterClassComp,
-    elementsSizes[props.size],
-    defaultClasses,
-  ]
-);
+const cssClasses = computed(() => [
+  filterClassComp,
+  elementSizes[props.size],
+  defaultClasses,
+]);
 
-const { onItemSelected }: any = inject('itemSelected');
+const { onItemSelected }: any = inject("itemSelected");
 
-const emit = defineEmits(['click'])
+const emit = defineEmits(["click"]);
 
 const handleClick = (e: any) => {
   const item = {
@@ -65,8 +64,8 @@ const handleClick = (e: any) => {
     data: props.data,
   };
 
-  emit('click', item);
-  onItemSelected( item);
+  emit("click", item);
+  onItemSelected(item);
 };
 </script>
 
@@ -74,12 +73,12 @@ const handleClick = (e: any) => {
   <a
     :id="uniqueId"
     :class="cssClasses"
-    href="#"
     :title="label"
+    href="#"
     role="listitem"
     @click.prevent="handleClick"
   >
-    <img v-if="icon" class="w-4 mr-2" :src="icon" />
+    <img v-if="icon" :src="icon" class="w-4 mr-2" />
     <slot>{{ label }}</slot>
   </a>
 </template>

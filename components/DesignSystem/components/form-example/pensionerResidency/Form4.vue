@@ -11,6 +11,7 @@ import DsAlert from "~/components/DesignSystem/components/basic/alert/DsAlert.vu
       <DsTypography variant="h2">Resolución de la solicitud</DsTypography>
     </header>
     <DsAlert
+      role="alert"
       text="Felipe (RUN 13.432.586-2), la visita ha sido recepcionada, pronto nos
         pondremos en contacto para confirmar la fecha en los próximos XX días
         hábiles."
@@ -28,81 +29,85 @@ import DsAlert from "~/components/DesignSystem/components/basic/alert/DsAlert.vu
         confirmación, ante cualquier consulta comuníquese al teléfono
         101."
     />
-    <div class="my-6">
-      <DsTypography class="mb-4">
-        Número de solicitud
-        <strong class="block">456355345-67</strong>
-      </DsTypography>
-      <DsTypography class="mb-4">
-        Tipo de solicitud
-        <strong class="block"
-          >Agendar una visita para el trámite en residencia de
-          pensionado</strong
-        >
-      </DsTypography>
-      <DsTypography class="mb-4">
-        Estado actual
-        <strong class="block">Solicitud ingresada</strong>
-      </DsTypography>
-      <DsTypography class="mb-4">
-        Nombre, RUN del pensionado y Caja<br />
-        <strong class="block">Alberto Martinez Guzman</strong>
-        <strong class="block">5.987.678-9</strong>
-      </DsTypography>
-      <DsTypography class="mb-4">
-        Nombre, RUN del pensionado y Caja<br />
-        <strong class="block">Alberto Martinez Guzman</strong>
-        <strong class="block">5.987.678-9</strong>
-      </DsTypography>
-      <DsTypography class="mb-4">
-        Solicitante de la visita<br />
-        <strong class="block">Familiar directo</strong>
-      </DsTypography>
-      <DsTypography class="mb-4">
-        Motivo fundado<br />
-        <strong class="block">Pensionado con enfermedades graves</strong>
-      </DsTypography>
-      <DsTypography class="mb-4">
-        Teléfono del solicitante<br />
-        <strong class="block">+5699456478</strong>
-      </DsTypography>
-      <DsTypography class="mb-4">
-        Teléfono del pensionado<br />
-        <strong class="block">+5698364937</strong>
-      </DsTypography>
-      <DsTypography class="mb-4">
-        Dirección donde se debe realizar la visita (Residencia particular)<br />
-        <strong class="block"
-          >Del Rodeo, #334, Parque Casas de lo Ovalle, Quilicura, Santiago,
-          Región Metropolitana.</strong
-        >
-      </DsTypography>
-      <DsTypography class="mb-4">
-        Tipo de parentesco con el pensionado<br />
-        <strong class="block">Sobrino</strong>
-      </DsTypography>
-      <DsTypography class="mb-4">
-        Solicitud presentada a nombre de un tercero<br />
-        <strong class="block">Magdalena Martinez</strong>
-      </DsTypography>
-      <DsTypography class="mb-4">
-        Correo electrónico del apoderado que recibirá notificaciones<br />
-        <strong class="block">felipe@gmail.com</strong>
-      </DsTypography>
-      <DsTypography class="mb-4">
-        Oficina IPS/ChileAtiende encargada de coordinar visita<br />
-        <strong class="block">Oficina ChileAtiende Peñalolen</strong>
-      </DsTypography>
-      <DsTypography class="mb-4">
-        Fecha de resolución<br />
-        <strong class="block">13-12-2021</strong>
-      </DsTypography>
-      <DsTypography class="mb-4">
-        Archivo digital<br />
-        <strong class="block">
-          <DsLink>DescargarPDF333</DsLink>
-        </strong>
-      </DsTypography>
+    <div class="my-5">
+      <DsTypography variant="h3"> Detalle</DsTypography>
+
+      <div class="border rounded-lg p-4">
+        <DsTypography class="mb-4">
+          Número de solicitud
+          <strong class="block">456355345-67</strong>
+        </DsTypography>
+        <DsTypography class="mb-4">
+          Tipo de solicitud
+          <strong class="block"
+            >Agendar una visita para el trámite en residencia de
+            pensionado</strong
+          >
+        </DsTypography>
+        <DsTypography class="mb-4">
+          Estado actual
+          <strong class="block">Solicitud ingresada</strong>
+        </DsTypography>
+        <DsTypography class="mb-4">
+          Nombre, RUN del pensionado y Caja<br />
+          <strong class="block">Alberto Martinez Guzman</strong>
+          <strong class="block">5.987.678-9</strong>
+        </DsTypography>
+        <DsTypography class="mb-4">
+          Nombre, RUN del pensionado y Caja<br />
+          <strong class="block">Alberto Martinez Guzman</strong>
+          <strong class="block">5.987.678-9</strong>
+        </DsTypography>
+        <DsTypography class="mb-4">
+          Solicitante de la visita<br />
+          <strong class="block">Familiar directo</strong>
+        </DsTypography>
+        <DsTypography class="mb-4">
+          Motivo fundado<br />
+          <strong class="block">Pensionado con enfermedades graves</strong>
+        </DsTypography>
+        <DsTypography class="mb-4">
+          Teléfono del solicitante<br />
+          <strong class="block">+5699456478</strong>
+        </DsTypography>
+        <DsTypography class="mb-4">
+          Teléfono del pensionado<br />
+          <strong class="block">+5698364937</strong>
+        </DsTypography>
+        <DsTypography class="mb-4">
+          Dirección donde se debe realizar la visita (Residencia particular)<br />
+          <strong class="block"
+            >Del Rodeo, #334, Parque Casas de lo Ovalle, Quilicura, Santiago,
+            Región Metropolitana.</strong
+          >
+        </DsTypography>
+        <DsTypography class="mb-4">
+          Tipo de parentesco con el pensionado<br />
+          <strong class="block">Sobrino</strong>
+        </DsTypography>
+        <DsTypography class="mb-4">
+          Solicitud presentada a nombre de un tercero<br />
+          <strong class="block">Magdalena Martinez</strong>
+        </DsTypography>
+        <DsTypography class="mb-4">
+          Correo electrónico del apoderado que recibirá notificaciones<br />
+          <strong class="block">felipe@gmail.com</strong>
+        </DsTypography>
+        <DsTypography class="mb-4">
+          Oficina IPS/ChileAtiende encargada de coordinar visita<br />
+          <strong class="block">Oficina ChileAtiende Peñalolen</strong>
+        </DsTypography>
+        <DsTypography class="mb-4">
+          Fecha de resolución<br />
+          <strong class="block">13-12-2021</strong>
+        </DsTypography>
+        <DsTypography class="mb-4">
+          Archivo digital<br />
+          <strong class="block">
+            <DsLink>DescargarPDF333</DsLink>
+          </strong>
+        </DsTypography>
+      </div>
     </div>
     <hr class="my-5" />
     <DsTypography class="mb-5" variant="p">

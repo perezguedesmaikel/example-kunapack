@@ -1,4 +1,18 @@
-export const solicitorConfigData = [
+export const exampleConfigData = {
+  applicant: "Familiar directo",
+  reason: 3,
+  docFile: "cuca.doc",
+  date: "1903-04-04T05:29:36.000Z",
+  phone: "5354157794",
+  mail: "sdasda@gmail.com",
+  healthStatus: 1,
+  residence: 1,
+  region: 4,
+  comuna: 2,
+  address: "telnostitlan Ecuador",
+  number: 3453,
+};
+export const configDataPanel = [
   {
     title: "Quién solicita la visita",
     field: "applicant",
@@ -42,37 +56,5 @@ export const solicitorConfigData = [
   {
     title: "Correo Electrónico",
     field: "mail",
-  },
-];
-export const proxyConfigData = [
-  {
-    title: "Nombre del posible apoderado",
-    field: "name",
-  },
-  {
-    title: "RUN del posible apoderado",
-    field: "run",
-  },
-  {
-    title: "Dirección",
-    field: "address",
-  },
-  {
-    title: "Correo Electrónico",
-    field: "email",
-  },
-  {
-    title: "Tipo de parentesco o relación con el pensionado",
-    field: "pensionerRelation",
-  },
-];
-export const warrantConfigData = [
-  {
-    title: "Fecha de emisión",
-    field: "date",
-  },
-  {
-    title: "Documento mandato",
-    field: "documentUrl",
   },
 ];

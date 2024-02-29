@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import {filterClass} from "../../../utils/filterClass";
-import {predefinedClasses} from "../../../common/propsStyle";
+import { filterClass } from "../../../utils/filterClass";
+import { predefinedClasses } from "../../../common/propsStyle";
 import generateUniqueId from "../../../utils/generateUniqueId";
 import DsButton from "../../basic/button/DsButton.vue";
-import {ref, watch} from "vue";
-//prueba multiRepo
+import { ref, watch } from "vue";
+
 const props = defineProps({
   modelValue: {
     type: Number,
@@ -30,10 +30,10 @@ const props = defineProps({
     type: String,
     default: "",
   },
-  // buttonMainText: {
-  //   type: String,
-  //   default: "Continuar",
-  // },
+  buttonMainText: {
+    type: String,
+    default: "Continuar",
+  },
 });
 
 interface ISteps {
@@ -66,7 +66,7 @@ function handleClick(item: any) {
 }
 
 const stepStates = ref<ISteps[]>(
-  Array.from({length: props.totalSteps}, (_, i) => ({
+  Array.from({ length: props.totalSteps }, (_, i) => ({
     step: i + 1,
     status: i + 1 === props.modelValue ? "default" : "blocked",
     selected: i + 1 === props.modelValue,
@@ -76,19 +76,18 @@ const stepStates = ref<ISteps[]>(
 watch(modelValueRef, (newProps) => {
   stepStates.value = stepStates.value.map((step) => {
     if (step.step < newProps) {
-      return {...step, status: "default", selected: false};
+      return { ...step, status: "default", selected: false };
     } else if (step.step === newProps) {
-      return {...step, status: "default", selected: true};
+      return { ...step, status: "default", selected: true };
     } else if (step.status !== "default") {
-      return {...step, status: "blocked", selected: false};
+      return { ...step, status: "blocked", selected: false };
     } else {
-      return {...step, selected: false};
+      return { ...step, selected: false };
     }
   });
 });
 
 const steps = computed(() => stepStates.value);
-const uniqueId = computed(() => generateUniqueId("stepper"));
 
 function computeAriaLabel(item: any) {
   const label = `Paso ${item.step}`;
@@ -114,12 +113,17 @@ function computeAriaLabel(item: any) {
     return label + states.higherValue;
   }
 }
+
+const uniqueID = ref("");
+onMounted(() => {
+  uniqueID.value = generateUniqueId("typography");
+});
 </script>
 
 <template>
   <div :class="filterClassComp">
     <ol
-      :id="uniqueId"
+      :id="uniqueID"
       :aria-label="
         'Progreso del trámite. Estás en el paso ' +
         modelValue +
@@ -161,7 +165,7 @@ function computeAriaLabel(item: any) {
           <span
             v-if="index !== steps.length - 1"
             :class="[
-              'h-[5px] w-[20px] md:w-[60px]',
+              'h-[2px] w-[20px] md:w-[60px]',
               `${item.step < modelValue ? 'bg-primary-500' : 'bg-gray-200'}`,
             ]"
           ></span>
@@ -169,15 +173,23 @@ function computeAriaLabel(item: any) {
       </li>
     </ol>
   </div>
-  <slot/>
-  <div v-if="!hideButton && modelValue !== totalSteps" class="cont-btn w-full">
+  <slot />
+  <div
+    v-if="!hideButton && modelValue !== totalSteps"
+    class="cont-form-btn w-full"
+  >
     <DsButton
-      :disabled="error"
       class="m-1 mt-3"
       end-image="las la-angle-right"
       @click="handleStep('sumar')"
     >
-      <span>{{ !loading ? (totalSteps - modelValue === 1 ? 'Confirmar' : 'Continuar') : "Enviando..." }}</span>
+      <span>{{
+        !loading
+          ? totalSteps - modelValue === 1
+            ? "Confirmar"
+            : "Continuar"
+          : "Enviando..."
+      }}</span>
       <div
         v-if="loading"
         class="ml-1 w-5 h-5 border-2 border-t-4 border-white rounded-full animate-spin"
@@ -188,10 +200,10 @@ function computeAriaLabel(item: any) {
       v-if="modelValue !== 1"
       :disabled="error"
       class="m-1 mt-3"
-      color="secondary"
+      color="tertiary"
       start-image="las la-angle-left"
       @click="handleStep('restar')"
-    >Volver
+      >Volver
     </DsButton>
   </div>
 </template>

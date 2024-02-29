@@ -19,6 +19,9 @@ const props = defineProps({
     type: String,
     default: null,
   },
+  id: {
+    type: String,
+  },
 
   label: {
     type: String,
@@ -51,7 +54,7 @@ const props = defineProps({
   },
 
   helpMessage: {
-    type: String as PropType<string|null>,
+    type: String as PropType<string | null>,
     default: null,
   },
 
@@ -85,10 +88,13 @@ const { elementRef: selectRef } = useFocus(
   () => props.error,
 );
 
-const inputId = computed(() => generateUniqueId('select'));
-const labelId = computed(() => `${inputId.value}-label`);
-const errorMessageId = computed(() => `${inputId.value}-error-message`);
-const helpMessageId = computed(() => `${inputId.value}-help-message`);
+const uniqueID = ref("");
+onMounted(() => {
+  uniqueID.value = generateUniqueId("select");
+});
+const labelId = computed(() => `${uniqueID.value}-label`);
+const errorMessageId = computed(() => `${uniqueID.value}-error-message`);
+const helpMessageId = computed(() => `${uniqueID.value}-help-message`);
 
 const filterClassComp = computed(() => {
   return filterClass(predefinedClasses, props.class);
@@ -111,25 +117,30 @@ const model = computed({
 });
 
 const hasError = computed(() => !!props.error);
-const errorMessage = computed(() => translateError( props.error));
+const errorMessage = computed(() => translateError(props.error));
 
-const ariaLabels = computed(() => buildAriaLabels( props, {
-  label: labelId.value,
-  error: errorMessageId.value,
-  helpMessage: helpMessageId.value,
-}));
+const ariaLabels = computed(() =>
+  buildAriaLabels(props, {
+    label: labelId.value,
+    error: errorMessageId.value,
+    helpMessage: helpMessageId.value,
+  }),
+);
 </script>
 
 <template>
-  <label v-if="label" :id="labelId" :for="inputId" class="mb-2">
+  <label v-if="label" :id="labelId" :for="uniqueID" class="mb-2">
     {{ label }}
-    <span v-if="required" class="required-marker" aria-hidden="true">*</span>
+    <span v-if="required" aria-hidden="true" class="required-marker">*</span>
   </label>
 
   <select
-    :id="inputId"
+    :id="id ?? uniqueID"
     ref="selectRef"
     v-model="model"
+    :aria-invalid="hasError"
+    :aria-labelledby="ariaLabels"
+    :aria-required="required"
     :class="[
       filterClassComp,
       { error: hasError },
@@ -139,9 +150,6 @@ const ariaLabels = computed(() => buildAriaLabels( props, {
       { rounded: rounded },
     ]"
     :disabled="disabled"
-    :aria-required="required"
-    :aria-invalid="hasError"
-    :aria-labelledby="ariaLabels"
     @input="handleInput"
   >
     <slot>

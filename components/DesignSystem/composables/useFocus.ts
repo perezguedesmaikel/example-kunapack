@@ -2,7 +2,7 @@ import { ref, watch, onMounted, nextTick } from "vue";
 
 export default function useFocus(
   initialState: () => boolean,
-  errorState: () => string,
+  errorState?: () => string,
 ) {
   const elementRef = ref<HTMLTextAreaElement | null>(null);
 
@@ -22,9 +22,21 @@ export default function useFocus(
     { immediate: true },
   );
 
+  if (errorState) {
+    watch(
+      errorState,
+      (hasError) => {
+        if (hasError && initialState()) {
+          setFocus();
+        }
+      },
+      { immediate: true },
+    );
+  }
+
   onMounted(async () => {
     await nextTick(() => {
-      if (errorState() || initialState()) {
+      if (initialState()) {
         setFocus();
       }
     });

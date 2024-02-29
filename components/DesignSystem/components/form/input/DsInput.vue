@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import { elementsSizes, predefinedClasses } from "../../../common/propsStyle";
+import { elementSizes, predefinedClasses } from "../../../common/propsStyle";
 import type { ISize, ITextType } from "../../../interfaces/elements";
 import { filterClass } from "../../../utils/filterClass";
 import generateUniqueId from "../../../utils/generateUniqueId";
 import useFocus from "../../../composables/useFocus";
 import { translateError } from "../../../utils/translateErrorMessage";
 import buildAriaLabels from "../../../utils/buildAriaLabels";
-import type { PropType } from "vue";
+import { type PropType, ref } from "vue";
 
 const props = defineProps({
   modelValue: {
@@ -17,6 +17,9 @@ const props = defineProps({
   type: {
     type: String as () => ITextType,
     default: "text",
+  },
+  id: {
+    type: String,
   },
 
   size: {
@@ -75,10 +78,13 @@ const props = defineProps({
   },
 });
 
-const inputId = computed(() => generateUniqueId("input"));
-const labelId = computed(() => `${inputId.value}-label`);
-const errorMessageId = computed(() => `${inputId.value}-error-message`);
-const helpMessageId = computed(() => `${inputId.value}-help-message`);
+const uniqueID = ref("");
+onMounted(() => {
+  uniqueID.value = generateUniqueId("typography");
+});
+const labelId = computed(() => `${uniqueID.value}-label`);
+const errorMessageId = computed(() => `${uniqueID.value}-error-message`);
+const helpMessageId = computed(() => `${uniqueID.value}-help-message`);
 
 const defaultClasses = "hover:border-dark-500 border p-2 block ";
 
@@ -88,7 +94,7 @@ const filterClassComp = computed(() => {
 
 const cssClasses = computed(() => [
   filterClassComp.value,
-  elementsSizes[props.size],
+  elementSizes[props.size],
   {
     rounded: props.rounded,
     error: hasError.value,
@@ -128,13 +134,13 @@ const ariaLabels = computed(() =>
 
 <template>
   <div class="mb-4">
-    <label v-if="label" :id="labelId" :for="inputId" class="mb-2">
+    <label v-if="label" :id="labelId" :for="uniqueID" class="mb-2">
       {{ label }}
       <span v-if="required" aria-hidden="true" class="required-marker">*</span>
     </label>
 
     <input
-      :id="inputId"
+      :id="id ?? uniqueID"
       ref="inputRef"
       v-model="model"
       :aria-invalid="hasError"
@@ -145,7 +151,6 @@ const ariaLabels = computed(() =>
       :placeholder="placeholderText"
       :readonly="readOnly"
       :type="`${type}`"
-      :value="modelValue"
     />
 
     <label

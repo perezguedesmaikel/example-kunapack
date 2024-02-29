@@ -1,13 +1,18 @@
 <script lang="ts" setup>
+import {
+  configDataPanel,
+  exampleConfigData,
+} from "~/components/DesignSystem/components/container/dataPanel/exampleData";
+
 const props = defineProps({
   model: {
     type: Object,
-    required: true,
+    default: () => exampleConfigData,
   },
 
   config: {
     type: Array as () => { title: string; field: string }[],
-    required: true,
+    default: () => configDataPanel,
   },
 });
 
@@ -24,7 +29,6 @@ const _config = computed(() => {
     return result;
   });
 });
-
 const isArray = (value: any) =>
   typeof value === "object" && typeof value?.push === "function";
 </script>

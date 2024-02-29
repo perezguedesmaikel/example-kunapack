@@ -3,6 +3,7 @@ export const variantLinkClasses = {
   primary: "text-primary-500 hover:text-primary-900",
   white:
     "font-robotoSlab px-4 py-1.5 bg-primary-500 block hover:bg-primary-900 hover:text-white text-white",
+  danger: "text-danger-500",
 };
 // export const sizeLinkClasses = {
 //   xSmall: "text-xs",

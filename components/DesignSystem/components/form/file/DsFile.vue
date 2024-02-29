@@ -1,19 +1,18 @@
 <script lang="ts" setup>
 import DsButton from "../../basic/button/DsButton.vue";
 import generateUniqueId from "../../../utils/generateUniqueId";
-import {filterClass} from "../../../utils/filterClass";
-import {predefinedClasses} from "../../../common/propsStyle";
-import type {ISizeText} from "../../../interfaces/elements";
-import {sizeSelect} from "../select/library";
+import { filterClass } from "../../../utils/filterClass";
+import { predefinedClasses } from "../../../common/propsStyle";
+import type { ISizeText } from "../../../interfaces/elements";
+import { sizeSelect } from "../select/library";
 import useFocus from "../../../composables/useFocus";
-import type {IButtonColor} from "../../basic/button/interfaces";
-import {translateError} from "../../../utils/translateErrorMessage";
+import type { IButtonColor } from "../../basic/button/interfaces";
+import { translateError } from "../../../utils/translateErrorMessage";
 import buildAriaLabels from "../../../utils/buildAriaLabels";
-import type {Ref} from "vue";
+import type { Ref } from "vue";
 
 //new change defile
-interface FileInputRef extends Ref<HTMLInputElement | null> {
-}
+interface FileInputRef extends Ref<HTMLInputElement | null> {}
 
 const props = defineProps({
   modelValue: {
@@ -27,6 +26,9 @@ const props = defineProps({
   size: {
     type: String as () => ISizeText,
     default: "normal",
+  },
+  id: {
+    type: String,
   },
 
   required: {
@@ -85,10 +87,13 @@ const props = defineProps({
   },
 });
 
-const inputId = computed(() => generateUniqueId("file"));
-const labelId = computed(() => `${inputId.value}-label`);
-const errorMessageId = computed(() => `${inputId.value}-error-message`);
-const helpMessageId = computed(() => `${inputId.value}-help-message`);
+const uniqueID = ref("");
+onMounted(() => {
+  uniqueID.value = generateUniqueId("typography");
+});
+const labelId = computed(() => `${uniqueID.value}-label`);
+const errorMessageId = computed(() => `${uniqueID.value}-error-message`);
+const helpMessageId = computed(() => `${uniqueID.value}-help-message`);
 
 const filterClassComp = computed(() => {
   return filterClass(predefinedClasses, props.class);
@@ -98,7 +103,7 @@ const emit = defineEmits(["fileSelected", "update:modelValue"]);
 const selectedFileName = ref(null);
 const refFileName: FileInputRef = ref(null);
 
-const {elementRef: fileRef} = useFocus(
+const { elementRef: fileRef } = useFocus(
   () => props.focus,
   () => props.error,
 );
@@ -130,14 +135,13 @@ const ariaLabels = computed(() =>
 
 <template>
   <div :class="filterClassComp">
-    <label v-if="!hideLabel" :id="labelId" :for="inputId" class="block mb-1">
+    <label v-if="!hideLabel" :id="labelId" :for="uniqueID" class="block mb-1">
       {{ label }}
       <span v-if="required" aria-hidden="true" class="required-marker">*</span>
     </label>
 
     <div class="flex">
       <input
-        :id="inputId"
         ref="refFileName"
         :disabled="disabled"
         class="hidden"
@@ -147,6 +151,7 @@ const ariaLabels = computed(() =>
       />
       <div class="w-full">
         <input
+          :id="id ?? uniqueID"
           ref="fileRef"
           :aria-invalid="hasError"
           :aria-labelledby="ariaLabels"
@@ -158,9 +163,14 @@ const ariaLabels = computed(() =>
           ]"
           :placeholder="showPlaceholder ? placeholder : ''"
           :value="modelValue?.name"
+          tabindex="0"
           @click="openFilePicker"
+          @keydown="
+            (event) => {
+              if (event.key !== 'Tab') event.preventDefault();
+            }
+          "
           @keydown.enter.prevent="openFilePicker"
-          @keydown.prevent
         />
       </div>
 
@@ -168,7 +178,7 @@ const ariaLabels = computed(() =>
         :color="buttonColor"
         :rounded="false"
         :text="buttonText"
-        startIcon="file"
+        startImage="file"
         text-color="white"
         variant="buttonFile"
         @click="openFilePicker"

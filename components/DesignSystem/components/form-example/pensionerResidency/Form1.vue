@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import DsTypography from "~/components/DesignSystem/components/basic/typography/DsTypography.vue";
-import DsRadio from "~/components/DesignSystem/components/form/radio/DsRadio.vue";
+import DsRadio from "~/components/DesignSystem/components/form/radio-group/DsRadio.vue";
 import DsSelect from "~/components/DesignSystem/components/form/select/DsSelect.vue";
 import DsFile from "~/components/DesignSystem/components/form/file/DsFile.vue";
 import DsDatePicker from "~/components/DesignSystem/components/form/datePicker/DsDatePicker.vue";
 import DsInput from "~/components/DesignSystem/components/form/input/DsInput.vue";
-import type {IForm1State} from "~/components/DesignSystem/components/form-example/pensionerResidency/interface";
-import {translateError} from "~/components/DesignSystem/utils/translateErrorMessage";
+import type { IForm1State } from "~/components/DesignSystem/components/form-example/pensionerResidency/interface";
+import { translateError } from "~/components/DesignSystem/utils/translateErrorMessage";
 import {
   comunaOption,
   healthStatusOption,
@@ -15,18 +15,17 @@ import {
   residenceOption,
   userProfile,
 } from "~/components/DesignSystem/components/form-example/pensionerResidency/library";
-import type {
-  IVualidateApplicantState
-} from "~/components/DesignSystem/components/form-example/pensionerResidency/vualidate";
+import type { IVualidateApplicantState } from "~/components/DesignSystem/components/form-example/pensionerResidency/vualidate";
 import DsModal from "~/components/DesignSystem/components/container/modal/DsModal.vue";
-import FormModal
-  from "~/components/DesignSystem/components/form-example/pensionerResidency/form1Components/FormModal.vue";
-import UserCardProfile
-  from "~/components/DesignSystem/components/form-example/pensionerResidency/form1Components/UserCardProfile.vue";
-import UserInfo
-  from "~/components/DesignSystem/components/form-example/pensionerResidency/form1Components/UserInfo.vue";
+import FormModal from "~/components/DesignSystem/components/form-example/pensionerResidency/form1Components/FormModal.vue";
+import UserCardProfile from "~/components/DesignSystem/components/form-example/pensionerResidency/form1Components/UserCardProfile.vue";
+import UserInfo from "~/components/DesignSystem/components/form-example/pensionerResidency/form1Components/UserInfo.vue";
+import FormValidatorPanel from "~/components/DesignSystem/components/form/formValidatorPanel/DsFormValidatorPanel.vue";
+import type { errorPanelInterface } from "~/components/DesignSystem/components/form/formValidatorPanel/interface";
+import type { ComputedRef } from "vue";
+import DsRadioGroup from "~/components/DesignSystem/components/form/radio-group/DsRadioGroup.vue";
 
-defineProps({
+const props = defineProps({
   modelValue: {
     type: Object as () => IForm1State,
     required: true,
@@ -42,19 +41,93 @@ const showModal = ref(false);
 function handleClick() {
   showModal.value = true;
 }
+
+const errors = computed(() => ({
+  applicant: props.validate?.applicant.$errors[0]?.$message,
+  reason: props.validate?.reason.$errors[0]?.$message,
+  docFile: props.validate?.docFile.$errors[0]?.$message,
+  date: props.validate?.date.$errors[0]?.$message,
+  phone: props.validate?.phone.$errors[0]?.$message,
+  mail: props.validate?.mail.$errors[0]?.$message,
+  healthStatus: props.validate?.healthStatus.$errors[0]?.$message,
+  residence: props.validate?.residence.$errors[0]?.$message,
+  region: props.validate?.region.$errors[0]?.$message,
+  comuna: props.validate?.comuna.$errors[0]?.$message,
+  address: props.validate?.address.$errors[0]?.$message,
+  number: props.validate?.number.$errors[0]?.$message,
+}));
+const errorPanel: ComputedRef<errorPanelInterface[]> = computed(() => [
+  {
+    id: "applicant",
+    details: "¿Quién solicita la visita?",
+    errorMessage: errors.value.applicant,
+  },
+  {
+    id: "reason",
+    details:
+      "Ingrese el motivo fundado por el cual se está solicitando esta visita",
+    errorMessage: errors.value.reason,
+  },
+  {
+    id: "file",
+    details: "Adjunte documento",
+    errorMessage: errors.value.docFile,
+  },
+  {
+    id: "date",
+    details: "Fecha de nacimiento ",
+    errorMessage: errors.value.date,
+  },
+  {
+    id: "phone",
+    details: "Teléfono del pensionado",
+    errorMessage: errors.value.phone,
+  },
+  {
+    id: "mail",
+    details: "Correo electrónico del pensionado",
+    errorMessage: errors.value.mail,
+  },
+  {
+    id: "healthStatus",
+    details: "Estado de salud del pensionado",
+    errorMessage: errors.value.healthStatus,
+  },
+  {
+    id: "residence",
+    details: "Residencia del pensionado",
+    errorMessage: errors.value.residence,
+  },
+  {
+    id: "region",
+    details: "Región ",
+    errorMessage: errors.value.region,
+  },
+  {
+    id: "comuna",
+    details: "Comuna",
+    errorMessage: errors.value.comuna,
+  },
+  {
+    id: "address",
+    details: "Dirección del pensionado",
+    errorMessage: errors.value.address,
+  },
+  {
+    id: "number",
+    details: "Número",
+    errorMessage: errors.value.number,
+  },
+]);
 </script>
 
 <template>
   <DsModal v-model="showModal" title="Editar datos de Contacto">
-    <FormModal :data-form="userProfile"/>
+    <FormModal :data-form="userProfile" />
   </DsModal>
   <div class="mt-5 w-full">
     <div id="relleno">
       <DsTypography class="my-4" variant="h2">Formulario</DsTypography>
-
-      <DsTypography aria-hidden="true" class="my-4" variant="p"
-      >Los campos marcados con * son obligatorios
-      </DsTypography>
 
       <div class="cont-form-sector">
         <UserCardProfile
@@ -63,59 +136,64 @@ function handleClick() {
         />
       </div>
 
-      <UserInfo/>
+      <UserInfo />
+    </div>
+
+    <DsTypography aria-hidden="true" class="my-4" variant="p"
+      >Los campos marcados con * son obligatorios
+    </DsTypography>
+
+    <div class="my-5">
+      <FormValidatorPanel id="validator-panel" :errors="errorPanel" />
     </div>
     <form class="cont-form-sector">
       <header>
         <DsTypography variant="h3"> Información del solicitante</DsTypography>
       </header>
 
-      <div class="cont-form-group">
-        <fieldset>
-          <legend id="label_quien_solicita_visita" class="mb-2">
-            ¿Quién solicita la visita? *
-          </legend>
-        </fieldset>
+      <fieldset
+        aria-labelledby="label_quien_solicita_visita"
+        class="cont-form-group"
+        role="radiogroup"
+      >
+        <legend id="label_quien_solicita_visita" class="mb-2">
+          ¿Quién solicita la visita? *
+        </legend>
         <div class="control">
-          <DsRadio
-            v-model="modelValue.applicant"
-            aria-labelledby="label_quien_solicita_visita"
-            class="cont-gr"
-            label="Pensionado"
-            value="Pensionado"
-          />
-          <DsRadio
-            v-model="modelValue.applicant"
-            aria-labelledby="label_quien_solicita_visita"
-            class="cont-gr"
-            label="Familiar directo"
-            value="Familiar directo"
-          />
-          <DsRadio
+          <DsRadioGroup
+            id="applicant"
             v-model="modelValue.applicant"
             :error="translateError(validate?.applicant.$errors[0]?.$message)"
-            aria-labelledby="label_quien_solicita_visita"
-            class="cont-gr"
-            label="Encargado de cuidados u otro"
-            value="Encargado de cuidados u otro"
-          />
+            label="¿Quién solicita la visita?"
+            required
+          >
+            <DsRadio name="applicant" value="Pensionado">Pensionado</DsRadio>
+            <DsRadio name="applicant" value="Familiar directo"
+              >Familiar directo
+            </DsRadio>
+            <DsRadio name="applicant" value="Encargado de cuidados u otro"
+              >Encargado de cuidados u otro
+            </DsRadio>
+          </DsRadioGroup>
         </div>
-      </div>
+      </fieldset>
 
       <div class="cont-form-group">
         <DsSelect
+          id="reason"
           v-model="modelValue.reason"
           :error="translateError(validate?.reason.$errors[0]?.$message)"
           :option="reasonOption"
           class="select w-full"
           label="Ingrese el motivo fundado por el cual se está solicitando esta visita"
-          placeholder="Motivo fundado"
+          placeholder="Seleccione"
           required
         />
       </div>
 
       <div class="cont-form-group">
         <DsFile
+          id="file"
           v-model="modelValue.docFile"
           :error="translateError(validate?.docFile.$errors[0]?.$message)"
           class="upload control file-label"
@@ -128,6 +206,7 @@ function handleClick() {
 
       <div>
         <DsDatePicker
+          id="date"
           v-model="modelValue.date"
           :error="translateError(validate?.date.$errors[0]?.$message)"
           class="columns is-mobile mb-0"
@@ -138,6 +217,7 @@ function handleClick() {
 
       <div class="cont-form-group">
         <DsInput
+          id="phone"
           v-model="modelValue.phone"
           :error="translateError(validate?.phone.$errors[0]?.$message)"
           help-message="Ejemplos: Móvil:  91234567 / Fijo: 521234567"
@@ -150,6 +230,7 @@ function handleClick() {
 
       <div class="cont-form-group">
         <DsInput
+          id="mail"
           v-model="modelValue.mail"
           :error="translateError(validate?.mail.$errors[0]?.$message)"
           label="Correo electrónico del pensionado"
@@ -161,6 +242,7 @@ function handleClick() {
 
       <div class="cont-form-group">
         <DsSelect
+          id="healthStatus"
           v-model="modelValue.healthStatus"
           :error="translateError(validate?.healthStatus.$errors[0]?.$message)"
           :option="healthStatusOption"
@@ -173,6 +255,7 @@ function handleClick() {
 
       <div class="cont-form-group">
         <DsSelect
+          id="residence"
           v-model="modelValue.residence"
           :error="translateError(validate?.residence.$errors[0]?.$message)"
           :option="residenceOption"
@@ -185,6 +268,7 @@ function handleClick() {
 
       <div class="cont-form-group">
         <DsSelect
+          id="region"
           v-model="modelValue.region"
           :error="translateError(validate?.region.$errors[0]?.$message)"
           :option="regionOption"
@@ -197,6 +281,7 @@ function handleClick() {
 
       <div class="cont-form-group">
         <DsSelect
+          id="comuna"
           v-model="modelValue.comuna"
           :error="translateError(validate?.comuna.$errors[0]?.$message)"
           :option="comunaOption"
@@ -209,6 +294,7 @@ function handleClick() {
 
       <div class="cont-form-group">
         <DsInput
+          id="address"
           v-model="modelValue.address"
           :error="translateError(validate?.address.$errors[0]?.$message)"
           class="input"
@@ -220,6 +306,7 @@ function handleClick() {
 
       <div class="cont-form-group">
         <DsInput
+          id="number"
           v-model="modelValue.number"
           :error="translateError(validate?.number.$errors[0]?.$message)"
           :maxValue="999999"

@@ -1,7 +1,4 @@
-import type {
-  IStyleString,
-  ITextAlignment,
-} from "../interfaces/elements";
+import type { IStyleString, ITextAlignment } from "../interfaces/elements";
 
 export const textAlignmentClasses = {
   left: "text-left",
@@ -118,7 +115,7 @@ export const textWeightClasses = {
   w9: "font-black",
 };
 
-export const elementsSizes = {
+export const elementSizes = {
   small: "text-sm",
   normal: "text-base",
   medium: "text-lg",
@@ -416,7 +413,7 @@ export const predefinedClasses = [
   ...Object.values(sizeImagesClasses),
   ...Object.values(sizeAvatarClasses),
   ...Object.values(textWeightClasses),
-  ...Object.values(elementsSizes),
+  ...Object.values(elementSizes),
   ...Object.values(colorClasses),
   ...Object.values(textColorClasses),
   ...Object.values(textSizeClasses),

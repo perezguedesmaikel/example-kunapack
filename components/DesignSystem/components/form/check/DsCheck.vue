@@ -1,8 +1,5 @@
 <script lang="ts" setup>
-import {
-  elementsSizes,
-  predefinedClasses,
-} from "../../../common/propsStyle";
+import { elementSizes, predefinedClasses } from "../../../common/propsStyle";
 import type { ISize } from "../../../interfaces/elements";
 import { filterClass } from "../../../utils/filterClass";
 import generateUniqueId from "../../../utils/generateUniqueId";
@@ -14,6 +11,9 @@ const props = defineProps({
     type: Boolean,
     default: false,
     required: true,
+  },
+  id: {
+    type: String,
   },
 
   class: {
@@ -47,7 +47,7 @@ const props = defineProps({
   },
 
   helpMessage: {
-    type: String as PropType<string|null>,
+    type: String as PropType<string | null>,
     default: null,
   },
 
@@ -57,7 +57,7 @@ const props = defineProps({
   },
 });
 
-const inputId = computed(() => generateUniqueId('checkbox'));
+const inputId = computed(() => generateUniqueId("checkbox"));
 const labelId = computed(() => `${inputId.value}-label`);
 const errorMessageId = computed(() => `${inputId.value}-error-message`);
 const helpMessageId = computed(() => `${inputId.value}-help-message`);
@@ -70,7 +70,7 @@ const filterClassComp = computed(() => {
 
 const cssClasses = computed(() => [
   filterClassComp,
-  elementsSizes[props.size],
+  elementSizes[props.size],
   {
     rounded: props.rounded,
     error: hasError.value,
@@ -91,33 +91,35 @@ const model = computed({
 });
 
 const hasError = computed(() => !!props.error);
-const errorMessage = computed(() => translateError( props.error));
+const errorMessage = computed(() => translateError(props.error));
 
-const ariaLabels = computed(() => buildAriaLabels( props, {
-  label: labelId.value,
-  error: errorMessageId.value,
-  helpMessage: helpMessageId.value,
-}));
+const ariaLabels = computed(() =>
+  buildAriaLabels(props, {
+    label: labelId.value,
+    error: errorMessageId.value,
+    helpMessage: helpMessageId.value,
+  }),
+);
 </script>
 
 <template>
   <div class="flex items-center">
     <input
-      :id="inputId"
+      :id="id ?? inputId"
       v-model="model"
+      :aria-invalid="hasError"
+      :aria-labelledby="ariaLabels"
+      :aria-required="required"
       :checked="modelValue"
       :class="cssClasses"
       :disabled="disabled"
       class="w-auto mr-1"
       type="checkbox"
-      :aria-required="required"
-      :aria-invalid="hasError"
-      :aria-labelledby="ariaLabels"
     />
 
     <label v-if="label" :id="labelId" :for="inputId" class="mb-2">
       {{ label }}
-      <span v-if="required" class="required-marker" aria-hidden="true">*</span>
+      <span v-if="required" aria-hidden="true" class="required-marker">*</span>
     </label>
   </div>
 

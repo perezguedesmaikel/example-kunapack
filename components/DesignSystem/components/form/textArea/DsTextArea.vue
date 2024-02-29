@@ -25,6 +25,9 @@ const props = defineProps({
     type: String,
     default: "Default label",
   },
+  id: {
+    type: String,
+  },
 
   size: {
     type: String as () => ISizeText,
@@ -52,7 +55,7 @@ const props = defineProps({
   },
 
   placeholder: {
-    type: String as PropType<string|null>,
+    type: String as PropType<string | null>,
   },
 
   focus: {
@@ -61,7 +64,7 @@ const props = defineProps({
   },
 
   helpMessage: {
-    type: String as PropType<string|null>,
+    type: String as PropType<string | null>,
     default: null,
   },
 
@@ -71,7 +74,7 @@ const props = defineProps({
   },
 });
 
-const inputId = computed(() => generateUniqueId('textarea'));
+const inputId = computed(() => generateUniqueId("textarea"));
 const labelId = computed(() => `${inputId.value}-label`);
 const errorMessageId = computed(() => `${inputId.value}-error-message`);
 const helpMessageId = computed(() => `${inputId.value}-help-message`);
@@ -93,24 +96,29 @@ function handleInput(e: Event) {
 }
 
 const hasError = computed(() => !!props.error);
-const errorMessage = computed(() => translateError( props.error));
+const errorMessage = computed(() => translateError(props.error));
 
-const ariaLabels = computed(() => buildAriaLabels( props, {
-  label: labelId.value,
-  error: errorMessageId.value,
-  helpMessage: helpMessageId.value,
-}));
+const ariaLabels = computed(() =>
+  buildAriaLabels(props, {
+    label: labelId.value,
+    error: errorMessageId.value,
+    helpMessage: helpMessageId.value,
+  }),
+);
 </script>
 
 <template>
   <label v-if="label" :id="labelId" :for="inputId" class="mb-2">
     {{ label }}
-    <span v-if="required" class="required-marker" aria-hidden="true">*</span>
+    <span v-if="required" aria-hidden="true" class="required-marker">*</span>
   </label>
 
   <textarea
-    :id="inputId"
+    :id="id ?? inputId"
     ref="textAreaRef"
+    :aria-invalid="hasError"
+    :aria-labelledby="ariaLabels"
+    :aria-required="required"
     :class="[
       { error: hasError },
       filterClassComp,
@@ -123,9 +131,6 @@ const ariaLabels = computed(() => buildAriaLabels( props, {
     :placeholder="placeholder ?? 'Textarea'"
     :readonly="readOnly"
     :value="modelValue"
-    :aria-required="required"
-    :aria-invalid="hasError"
-    :aria-labelledby="ariaLabels"
     @input="handleInput"
   />
 
