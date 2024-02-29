@@ -5,7 +5,7 @@ import BenefitPaymentInformation
 </script>
 
 <template>
-  <div class="p-[40px]">
+  <div class="container">
     <BenefitPaymentInformation/>
   </div>
 </template>

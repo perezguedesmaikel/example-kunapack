@@ -3,5 +3,7 @@ import FormExample from "~/components/DesignSystem/components/form-example/pensi
 </script>
 
 <template>
-  <FormExample />
+  <div class="container">
+    <FormExample/>
+  </div>
 </template>

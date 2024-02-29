@@ -4,16 +4,17 @@ import DsLink from "~/components/DesignSystem/components/navigation/link/DsLink.
 import DsAlert from "~/components/DesignSystem/components/basic/alert/DsAlert.vue";
 import DsInput from "~/components/DesignSystem/components/form/input/DsInput.vue";
 import DsButton from "~/components/DesignSystem/components/basic/button/DsButton.vue";
-import { required } from "@vuelidate/validators";
-import { isValidRUT } from "~/components/DesignSystem/utils/isValidRut";
-import { useVuelidate } from "@vuelidate/core";
-import { translateError } from "~/components/DesignSystem/utils/translateErrorMessage";
+import {required} from "@vuelidate/validators";
+import {isValidRUT} from "~/components/DesignSystem/utils/isValidRut";
+import {useVuelidate} from "@vuelidate/core";
+import {translateError} from "~/components/DesignSystem/utils/translateErrorMessage";
 import TablePaymentInfo from "./components/TablePaymentInfo.vue";
-import ImportantInfoPage from "~/components/DesignSystem/components/form-example/benefit-payment-information/components/ImportantInfoPage.vue";
-import { nextTick } from "vue";
+import ImportantInfoPage
+  from "~/components/DesignSystem/components/form-example/benefit-payment-information/components/ImportantInfoPage.vue";
+import {nextTick} from "vue";
 
 const step = ref(1);
-const form = reactive({ rut: "" });
+const form = reactive({rut: ""});
 const loading = ref(false);
 
 const rutValidate = {
@@ -21,7 +22,7 @@ const rutValidate = {
   $validator: isValidRUT,
 };
 const formRules = reactive({
-  rut: { required, rutValidate },
+  rut: {required, rutValidate},
 });
 const validateForm = useVuelidate(formRules, form);
 // const table = ref<InstanceType<typeof TablePaymentInfo> | null>(null);
@@ -52,18 +53,18 @@ function handleSubmit() {
 </script>
 
 <template>
-  <div class="column">
+  <div>
     <header class="mb-10">
       <DsTypography variant="h4"
-        >Servicio de información entregado por
+      >Servicio de información entregado por
         <DsLink
           href="https://www.chileatiende.gob.cl/instituciones/AL005"
           title="Ir a la sección del sitio"
-          >Instituto de Previsión Social
+        >Instituto de Previsión Social
         </DsLink>
       </DsTypography>
       <DsTypography variant="h1"
-        >Consulta la fecha y forma de pago de tus beneficios
+      >Consulta la fecha y forma de pago de tus beneficios
       </DsTypography>
       <DsTypography variant="p">
         Permite a beneficiarios de pensiones previsionales, Pensión Básica
@@ -73,7 +74,7 @@ function handleSubmit() {
           href="https://www.chileatiende.gob.cl/fichas/5212"
           target="_blank"
           title="Ir a la ficha en ChileAtiende"
-          >Más información.
+        >Más información.
         </DsLink>
       </DsTypography>
     </header>
@@ -103,7 +104,7 @@ function handleSubmit() {
             href="https://www.bonocovid.cl"
             target="_blank"
             title="Ir al sitio de Bonocovid"
-            >www.bonocovid.cl
+          >www.bonocovid.cl
           </DsLink>
         </DsTypography>
         <DsTypography variant="p">
@@ -113,7 +114,7 @@ function handleSubmit() {
             href="https://www.ingresodeemergencia.cl"
             target="_blank"
             title="Ir al sitio del Ingreso Familiar de Emergencia"
-            >www.ingresodeemergencia.cl
+          >www.ingresodeemergencia.cl
           </DsLink>
         </DsTypography>
       </DsAlert>
@@ -149,9 +150,9 @@ function handleSubmit() {
         class="focus:shadow-lime-500 focus:shadow focus:outline-0"
         tabindex="0"
       >
-        <TablePaymentInfo />
+        <TablePaymentInfo/>
       </div>
-      <ImportantInfoPage v-if="step == 2" />
+      <ImportantInfoPage v-if="step == 2"/>
     </section>
   </div>
 </template>
